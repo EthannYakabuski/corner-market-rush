@@ -113,6 +113,9 @@ func level() -> int:
 static func xp_for_level(value: int) -> int:
 	return 45 * value * (value - 1)
 
+static func level_coin_bonus(value: int) -> int:
+	return 0 if value < 2 else mini(60, 10 + 5 * value)
+
 func available_shift() -> int:
 	var next := 1
 	while next <= 36 and data.completed.has(str(next)):
@@ -159,7 +162,8 @@ func accept_result(result: Dictionary, shift_state: Dictionary, is_daily: bool =
 	roll_day(today())
 	data.daily.served = int(data.daily.served) + int(result.get("served", 0))
 	data.daily.restocks = int(data.daily.restocks) + int(result.get("restocks", 0))
-	data.daily.revenue = int(data.daily.revenue) + int(result.get("coins", 0))
+	# The daily sales goal counts checkout/completion proceeds, not level gifts.
+	data.daily.revenue = int(data.daily.revenue) + int(result.get("base_coins", result.get("coins", 0)))
 	if is_daily and won and daily_day == str(data.daily.day) and not bool(data.daily.won):
 		data.daily.won = true
 		data.daily_wins = int(data.daily_wins) + 1
@@ -171,9 +175,40 @@ func settle_model(model: RefCounted, is_daily: bool = false, daily_day: String =
 	# disk write restores both model and profile so Retry cannot duplicate money.
 	var previous: Dictionary = data.duplicate(true)
 	var shift_before: Dictionary = model.snapshot()
+	var level_before := level()
 	var receipt: Dictionary = model.bank_result(data)
 	if receipt.is_empty():
 		return {"ok":false,"receipt":{}}
+	var run := str(receipt.run_id)
+	var entry: Dictionary = {}
+	if data.banked_runs.get(run) is Dictionary:
+		entry = data.banked_runs[run]
+	else:
+		data.banked_runs[run] = entry
+	if bool(receipt.get("claimed", false)):
+		receipt["base_coins"] = int(receipt.get("coins", 0))
+		var rewards: Array = []
+		var bonus := 0
+		for new_level: int in range(level_before + 1, level() + 1):
+			var coins := level_coin_bonus(new_level)
+			rewards.append({"level": new_level, "coins": coins})
+			bonus += coins
+		receipt["level_bonus"] = bonus
+		receipt["level_rewards"] = rewards
+		receipt["coins"] = int(receipt.base_coins) + bonus
+		data.coins = int(data.coins) + bonus
+		entry["receipt"] = receipt.duplicate(true)
+	elif entry.get("receipt") is Dictionary:
+		# Preserve the original breakdown when the result is reopened or cold
+		# loaded. A duplicate reports the old award; it never computes a new one.
+		receipt = entry.receipt.duplicate(true)
+		receipt["claimed"] = false
+	else:
+		# Existing version1 saves need no migration or retroactive level grants.
+		receipt["base_coins"] = int(receipt.get("coins", 0))
+		receipt["level_bonus"] = 0
+		receipt["level_rewards"] = []
+		entry["receipt"] = receipt.duplicate(true)
 	var succeeded := false
 	if bool(receipt.get("practice",false)):
 		data.active = {}
@@ -186,6 +221,7 @@ func settle_model(model: RefCounted, is_daily: bool = false, daily_day: String =
 	if not succeeded:
 		data = previous
 		model.restore(shift_before)
+		receipt["claimed"] = false
 	return {"ok":succeeded,"receipt":receipt}
 
 static func today() -> String:

@@ -40,8 +40,8 @@
     },
     {
       "path": "LICENSES/Assets/MARKET-ASSETS.txt",
-      "bytes": 784,
-      "sha256": "AFF82F142DD5C5624543F96EDC3312DD347FD7C9B56CAD2892DE7CEAC5ACDA57"
+      "bytes": 1162,
+      "sha256": "75C25D52A3D65C18F9E33185F3A5DF36EBB82CA69091597DDA5302C3CEF197DF"
     },
     {
       "path": "LICENSES/Audio/compose_original_music.py",

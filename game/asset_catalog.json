@@ -206,7 +206,114 @@
       "sha256": "EF2AB63731C38A469DF7F993C26B0E8137746F90AC20ED9485D61F48AA50FBDB"
     }
   ],
-  "derived_assets": [{"path":"assets/kenney/market/display-fruit-stock.glb","source":"assets/kenney/market/display-fruit.glb","source_pack":"kenney_mini-market","sha256":"CEE942BC741DCDB0654BBBA7EA6CB9B73DA5D8B52E2D934F864E2A5897F707B8","generator":"game/derive_fruit_asset.py","change":"Original tray plus six original fruit/stem child groups; same geometry attributes and texture"}],
+  "derived_assets": [
+    {
+      "path": "assets/kenney/market/display-fruit-stock.glb",
+      "source": "assets/kenney/market/display-fruit.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "CEE942BC741DCDB0654BBBA7EA6CB9B73DA5D8B52E2D934F864E2A5897F707B8",
+      "generator": "game/derive_fruit_asset.py",
+      "change": "Original tray plus six original fruit/stem child groups; same geometry attributes and texture"
+    }
+  ],
   "texture_rule": "Preserve each pack external Textures/colormap.png",
-  "license_directory": "LICENSES/Assets"
+  "license_directory": "LICENSES/Assets",
+  "ui_previews": [
+    {
+      "path": "assets/ui/products/apple.png",
+      "source_pack": "kenney_mini-market",
+      "source_preview": "Previews/display-fruit.png",
+      "sha256": "18E9E821FAB2CA5028629FC882C9D4E3B1FEA5537AC4378B984128215A0010C3",
+      "license": "LICENSES/Assets/kenney_mini-market-LICENSE.txt",
+      "treatment": "unmodified supplied CC0 preview, not generated artwork"
+    },
+    {
+      "path": "assets/ui/products/bread.png",
+      "source_pack": "kenney_mini-market",
+      "source_preview": "Previews/display-bread.png",
+      "sha256": "2597498BF6A898DF2C2ACF98C3F3215A806A40B0ADB0B35EFA255C1153E54320",
+      "license": "LICENSES/Assets/kenney_mini-market-LICENSE.txt",
+      "treatment": "unmodified supplied CC0 preview, not generated artwork"
+    },
+    {
+      "path": "assets/ui/products/milk.png",
+      "source_pack": "kenney_mini-market",
+      "source_preview": "Previews/freezers-standing.png",
+      "sha256": "4C795CFCDADEC9819B3A9B634317B0535A90305B61E951636E36A80937604A2F",
+      "license": "LICENSES/Assets/kenney_mini-market-LICENSE.txt",
+      "treatment": "unmodified supplied CC0 preview, not generated artwork"
+    },
+    {
+      "path": "assets/ui/products/cereal.png",
+      "source_pack": "kenney_mini-market",
+      "source_preview": "Previews/shelf-boxes.png",
+      "sha256": "14FD460F0EE5E89A1578DCD0A2DF2EAF4993DDF33C319263F2E4B7886D10F149",
+      "license": "LICENSES/Assets/kenney_mini-market-LICENSE.txt",
+      "treatment": "unmodified supplied CC0 preview, not generated artwork"
+    },
+    {
+      "path": "assets/ui/products/greens.png",
+      "source_pack": "kenney_mini-market",
+      "source_preview": "Previews/shelf-bags.png",
+      "sha256": "46E40596013D48F77CA5B2B94F45D5E1EAC7311F39BC3D6EC5D17A340CF5364E",
+      "license": "LICENSES/Assets/kenney_mini-market-LICENSE.txt",
+      "treatment": "unmodified supplied CC0 preview, not generated artwork"
+    },
+    {
+      "path": "assets/ui/products/juice.png",
+      "source_pack": "kenney_mini-market",
+      "source_preview": "Previews/shelf-end.png",
+      "sha256": "C0D81FAC0F320851977108A7BECD35E369238528D21CE155DB66DA953B34C32A",
+      "license": "LICENSES/Assets/kenney_mini-market-LICENSE.txt",
+      "treatment": "unmodified supplied CC0 preview, not generated artwork"
+    },
+    {
+      "path": "assets/ui/regulars/character-female-a.png",
+      "source_pack": "kenney_mini-characters",
+      "source_preview": "Previews/character-female-a.png",
+      "sha256": "53DBF1ED479CD671C1EB989A1F0C79726DC91CE9E90CCB7B1C7A287F8E78BF99",
+      "license": "LICENSES/Assets/kenney_mini-characters-LICENSE.txt",
+      "treatment": "unmodified supplied CC0 preview, not generated artwork"
+    },
+    {
+      "path": "assets/ui/regulars/character-male-a.png",
+      "source_pack": "kenney_mini-characters",
+      "source_preview": "Previews/character-male-a.png",
+      "sha256": "150C2758AC470CC9B4E257999A66511BEAC6FE798AD6FCD84C911D81F56A97AB",
+      "license": "LICENSES/Assets/kenney_mini-characters-LICENSE.txt",
+      "treatment": "unmodified supplied CC0 preview, not generated artwork"
+    },
+    {
+      "path": "assets/ui/regulars/character-female-b.png",
+      "source_pack": "kenney_mini-characters",
+      "source_preview": "Previews/character-female-b.png",
+      "sha256": "DB299B4AB11A3F038CBD961B62F93CB67677D3E1A9B4CD12577978120F5F9EA6",
+      "license": "LICENSES/Assets/kenney_mini-characters-LICENSE.txt",
+      "treatment": "unmodified supplied CC0 preview, not generated artwork"
+    },
+    {
+      "path": "assets/ui/regulars/character-male-b.png",
+      "source_pack": "kenney_mini-characters",
+      "source_preview": "Previews/character-male-b.png",
+      "sha256": "A7F9312030C8C75F803B2166F359A943E1F831C4E3F48244C8896BA121FDA63F",
+      "license": "LICENSES/Assets/kenney_mini-characters-LICENSE.txt",
+      "treatment": "unmodified supplied CC0 preview, not generated artwork"
+    },
+    {
+      "path": "assets/ui/regulars/character-female-c.png",
+      "source_pack": "kenney_mini-characters",
+      "source_preview": "Previews/character-female-c.png",
+      "sha256": "F982772BD9D3C096B7D1ECED50AFD9E69B9E2941AB2E06299829069BA36DB31F",
+      "license": "LICENSES/Assets/kenney_mini-characters-LICENSE.txt",
+      "treatment": "unmodified supplied CC0 preview, not generated artwork"
+    },
+    {
+      "path": "assets/ui/regulars/character-male-e.png",
+      "source_pack": "kenney_mini-characters",
+      "source_preview": "Previews/character-male-e.png",
+      "sha256": "E211D5BCE7E8E0BB76943B64198C9819C3115B4A40A18E4CF751FA814B3341E1",
+      "license": "LICENSES/Assets/kenney_mini-characters-LICENSE.txt",
+      "treatment": "unmodified supplied CC0 preview, not generated artwork"
+    }
+  ]
 }

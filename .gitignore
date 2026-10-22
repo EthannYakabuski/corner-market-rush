@@ -36,3 +36,4 @@ evidence/
 *.bak
 *.pck
 *.wasm
+android/.build_version

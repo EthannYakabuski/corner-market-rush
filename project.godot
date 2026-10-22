@@ -16,6 +16,9 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="CornerMarketRush"
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(1, 0.94902, 0.854902, 1)
+boot_splash/fullsize=false
+boot_splash/image="res://marketing/branding/app_icon.png"
 config/icon="res://marketing/branding/app_icon.png"
 
 [autoload]

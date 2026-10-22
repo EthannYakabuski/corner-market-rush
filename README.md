@@ -19,7 +19,7 @@ The first shift introduces apples and bread with four customers and generous pat
 ## Included systems
 
 - **36 authored shifts** across six themes: Maple Corner, Morning Bakery, Rainy Window, Market Square, Tram Stop Express and Lantern Night.
-- Six regular customers, manager XP/levels, capped shelf/reserve improvements and visible shop decorations.
+- Six regular customers, manager XP/levels with a modest coin welcome gift at each new level, capped shelf/reserve improvements and visible shop decorations. Level gifts share the once-only saved shift receipt.
 - A daily basket, three daily goals and a seven-claim welcome calendar. Claims use UTC dates; missing a day does not erase the welcome calendar. Offline play does not invent idle earnings.
 - **20 achievement definitions and three higher-is-better records**. The best-combo record excludes earned assistance. Exact names, descriptions, criteria and icon paths live in [game/catalog.json](game/catalog.json).
 - Selected Kenney CC0 shop, character, furniture, nature, street and UI assets; original music and matching licensed sound effects with separate persisted volume toggles.
@@ -61,7 +61,9 @@ godot --headless --path . --script tests/test_profile.gd -- --qa-isolated
 godot --headless --path . --script tests/test_ui.gd -- --qa-isolated
 ```
 
-The current isolated engine checks pass **1,552 model checks**, including legal baseline strategies for all 36 shifts; **40 progression/save checks**; and **51 scene/lifecycle checks**. Keep the strict script/error/assertion log gate alongside exit codes. The scene test's service callbacks are explicitly synthetic fixtures, never evidence of a real SDK ad or native reward.
+The current isolated engine checks pass **1,552 model checks**, including legal baseline strategies for all 36 shifts; **62 progression/save checks**; **132 scene/lifecycle checks**; and **17 audio checks**. The import and service smoke checks also pass without strict diagnostics. Keep the strict script/error/assertion log gate alongside exit codes. The scene test's service callbacks are explicitly synthetic fixtures, never evidence of a real SDK ad or native reward.
+
+The first Android presentation review found an oversized wallet header and overbright scenery. Source corrections and phone/tablet touch-geometry checks now pass; acceptance of the revised Android rendering and controls is still pending an updated build and genuine play.
 
 Still required for acceptance: genuine Android completion/restock/checkout and once-only payment across cold load; real pause/Back/save behavior; available real service flows; actual offline verification; reviewed Android/Web packages; and six genuine views each for phone, seven-inch and ten-inch profiles. Auditory listening, physical-device, interactive Web and production-service validation have not been established by these source checks. Illustrated marketing images are never gameplay screenshots.
 

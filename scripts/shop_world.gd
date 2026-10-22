@@ -29,6 +29,7 @@ var neighborhood_time := 0.0
 var theme_decor: Array = []
 var shop_sign: Label3D
 var shop_subtitle: Label3D
+var task_marker: MeshInstance3D
 
 func setup(data: Dictionary) -> void:
 	catalog = data
@@ -48,7 +49,7 @@ func setup(data: Dictionary) -> void:
 	camera = Camera3D.new()
 	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
 	camera.keep_aspect = Camera3D.KEEP_WIDTH
-	camera.size = 11.0
+	camera.size = 10.4
 	camera.v_offset = -1.25
 	camera.position = Vector3(9,12,13)
 	add_child(camera)
@@ -155,6 +156,8 @@ func setup(data: Dictionary) -> void:
 		for marker in range(7):
 			markers[sku].append(box(Vector3(0.13,0.065,0.1),positions[index]+Vector3(-0.45+marker*0.15,0.08,0.6),Color(product.color)))
 	clerk = asset(MARKET+"character-employee.glb",clerk_home,1.25)
+	task_marker = ring(0.6,Color("e9b967"))
+	task_marker.visible = false
 	animate(clerk,"idle")
 	set_theme(0)
 
@@ -188,6 +191,21 @@ func theme_asset(index: int, path: String, position_value: Vector3, factor: floa
 	var node := asset(path,position_value,factor)
 	remove_child(node)
 	theme_decor[index].add_child(node)
+
+func ring(radius: float, color: Color) -> MeshInstance3D:
+	var marker := MeshInstance3D.new()
+	var mesh := TorusMesh.new()
+	mesh.inner_radius = radius
+	mesh.outer_radius = radius+0.065
+	mesh.rings = 24
+	mesh.ring_segments = 8
+	marker.mesh = mesh
+	var material := StandardMaterial3D.new()
+	material.albedo_color = color
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	marker.material_override = material
+	add_child(marker)
+	return marker
 
 func label(value: String, position_value: Vector3, font_size: int) -> Label3D:
 	var node := Label3D.new()
@@ -242,10 +260,12 @@ func set_theme(index: int) -> void:
 	var sky_colors := [Color("a3c6c8"),Color("e2b98f"),Color("a3bac7"),Color("c2ca9b"),Color("9fbbc7"),Color("343f67")]
 	environment.background_color = sky_colors[clampi(index,0,5)]
 	environment.ambient_light_color = Color("aeb7ed") if night else Color("fff1d5")
-	environment.ambient_light_energy = 0.65 if night else 0.8
-	sun.light_energy = 0.55 if night else 0.9 if rainy else 1.4
+	# The native Compatibility renderer clipped pale colormap swatches with the
+	# former summed1.4sun+.8ambient. Keep the original textures and light them gently.
+	environment.ambient_light_energy = 0.22 if night else 0.32 if rainy else 0.34
+	sun.light_energy = 0.24 if night else 0.46 if rainy else 0.68
 	for lamp in lights:
-		lamp.light_energy = 1.2 if night else 0.25
+		lamp.light_energy = 0.65 if night else 0.08
 	for emitter in rain_emitters:
 		emitter.emitting = rainy
 	for decor_index in range(theme_decor.size()):
@@ -268,6 +288,7 @@ func freeze_animations(node: Node, value: bool) -> void:
 		freeze_animations(child,value)
 
 func show_shift(skus: Array, chapter: int) -> void:
+	camera.v_offset = -1.1
 	home_mode = false
 	for neighbor in neighbors: neighbor.queue_free()
 	neighbors.clear()
@@ -283,6 +304,7 @@ func show_shift(skus: Array, chapter: int) -> void:
 	actors.clear()
 	actor_labels.clear()
 	clerk.position = clerk_home
+	if task_marker != null: task_marker.visible = false
 
 func sync(next_state: Dictionary, delta: float) -> void:
 	state = next_state
@@ -297,6 +319,16 @@ func sync(next_state: Dictionary, delta: float) -> void:
 		for index in range(markers[sku].size()):
 			markers[sku][index].visible = sku in current_skus and index < stock
 	var active: Dictionary = state.active_task
+	task_marker.visible = not active.is_empty()
+	if not active.is_empty():
+		if active.kind == "restock":
+			task_marker.position = positions[catalog.sku_order.find(str(active.target))]+Vector3(0,0.055,0)
+		else:
+			var target_customer: Dictionary = {}
+			for customer in state.customers:
+				if int(customer.id) == int(active.target): target_customer = customer
+			if not target_customer.is_empty():
+				task_marker.position = Vector3(float(target_customer.position[0]),0.055,float(target_customer.position[1]))
 	var clerk_point: Array = state.get("clerk_position",[0,1.35])
 	set_actor_position(clerk,Vector3(float(clerk_point[0]),0.04,float(clerk_point[1])),delta)
 	var motion := str(state.get("clerk_motion","idle"))
@@ -305,13 +337,18 @@ func sync(next_state: Dictionary, delta: float) -> void:
 	for customer in state.customers:
 		var id := int(customer.id)
 		if not actors.has(id):
-			var regular: Dictionary = catalog.regulars[id % catalog.regulars.size()]
+			var regular: Dictionary = catalog.regulars[int(customer.get("regular",id%catalog.regulars.size()))]
 			actors[id] = asset(PEOPLE+regular.model+".glb",Vector3(3.2,0.04,3.6),1.2)
 			var basket := asset(MARKET+"shopping-basket.glb",Vector3.ZERO,0.55)
 			remove_child(basket)
 			actors[id].add_child(basket)
 			basket.position = Vector3(0,0.28,0.28)
 			actors[id].set_meta("basket_model",basket)
+			var ready_ring := ring(0.3,Color("4cafa0"))
+			remove_child(ready_ring)
+			actors[id].add_child(ready_ring)
+			ready_ring.position = Vector3(0,0.025,0)
+			actors[id].set_meta("ready_ring",ready_ring)
 			actor_labels[id] = label(str(customer.name),Vector3.ZERO,30)
 		var actor: Node3D = actors[id]
 		var text: Label3D = actor_labels[id]
@@ -327,6 +364,8 @@ func sync(next_state: Dictionary, delta: float) -> void:
 		actor.visible = customer_motion != "exited"
 		var basket_model: Node3D = actor.get_meta("basket_model")
 		basket_model.visible = not customer.basket.is_empty()
+		var ready_ring: MeshInstance3D = actor.get_meta("ready_ring")
+		ready_ring.visible = phase == "ready"
 		text.visible = actor.visible and phase not in ["served","lost"]
 
 func set_actor_position(actor: Node3D, position_value: Vector3, delta: float) -> void:
@@ -363,6 +402,7 @@ func select_at(point: Vector2) -> bool:
 
 func set_home() -> void:
 	show_shift(catalog.sku_order,0)
+	camera.v_offset = -1.8
 	home_mode = true
 	animate(clerk,"idle")
 	for sku in products:

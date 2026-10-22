@@ -3,4 +3,6 @@ All listed packs are CC0; exact original license files accompany this notice.
 Mini Market 1.0, Mini Characters 1.0, Furniture Kit 2.0, Nature Kit 2.1, City Kit Commercial 2.1, UI Pack 2.0.
 Mini Market additional credits are preserved in its original license.
 No competitor/reference project artwork is included.
+Six unmodified Mini Characters preview thumbnails identify the same selected in-game regular models in customer cards. Their original CC0 license is included.
+Six unmodified Mini Market product preview thumbnails provide fallback runtime product pictograms. They retain the original Mini Market CC0 license; these supplied previews are not claimed as generated illustrations.
 display-fruit-stock.glb is an original-geometry derivative of Mini Market display-fruit.glb. The tray and six existing fruit/stem groups were separated into named child nodes for stock depletion. Positions, normals, UV arrays and colormap texture are preserved; no new artwork is claimed. game/derive_fruit_asset.py deterministically reproduces this split. The original CC0 model is retained alongside it.

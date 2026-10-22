@@ -3,6 +3,7 @@ extends SceneTree
 ## This creates no screenshots and is never evidence of a real SDK/native earn.
 const Profile = preload("res://game/profile.gd")
 var checks := 0
+var failures := 0
 var app
 var fake: FakeServices
 
@@ -31,8 +32,10 @@ func _initialize() -> void:
 	call_deferred("_run")
 
 func check(condition: bool, message: String) -> void:
-	assert(condition,message)
 	checks += 1
+	if not condition:
+		failures += 1
+		push_error("Assertion failed: "+message)
 
 func find_button(node: Node, text: String) -> Button:
 	if node is Button and node.text == text: return node
@@ -46,8 +49,64 @@ func press(text: String) -> void:
 	check(button != null,"actual scene button exists: "+text)
 	if button != null: button.pressed.emit()
 
+func inside_app(control: Control) -> bool:
+	if not is_instance_valid(control): return false
+	var outer: Rect2 = app.get_global_rect()
+	var inner := control.get_global_rect()
+	return inner.position.x >= outer.position.x-1 and inner.position.y >= outer.position.y-1 and inner.end.x <= outer.end.x+1 and inner.end.y <= outer.end.y+1
+
+func touch_dp(control: Control, density: float) -> Vector2:
+	# This transform includes the actual viewport/canvas/window stretch. Density
+	# belongs to the named emulated profile, not the Windows host display.
+	var transform := control.get_screen_transform()
+	var origin := transform*Vector2.ZERO
+	var physical := Vector2((transform*Vector2(control.size.x,0)-origin).length(),(transform*Vector2(0,control.size.y)-origin).length())
+	return physical*160.0/density
+
+func geometry(profile_name: String, dimensions: Vector2i, density: float) -> void:
+	root.size = dimensions
+	app.show_home()
+	await process_frame
+	await process_frame
+	var header_panel: Control = app.header.get_parent().get_parent()
+	check(header_panel.size.y <= 150,"header bounded height on "+profile_name)
+	check(app.header.size.x >= 160 and app.header.get_line_count() == 2,"wallet is readable two-line text, never a one-letter column: "+profile_name)
+	check(inside_app(find_button(app,"Open the shop  ·  Shift %d" % app.profile.available_shift())),"primary Open control inside viewport: "+profile_name)
+	# Financial stress is an isolated presentation fixture, not a grant or save.
+	var prior: Dictionary = app.profile.data.duplicate(true)
+	app.profile.data.coins = 99999999
+	app.profile.data.xp = 999999
+	app._refresh_header()
+	await process_frame
+	check(app.header.get_line_count() == 2 and header_panel.size.y <= 150,"large wallet values cannot expand header: "+profile_name)
+	app.profile.data = prior
+	app._start_shift(31,true)
+	await process_frame
+	await process_frame
+	check(app.stock_buttons.size() == 6,"full product controls present: "+profile_name)
+	for sku in app.stock_buttons:
+		check(ResourceLoader.exists(app._product_icon_path(str(sku))),"actual runtime product pictogram imported: "+str(sku))
+		check(inside_app(app.stock_buttons[sku]),"product action inside viewport: "+profile_name+"/"+str(sku))
+		var dp := touch_dp(app.stock_buttons[sku],density)
+		if sku == "apple":
+			var control: Control = app.stock_buttons[sku]
+			print("TOUCH_GEOMETRY %s: window=%s app=%s viewport=%s control=%s screen_transform=%s dp=%s density=%s" % [profile_name,root.size,app.size,app.get_viewport_rect().size,control.size,control.get_screen_transform(),dp,density])
+		check(dp.x >= 48 and dp.y >= 48-0.01,"product action meets48dp in actual canvas scale: "+profile_name+"/"+str(sku))
+	for button in app.customer_buttons.values():
+		if not button.is_visible_in_tree(): continue
+		var dp := touch_dp(button,density)
+		check(inside_app(button) and dp.x >= 48 and dp.y >= 48,"whole customer checkout target is reachable48dp: "+profile_name)
+		check(button.get_signal_connection_list("pressed").size() == 1,"whole checkout card has only one action handler: "+profile_name)
+	check(inside_app(find_button(app,"Pause")),"Pause remains reachable: "+profile_name)
+	check(app.shift_label.get_global_rect().end.y < app.stock_buttons.apple.get_global_rect().position.y-220,"shop has visible space between HUD and actions: "+profile_name)
+	app.show_home()
+
 func _run() -> void:
-	check("--qa-isolated" in OS.get_cmdline_user_args(),"scene fixture requires explicit isolated profile flag")
+	var isolated := "--qa-isolated" in OS.get_cmdline_user_args()
+	check(isolated,"scene fixture requires explicit isolated profile flag")
+	if not isolated:
+		quit(1)
+		return
 	root.size = Vector2i(960,1440)
 	var scene: PackedScene = load("res://scenes/main.tscn")
 	app = scene.instantiate()
@@ -67,6 +126,12 @@ func _run() -> void:
 	check(app.world.clerk.get_child_count() > 0,"real employee asset instantiated")
 	check(app.world.products.greens.size() >= 8,"actual bag submodels support depletion")
 	check(app.world.products.apple.size() == 6,"actual fruit geometry is six stock-visible children")
+	await geometry("phone",Vector2i(1080,1920),420)
+	await geometry("seven-inch logical profile",Vector2i(1200,1920),320)
+	await geometry("ten-inch logical profile",Vector2i(1600,2560),300)
+	root.size = Vector2i(960,1440)
+	app.profile.data = Profile.fresh()
+	app.profile.data.tutorial_seen = true
 	app._start_shift(1)
 	await process_frame
 	check(app.stock_buttons.size() == 2,"tutorial has exactly two product controls")
@@ -184,5 +249,5 @@ func _run() -> void:
 	fake.queue_free()
 	await process_frame
 	await process_frame
-	print("MARKET UI/LIFECYCLE: %d checks passed; isolated scene/synthetic service fixtures, NOT native evidence" % checks)
-	quit(0)
+	print("MARKET UI/LIFECYCLE %s: %d checks, %d failures; isolated scene/synthetic service fixtures, NOT native evidence" % ["PASS" if failures == 0 else "FAILED",checks,failures])
+	quit(0 if failures == 0 else 1)

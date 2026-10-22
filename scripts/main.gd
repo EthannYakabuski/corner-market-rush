@@ -31,7 +31,9 @@ var auto_save := 0.0
 var refresh_clock := 0.0
 var stock_buttons: Dictionary = {}
 var customer_buttons: Dictionary = {}
+var customer_cards: Dictionary = {}
 var customer_row: HBoxContainer
+var basket_label: Label
 var task_label: Label
 var shift_label: Label
 var shift_progress: ProgressBar
@@ -218,6 +220,7 @@ func _page(name_value: String, subtitle: String) -> void:
 		child.queue_free()
 	stock_buttons.clear()
 	customer_buttons.clear()
+	customer_cards.clear()
 	footer = null
 	var top := _row(_panel(page,Color("f7eace")))
 	var title := _vbox(top,0)
@@ -225,6 +228,9 @@ func _page(name_value: String, subtitle: String) -> void:
 	_text(title,"CORNER MARKET RUSH",30,TEAL)
 	_text(title,subtitle,21)
 	header = _text(top,"",23)
+	header.autowrap_mode = TextServer.AUTOWRAP_OFF
+	header.custom_minimum_size = Vector2(170,56)
+	header.size_flags_horizontal = Control.SIZE_SHRINK_END
 	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_refresh_header()
 	if services != null: services.set_menu_visible(screen == "home")
@@ -232,7 +238,9 @@ func _page(name_value: String, subtitle: String) -> void:
 
 func _refresh_header() -> void:
 	if is_instance_valid(header):
-		header.text = "Level %d\n%d coins" % [profile.level(),int(profile.data.coins)]
+		var coins := int(profile.data.coins)
+		var amount := "%.1fm" % (float(coins)/1000000) if coins >= 1000000 else "%.1fk" % (float(coins)/1000) if coins >= 10000 else str(coins)
+		header.text = "Level %d\n%s coins" % [profile.level(),amount]
 
 func show_home() -> void:
 	_close_modal()
@@ -249,8 +257,8 @@ func show_home() -> void:
 	_text(box,"Fresh things. Familiar faces.",38,TEAL)
 	_text(box,"Stock smart, serve with care, and grow the corner everyone knows.",26)
 	if not profile.data.active.is_empty():
-		_button(box,"Resume your saved shift",_resume_saved)
-	_button(box,"Open the shop  ·  Shift %d" % profile.available_shift(),func(): _confirm_start(profile.available_shift()))
+		_button(box,"Resume your saved shift",_resume_saved,CORAL)
+	_button(box,"Open the shop  ·  Shift %d" % profile.available_shift(),func(): _confirm_start(profile.available_shift()),CORAL if profile.data.active.is_empty() else TEAL)
 	var row := _row(box)
 	_button(row,"The neighborhood",show_campaign)
 	_button(row,"Daily baskets",show_daily)
@@ -378,6 +386,25 @@ func _badge_image(parent: Node, path: String) -> void:
 	image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	parent.add_child(image)
 
+func _picture(parent: Node, path: String, extent: int) -> TextureRect:
+	var image := TextureRect.new()
+	if ResourceLoader.exists(path): image.texture = load(path)
+	image.custom_minimum_size = Vector2(extent,extent)
+	image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	image.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	parent.add_child(image)
+	return image
+
+func _product_icon_path(sku: String) -> String:
+	var illustrated := "res://assets/art/products/%s.png" % sku
+	return illustrated if ResourceLoader.exists(illustrated) else "res://assets/ui/products/%s.png" % sku
+
+func _ignore_child_mouse(node: Node) -> void:
+	for child in node.get_children():
+		if child is Control: child.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_ignore_child_mouse(child)
+
 func show_achievements() -> void:
 	_check_badges()
 	var box := _menu("Badges & records","Your neighborhood story stays local. Play Games is optional.")
@@ -485,12 +512,16 @@ func _build_game() -> void:
 	for sku in model.skus():
 		var key := str(sku)
 		var button := _button(grid,"",func(): _queue_task("restock",key),Color(catalog.products[key].color).darkened(0.28))
-		button.custom_minimum_size.y = 88
-		button.add_theme_font_size_override("font_size",23)
+		button.custom_minimum_size.y = 128
+		button.add_theme_font_size_override("font_size",21)
+		var icon_path := _product_icon_path(key)
+		if ResourceLoader.exists(icon_path): button.icon = load(icon_path)
+		button.expand_icon = true
+		button.add_theme_constant_override("icon_max_width",58)
 		stock_buttons[key] = button
-	_text(controls,"BASKETS  ·  Checkout only when complete",21,TEAL)
+	basket_label = _text(controls,"BASKETS  ·  Checkout only when complete",21,TEAL)
 	var scroll := ScrollContainer.new()
-	scroll.custom_minimum_size.y = 130
+	scroll.custom_minimum_size.y = 238
 	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	controls.add_child(scroll)
 	customer_row = _row(scroll,8)
@@ -520,21 +551,68 @@ func _refresh_game() -> void:
 	shift_label.text = "%s  ·  %d/%d neighbors  ·  %d coins" % ["Practice" if state.practice else "%ds" % int(ceil(float(state.remaining))),int(state.served),int(model.definition.target),int(state.revenue)]
 	shift_progress.max_value = float(model.definition.duration)
 	shift_progress.value = float(state.remaining)
+	var ready_count := 0
+	var shopping_count := 0
+	for visitor in state.customers:
+		if visitor.phase == "ready": ready_count += 1
+		elif visitor.phase in ["shopping","to_checkout"]: shopping_count += 1
+	basket_label.text = "BASKETS  ·  %d ready / %d shopping  ·  Swipe to see all" % [ready_count,shopping_count]
 	for sku in stock_buttons:
-		stock_buttons[sku].text = "%s  %d/%d\nReserve %d · Restock" % [catalog.products[sku].name,int(state.shelves[sku]),int(state.capacities[sku]),int(state.reserve[sku])]
+		stock_buttons[sku].text = "%s  %d/%d\nReserve %d\nRESTOCK" % [catalog.products[sku].name,int(state.shelves[sku]),int(state.capacities[sku]),int(state.reserve[sku])]
 		stock_buttons[sku].disabled = paused or int(state.reserve[sku]) <= 0 or int(state.shelves[sku]) >= int(state.capacities[sku])
 	for customer in state.customers:
 		var id := int(customer.id)
 		if not customer_buttons.has(id):
-			var button := _button(customer_row,"",func(): _queue_task("checkout",id))
-			button.custom_minimum_size = Vector2(290,115)
-			button.add_theme_font_size_override("font_size",20)
+			# The whole card is one large action. Children never consume a tap and
+			# there is no nested second handler that could duplicate checkout.
+			var button := _button(customer_row,"",func(): _queue_task("checkout",id),Color("e1ead6"))
+			button.custom_minimum_size = Vector2(300,214)
+			var card := _vbox(button,5)
+			card.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+			card.offset_left = 12
+			card.offset_right = -12
+			card.offset_top = 12
+			card.offset_bottom = -12
+			var row := _row(card,7)
+			var regular: Dictionary = catalog.regulars[int(customer.get("regular",id%6))]
+			_picture(row,"res://assets/ui/regulars/%s.png" % regular.model,48)
+			var name_label := _text(row,"",23,TEAL)
+			name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			var order := _row(card,6)
+			var amounts: Dictionary = {}
+			for sku in customer.order:
+				var item := _row(order,3)
+				_picture(item,_product_icon_path(str(sku)),36)
+				amounts[sku] = _text(item,"",20)
+			var patience := ProgressBar.new()
+			patience.show_percentage = false
+			patience.custom_minimum_size.y = 8
+			card.add_child(patience)
+			var action_panel := _panel(card,TEAL)
+			action_panel.custom_minimum_size.y = 58
+			var action_text := _text(action_panel,"",22,Color("fff9ea"))
+			action_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			action_text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 			customer_buttons[id] = button
+			customer_cards[id] = {"panel":button,"name":name_label,"amounts":amounts,"patience":patience,"action_panel":action_panel,"action_text":action_text}
+			_ignore_child_mouse(button)
 		var button: Button = customer_buttons[id]
-		button.visible = customer.phase not in ["served","lost"]
+		var card: Dictionary = customer_cards[id]
+		card.panel.visible = customer.phase not in ["served","lost"]
 		var status := "COMPLETE" if customer.phase == "ready" else "To checkout" if customer.phase == "to_checkout" else "Shopping"
 		var instruction := "Checkout" if customer.phase == "ready" else "Walking to counter" if customer.phase == "to_checkout" else "Collecting"
-		button.text = "%s · %s\n%s\n%s · %ds patience" % [customer.name,status,_order_text(customer),instruction,int(ceil(float(customer.patience)))]
+		card.name.text = "%s · %s" % [customer.name,status]
+		for sku in card.amounts:
+			card.amounts[sku].text = "%d/%d" % [int(customer.basket.get(sku,0)),int(customer.order[sku])]
+		card.patience.max_value = float(customer.max_patience)
+		card.patience.value = float(customer.patience)
+		card.action_text.text = "%s · %ds" % [instruction,int(ceil(float(customer.patience)))]
+		var action_style := _style(CORAL if float(customer.patience) < 15 else TEAL if customer.phase == "ready" else Color("758a86"),12)
+		action_style.content_margin_left = 8
+		action_style.content_margin_right = 8
+		action_style.content_margin_top = 6
+		action_style.content_margin_bottom = 6
+		card.action_panel.add_theme_stylebox_override("panel",action_style)
 		button.disabled = paused or customer.phase != "ready"
 	var task: Dictionary = state.active_task
 	var queued: Dictionary = state.queued_task
@@ -620,6 +698,11 @@ func _show_result(receipt: Dictionary) -> void:
 	var box := _modal(title,"%d neighbors served · %d restocks · %ds" % [int(receipt.served),int(receipt.restocks),int(receipt.elapsed)])
 	_stars(box,int(receipt.stars))
 	_text(box,"Practice · no coins or XP banked" if receipt.practice else "+%d coins  ·  +%d manager XP\nSafely saved, once." % [int(receipt.coins),int(receipt.xp)],30,TEAL)
+	if int(receipt.get("level_bonus",0)) > 0:
+		var gifts: Array[String] = []
+		for gift in receipt.get("level_rewards",[]): gifts.append("Level %d: +%d coins" % [int(gift.level),int(gift.coins)])
+		_text(box,"Manager welcome gift · "+", ".join(gifts),24,CORAL)
+		_text(box,"Total above includes %d shift coins and %d level-up coins." % [int(receipt.get("base_coins",0)),int(receipt.level_bonus)],22)
 	if not receipt.won: _text(box,"Target: %d neighbors. Ordinary retries and practice are always free." % int(model.definition.target),24)
 	if receipt.assisted: _text(box,"Assisted shift · combo excluded from the unassisted record.",22)
 	_button(box,"Back to the neighborhood",show_home)
