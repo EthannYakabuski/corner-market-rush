@@ -244,8 +244,8 @@ func _run() -> void:
 	app._process(0.1)
 	check(app.paused,"focus return never silently advances time")
 	app.show_home()
-	# Diagnostic only: identify owned streams before the unchanged teardown.
-	# Linux verbose exit diagnostics determine which resources actually remain.
+	# Linux verbose diagnostics identified owned WAV/Ogg playbacks surviving
+	# fast frame-only teardown. Keep their owner alive for bounded mixer time.
 	var owned_stream_paths: Array[String] = []
 	if is_instance_valid(app.music) and app.music.stream != null:
 		owned_stream_paths.append(str(app.music.stream.resource_path))
@@ -253,7 +253,13 @@ func _run() -> void:
 		if is_instance_valid(player) and player.stream != null:
 			owned_stream_paths.append(str(player.stream.resource_path))
 	print("MARKET_UI_TEARDOWN owned_stream_paths=%s time_to_next_mix=%s" % [owned_stream_paths,AudioServer.get_time_to_next_mix()])
+	app.set_process(false)
 	app._shutdown_audio()
+	var drain_seconds: float = clampf(AudioServer.get_time_to_next_mix()*3.0,0.1,0.25)
+	var deadline_us: int = Time.get_ticks_usec()+int(drain_seconds*1000000.0)
+	while Time.get_ticks_usec() < deadline_us:
+		await process_frame
+	await process_frame
 	app.queue_free()
 	fake.queue_free()
 	await process_frame
