@@ -1,0 +1,1586 @@
+{
+  "schema": 1,
+  "source_project_baseline_commit": "a3d63f3178aafd36219872849bf2b008f86af9ff",
+  "sources": {
+    "admob": "Poing AdMob 5.1.0, tested Android/GDScript subset",
+    "GodotPlayGameServices": "GodotPlayGameServices 3.4.0"
+  },
+  "omitted_admob_directories": [
+    "csharp except .gdignore",
+    "ios",
+    "downloads",
+    "docs",
+    "skills",
+    "gdscript/sample",
+    "internal/translations (unused sample CSV and generated outputs; local files preserved)"
+  ],
+  "notes": [
+    "Vendored upstream editor already disables automatic binary installation.",
+    "No owner service values, signing material or machine paths are included.",
+    "File hashes describe the vendored plugin subset only; game/art manifests are generated when content is stable.",
+    "Local addon ignore changes are annotated per entry with source hashes: Android bins are tracked and unused generated sample translations are omitted."
+  ],
+  "files": [
+    {
+      "path": "addons/admob/.gitignore",
+      "bytes": 218,
+      "sha256": "BD13895AC086B10F2E95879914B3D84CF8D2F11753F8C8E03D8F3683B429E084",
+      "source_sha256": "FFD24E2031377D511DA065761D960C67D4406679132017AE3D599DE67B7F4423",
+      "source_bytes": 86,
+      "modification": "Ignore unused sample-only CSV/generated translation files; local files are preserved, not published."
+    },
+    {
+      "path": "addons/admob/admob.gd",
+      "bytes": 2469,
+      "sha256": "88DFEF296DAD34DC587E1155D453827183C23844622622B50FFB24676FFB6946"
+    },
+    {
+      "path": "addons/admob/admob.gd.uid",
+      "bytes": 21,
+      "sha256": "A50B69D4587FB0B82A5BBC5218D081905D5B6C3CA08D06DC6D32F3F120BF49D7"
+    },
+    {
+      "path": "addons/admob/android/.gitignore",
+      "bytes": 163,
+      "sha256": "DB415043D7A83EDA553854E550208DD8217C75BB79942574D1421AC79F502520",
+      "source_sha256": "ACEC155822F4327E0A511BD246E2A9684C365C8EFB488BA55B725E0F4FE31927",
+      "source_bytes": 55,
+      "modification": "Removed upstream /bin ignore so required public Android plugin binaries are included by normal explicit staging."
+    },
+    {
+      "path": "addons/admob/android/bin/ads/libs/poing-godot-admob-ads-debug.aar",
+      "bytes": 134019,
+      "sha256": "FAC3128D6E64B59666B1BAC3097952BBBDE2F1B1573656CD51B9F64F745EDD79"
+    },
+    {
+      "path": "addons/admob/android/bin/ads/libs/poing-godot-admob-ads-release.aar",
+      "bytes": 127494,
+      "sha256": "AECA6A3C813DA770390DC1D574765B17D8BA78FE0CF1CB61438DC08DF1FE1C67"
+    },
+    {
+      "path": "addons/admob/android/bin/ads/libs/poing-godot-admob-core-debug.aar",
+      "bytes": 4776,
+      "sha256": "F78A4075635D4D3F27D7DE66D350FB77C16F21E60E24CEEE702C80EFE5B96E29"
+    },
+    {
+      "path": "addons/admob/android/bin/ads/libs/poing-godot-admob-core-release.aar",
+      "bytes": 4674,
+      "sha256": "F89E3F1096047FABC83208E4E00A3F0AEF847229BCB68CC01E791BD57468FDA0"
+    },
+    {
+      "path": "addons/admob/android/bin/ads/poing_godot_admob_ads.gd",
+      "bytes": 1992,
+      "sha256": "D7A64746D05BFB6A07E603D9B34058ABBD9AFEF66137D6155FAF7E180FD1640E"
+    },
+    {
+      "path": "addons/admob/android/bin/ads/poing_godot_admob_ads.gd.uid",
+      "bytes": 21,
+      "sha256": "CEF23735FB495CA1E48A08AE24E15AE870D46B859B8772874E67DD2DE63E70CF"
+    },
+    {
+      "path": "addons/admob/android/bin/package.gd",
+      "bytes": 65,
+      "sha256": "8B1D8DF4DC323D558AB7511DC11120D11A7F395581CDDAB919E8ECED598ED384"
+    },
+    {
+      "path": "addons/admob/android/bin/package.gd.uid",
+      "bytes": 21,
+      "sha256": "19A548A819636E605C704B9B788ED6CBE107B90D7F2735ABAA92CAF83CF9A76F"
+    },
+    {
+      "path": "addons/admob/assets/android.png",
+      "bytes": 6674,
+      "sha256": "77FB41EFBE709AA107B4ACF72A7DEB407FABB80087E270AEC910A7814C1C5DD7"
+    },
+    {
+      "path": "addons/admob/assets/arrow_left.svg",
+      "bytes": 214,
+      "sha256": "A62DC7CCD6280FB19C091B62FE2644B3D3AFCC8F6BA136B0B776C77960F3BA4C"
+    },
+    {
+      "path": "addons/admob/assets/arrow_right.svg",
+      "bytes": 213,
+      "sha256": "ECDC27C0ACB50B04C7FE171D0204F4774F266D92A397A18197A7810AA866C369"
+    },
+    {
+      "path": "addons/admob/assets/donate/Ko-fi_Logo_RGB_ColorBg.png",
+      "bytes": 20680,
+      "sha256": "2D2FC6F5B9C946E248A2CC39934C906C008C61F3E139B4A74CA5175CD30F6DEC"
+    },
+    {
+      "path": "addons/admob/assets/donate/Patreon_logo_with_wordmark.svg",
+      "bytes": 38993,
+      "sha256": "57412C85C63BDF3EA3B8C7166B5F1C7E2D6B9C80518201EC4419C5347D92598C"
+    },
+    {
+      "path": "addons/admob/assets/donate/PayPal.svg",
+      "bytes": 3476,
+      "sha256": "3132624C4D5BA0AA966A8027219298CEEC51551579CA4A1278BC54D73294B2B4"
+    },
+    {
+      "path": "addons/admob/assets/flood_it_icon.svg",
+      "bytes": 849,
+      "sha256": "931511C1361DAE920938A70E110A5EC37B59C0B4C58A16867DE48121698D7E84"
+    },
+    {
+      "path": "addons/admob/assets/fonts/NotoSansSC-Regular.otf",
+      "bytes": 207680,
+      "sha256": "0832CF607170F42922AAEB8DD590E346174E247800C35AA4137055542462DBFA"
+    },
+    {
+      "path": "addons/admob/assets/format-app-open.svg",
+      "bytes": 10318,
+      "sha256": "153F214593FEF483EB3D776B338821F5E46E95CB42400FAD414B2CCBE83FDEBD"
+    },
+    {
+      "path": "addons/admob/assets/format-banner.svg",
+      "bytes": 5013,
+      "sha256": "2310A44AA9493A0F77D75A9DD3E7DD6CF4E62383A074A37C8B4C1253F6A9EEEF"
+    },
+    {
+      "path": "addons/admob/assets/format-interstitial.svg",
+      "bytes": 5950,
+      "sha256": "639D1C0C26EA35AA70BA879E8F460978BEAC57D0B8FBBC1ACFBF89CF99BD2498"
+    },
+    {
+      "path": "addons/admob/assets/format-native.svg",
+      "bytes": 13286,
+      "sha256": "2E241BEF8681EBFB8DD479914409288021569B557FC4CA6398F0325D4B9FF5B6"
+    },
+    {
+      "path": "addons/admob/assets/format-rewarded-interstitial.svg",
+      "bytes": 4255,
+      "sha256": "742D7B4530698D9445FF948FAB80A8AD0BDA69D007E4863EAF9F0E8F792879F9"
+    },
+    {
+      "path": "addons/admob/assets/google_play_icon.svg",
+      "bytes": 298,
+      "sha256": "6CA4E923CD6D2ABAA301CBE32C1C7E434F13F181913A89F32CE0205585B6A61B"
+    },
+    {
+      "path": "addons/admob/assets/icon-1024.png",
+      "bytes": 264159,
+      "sha256": "DE18D7F0586AF4885D278969F259759403F9453CFB3CB962C478982A621C98F8"
+    },
+    {
+      "path": "addons/admob/assets/icon-120.png",
+      "bytes": 13368,
+      "sha256": "2849A40D2E8B230476707127565B1EC37154B62A3EC75FB95CBF348D44BB9260"
+    },
+    {
+      "path": "addons/admob/assets/icon-15.png",
+      "bytes": 2507,
+      "sha256": "547DEBC198BD8A98BF89DA4C301DC192EF27BFE13D4FD5EF7F6BEB3457D2DD6E"
+    },
+    {
+      "path": "addons/admob/assets/icon-500.png",
+      "bytes": 56624,
+      "sha256": "CDA04D458B9B1FFA183A40DDD6BD1E86A24270E4F8072A73E855641AFCCBA963"
+    },
+    {
+      "path": "addons/admob/assets/icon-76.png",
+      "bytes": 7491,
+      "sha256": "9DD97DCD70A1DD1751868BDE436EE8D33D9F732C1AC72954016666BD6F42EAA5"
+    },
+    {
+      "path": "addons/admob/assets/ios.png",
+      "bytes": 23445,
+      "sha256": "68CCC979942953CB14D4BED86F82F5A4A234E6579A4B7FDE3143850FCDEC8FA7"
+    },
+    {
+      "path": "addons/admob/assets/music.ogg",
+      "bytes": 1801126,
+      "sha256": "9AC11FCE7416BD66AF9BDC4D71AF9023B24F2EC2604773B00D675F5B4029655C"
+    },
+    {
+      "path": "addons/admob/assets/poing.jpeg",
+      "bytes": 8232,
+      "sha256": "69D53B94104EEC5FBCC5FF2F37636BD8FD295221C0F6834D22229DC46E22B9DF"
+    },
+    {
+      "path": "addons/admob/assets/pos_bottom.svg",
+      "bytes": 256,
+      "sha256": "CD7D55A7C7D63531C94D47CFEA7CE76880ADEA04DB426E2C564DA42DC9838FC1"
+    },
+    {
+      "path": "addons/admob/assets/pos_bottom_left.svg",
+      "bytes": 255,
+      "sha256": "3615E9CD760BBD5C97A08499B4C5F08540D85930384527CCBAE07B14ECD04EDA"
+    },
+    {
+      "path": "addons/admob/assets/pos_bottom_right.svg",
+      "bytes": 256,
+      "sha256": "DDC0BC9F6CFEB8A25BB9ED6371FC50E854C3A8E677476A30ECE89B4FACCD0AA3"
+    },
+    {
+      "path": "addons/admob/assets/pos_center.svg",
+      "bytes": 256,
+      "sha256": "0FBF23BA3C429A2C13BE26286B742E104900F486EF7F6B48749A6DFA0D7D0F9F"
+    },
+    {
+      "path": "addons/admob/assets/pos_left.svg",
+      "bytes": 255,
+      "sha256": "EC266BEA9968A993254671E62AEB3067F4BA6BA8779E67E294FBFACA02EDA7A2"
+    },
+    {
+      "path": "addons/admob/assets/pos_right.svg",
+      "bytes": 256,
+      "sha256": "C6A98774A06876C295A400D53AD392DB5472BE3DB1B42693E3C3E699DAE10C5D"
+    },
+    {
+      "path": "addons/admob/assets/pos_top.svg",
+      "bytes": 255,
+      "sha256": "F1CEB3D26370845D54FB653CB742D79D3C416495F48269E8BD74945648FC23F8"
+    },
+    {
+      "path": "addons/admob/assets/pos_top_left.svg",
+      "bytes": 254,
+      "sha256": "41C25870819FE4A67C8CCDDEBF20F85AD676E87BD2E61D6ABCBC9C3F725D48A5"
+    },
+    {
+      "path": "addons/admob/assets/pos_top_right.svg",
+      "bytes": 255,
+      "sha256": "0EAB2748566723D9AD83B2CA25BC60E9DBC23B13A084F5E5721649431BDFB1C3"
+    },
+    {
+      "path": "addons/admob/assets/theme_modern.tres",
+      "bytes": 10446,
+      "sha256": "69972E27A35C5C0CB7E9DC98F1A494C065DD3DE3BEE7026AF625E67A0CD2CE01"
+    },
+    {
+      "path": "addons/admob/csharp/.gdignore",
+      "bytes": 0,
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/AdView.gd",
+      "bytes": 4611,
+      "sha256": "2F11F4FD2F6628AE9F0D94E6B62FBF16D425768CD9DA6F5C9CEF53E10EADBCBE"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/AdView.gd.uid",
+      "bytes": 20,
+      "sha256": "1EDBAA9C2CCBEBEF477EB6FB3B3542D03FAF72DF3677047C81000DBBD30EE091"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/AppOpenAd.gd",
+      "bytes": 3836,
+      "sha256": "E06B0F43B190A4E2CA2E4B331C887C9C254D5A15C9C67148CA6A64F10DFAD2DC"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/AppOpenAd.gd.uid",
+      "bytes": 21,
+      "sha256": "21E5AF81E6E51FA31211F712DD5AC48F2C4232BFDF8E113E2C0B98921AB1BA3A"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/AppOpenAdLoader.gd",
+      "bytes": 2355,
+      "sha256": "A3FCCD4AC326BC854DF21F0A66A849C14F55C4D9DB717E7D59101A8F6BB76084"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/AppOpenAdLoader.gd.uid",
+      "bytes": 20,
+      "sha256": "7FDA509A64105A47FE7E3D5B7D8997EA33069F6CA872A5D7FF0CA1D7FD6F3DE8"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdapterResponseInfo.gd",
+      "bytes": 3455,
+      "sha256": "545A73FA09BCFDC1861291B4EE36F4EC3BC3B7FA53AD69BAEACDDF8188FE5032"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdapterResponseInfo.gd.uid",
+      "bytes": 21,
+      "sha256": "C9F22C00B7C56B39245F79C84AF8DECE327DF3ACD8DF746889BCE2896018DFEB"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdapterStatus.gd",
+      "bytes": 1514,
+      "sha256": "66580DC0604CD2E2DD934AFD99CBBCC40A46007A9DFDB7EC73603EFF9FF2907C"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdapterStatus.gd.uid",
+      "bytes": 21,
+      "sha256": "9035B120A21668F5DBC572E9D1541016F3C4811BB3E5725E1AECEE9814720244"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdChoicesPlacement.gd",
+      "bytes": 1252,
+      "sha256": "C1888B82FF546ED043088459320DA08ED334AC3579DF11C9450212FD0F895EE8"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdChoicesPlacement.gd.uid",
+      "bytes": 21,
+      "sha256": "BC85BBFFCC804AAEE138C4F1DC46987B0B1B502091BF2542C89B30AE13846E43"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdError.gd",
+      "bytes": 1794,
+      "sha256": "9D493B697BDE73A2D2BB67BDE097F82628334943BE82C01F28AC556A32F28D65"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdError.gd.uid",
+      "bytes": 21,
+      "sha256": "DF3D97CF0BFB033BF9EC70E570B9761D852F74346A9415B036DA4604FE548AEB"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdPosition.gd",
+      "bytes": 2081,
+      "sha256": "F0333DF20C4BD0873F46B70EE7679FC4911689D67008FE15BC94AB33BE364FDD"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdPosition.gd.uid",
+      "bytes": 21,
+      "sha256": "DEBD672645D98FCB9E2479142BE73E5A445F53A3D32FA6D92AAC2BDA9C46E917"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdRequest.gd",
+      "bytes": 1925,
+      "sha256": "47A0B15041C4C925CC52779996D7333E7B0F976D1C7D4315E2E5F8788188FD80"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdRequest.gd.uid",
+      "bytes": 20,
+      "sha256": "788732BFF1023E789C90B70A51C49428904713BC8BD7A856E4A27B448F4ED39C"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdSize.gd",
+      "bytes": 2646,
+      "sha256": "E3EC8CC080394C053DEEF220D361757EB12CADD5B2DF2867A7FB8D75D45781CE"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdSize.gd.uid",
+      "bytes": 21,
+      "sha256": "4AEDE57DD25B07EF21A3ECCF950071ADABA550D3446995D8EF56E120722F39CF"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdValue.gd",
+      "bytes": 1815,
+      "sha256": "8D8ABA96768F1B0FC9047F4D229FBF8E966348BACB5159B567519F2148381991"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdValue.gd.uid",
+      "bytes": 21,
+      "sha256": "0570CD7710D6F88BA886C3F84E35CA3D9C3D07C4ED7B6FB795D995178A71E2CC"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdVideoController.gd",
+      "bytes": 1593,
+      "sha256": "EC678212B59AB3AD297720B68A1E07D376D67CB20E04561CEDC85EC714FE9A8E"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/AdVideoController.gd.uid",
+      "bytes": 21,
+      "sha256": "8DA908FC4EF15C2696820DB7D067E10D92E251D9625EAFCA11CD3FEE9347B30B"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/LoadAdError.gd",
+      "bytes": 1790,
+      "sha256": "F56B7BF298C6FE3960867B26A84429A386965CE70E5BFB6D6A101B0701CD0EEA"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/LoadAdError.gd.uid",
+      "bytes": 21,
+      "sha256": "FA70D67790E16BB3175624639D46592C5502F198C857248EC8E2941733E01DAA"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/MediaContent.gd",
+      "bytes": 1824,
+      "sha256": "FB56E15DCEDA93F3AB9359711FA7C7BAECFAD6CA3EDE3A2D1DE4A7AA629DB44B"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/MediaContent.gd.uid",
+      "bytes": 21,
+      "sha256": "EB3EB3ECD5C9AA5E08DE418B35F5B066F78F94C0EDB438ED55B7C2C3A0F5611B"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/NativeAdOptions.gd",
+      "bytes": 1629,
+      "sha256": "2DC468BD7B6468F9C4A658F3143F6566D66F1578D370835CFBAA25CFE2DD8CA4"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/NativeAdOptions.gd.uid",
+      "bytes": 21,
+      "sha256": "76FC5DD90FB85F417D9AB1D5F17339E8B7C60B4120BB150536F5120DE39B14D1"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/NativeMediaAspectRatio.gd",
+      "bytes": 1255,
+      "sha256": "6792008657AA1FD6B1DC17E7398AAC26A1015682FC557DA4E4F31BB665033F4A"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/NativeMediaAspectRatio.gd.uid",
+      "bytes": 20,
+      "sha256": "CB2D3990854B3EE46BB8FC32FF97AF10ED4E46ACCDB7C0AAA526DC80ADEB19A2"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/NativeTemplateFontStyle.gd",
+      "bytes": 1242,
+      "sha256": "4094ABD388862EE2417E3B2F2F049DAEC142AFD7DA6A62B8451FBE3A9AB48FB5"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/NativeTemplateFontStyle.gd.uid",
+      "bytes": 21,
+      "sha256": "AEF7397B9A13E7D8683CAA8A68C55B24FB12EB56F99C428C732C0EA5D7D73306"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/NativeTemplateStyle.gd",
+      "bytes": 2128,
+      "sha256": "B8923D0029F356F9394800F8B30AAF9CE70AA15012DD9AB28C3244B3D1508251"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/NativeTemplateStyle.gd.uid",
+      "bytes": 21,
+      "sha256": "A5C411B00B1AE1A999EB203D87C7203F8534649E4FDA0C0C9B3723D5B0194109"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/NativeTemplateTextStyle.gd",
+      "bytes": 1682,
+      "sha256": "DD3B6F23DFE3DFA1A14E40E711539FB45801C1CD3C61476CE248DB702BBCD60A"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/NativeTemplateTextStyle.gd.uid",
+      "bytes": 21,
+      "sha256": "5BC3BAFD1907613AFB933D8F2D802C4548DF3FD20022B1213C5FE996AFDAC0E9"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/RequestConfiguration.gd",
+      "bytes": 2116,
+      "sha256": "D623830AB4F6FD4706C27933BF8FC6F9B12FE8730BBB06B3D84C893E66B54B92"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/RequestConfiguration.gd.uid",
+      "bytes": 21,
+      "sha256": "6EF19F2305CAC9773BF9E0B7FF19E79E6C546CDCAA259263C4F477CE011712D1"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/ResponseInfo.gd",
+      "bytes": 2654,
+      "sha256": "63784DEC657E52137EEB156E9F04E32B2B1C28EFD1DCC6110907ABAEA0D52CF3"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/ResponseInfo.gd.uid",
+      "bytes": 21,
+      "sha256": "673F7BC3072EE195495D0D5FE6C90F9B842A5C4E30C440F0DCD4703F01EEFC2C"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/RewardedItem.gd",
+      "bytes": 1576,
+      "sha256": "71E39F642D9ACEEE58A1F832989872D81D9FB9C8543D6AF352E1BE0F1E7EED12"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/RewardedItem.gd.uid",
+      "bytes": 21,
+      "sha256": "5FBF7CA194DA5465A1692D436EAD121689379853A08ACD4BF50D3519BDFF4578"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/ServerSideVerificationOptions.gd",
+      "bytes": 1332,
+      "sha256": "D27222E801472C831430D8F629C29F6935F66DDD1A8A8837E5B5EF9486C23C27"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/ServerSideVerificationOptions.gd.uid",
+      "bytes": 21,
+      "sha256": "BAF4894FDA230C288662F86A423E69861722CEF9FE73D0463E5C22DA039C5C71"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/VideoOptions.gd",
+      "bytes": 1500,
+      "sha256": "EC4CF962DF435DF099E5CAB50DC0DB3E1B27440E3A1D88DDEFD968BF8417B196"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/core/VideoOptions.gd.uid",
+      "bytes": 21,
+      "sha256": "2479CE7017DC388013D13297A94C0E9928A4A983446EA18B117C7EC43BC3C4A5"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/InitializationStatus.gd",
+      "bytes": 2057,
+      "sha256": "56FC331950C9E7ED7A819123D751FFA71487F529DEA24A0D415D0F7E7579C48B"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/InitializationStatus.gd.uid",
+      "bytes": 21,
+      "sha256": "0157FC63DC311E97A352389A74657F404E81BC04DA036E02CAF12898972010CE"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/InterstitialAd.gd",
+      "bytes": 3638,
+      "sha256": "98B9D92B2F9113969FA7415BD6D96BDE8616EDED7E6C6588094B62DA115DFB4E"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/InterstitialAd.gd.uid",
+      "bytes": 21,
+      "sha256": "A8A4C6E19BB586C863FC01ED1694D073059645689DFF7B40D909D2F96D7D39E8"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/InterstitialAdLoader.gd",
+      "bytes": 2433,
+      "sha256": "9303E7099A111759270A62F3E738A6EA1DFDF9908EEB4A071B7F23FBE2B862B9"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/InterstitialAdLoader.gd.uid",
+      "bytes": 21,
+      "sha256": "3528A9B62BF4D3325BFF56AB6E546979822433BBAD8A9BFA28EC158320766781"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/AdInspectorClosedListener.gd",
+      "bytes": 1245,
+      "sha256": "853E467BD34463A76E902BCD63F09766001DA42E849206B250037573FD6A4525"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/AdInspectorClosedListener.gd.uid",
+      "bytes": 21,
+      "sha256": "C087A35041111EB2F6DAFD868D90B728606C9FADE917EA68E13CF6B5E3A4B453"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/AdListener.gd",
+      "bytes": 1458,
+      "sha256": "BD67D66041A3201489668F1D794E7AC2AD1485851C4AEBFB9D08FFB964372E83"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/AdListener.gd.uid",
+      "bytes": 21,
+      "sha256": "191DF543357032672FC97752721F0B0BB1625838F3413F6B79ADABDF92499E5C"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/AppOpenAdLoadCallback.gd",
+      "bytes": 1341,
+      "sha256": "AAF1BD3217734546905C38D306E285FEB664A1981DABFE2570949527F55E5812"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/AppOpenAdLoadCallback.gd.uid",
+      "bytes": 21,
+      "sha256": "5D41E83D0463C623A8292F5B58450601CDBB67C7A2AEFA5031203010DD15B877"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/FullScreenContentCallback.gd",
+      "bytes": 1522,
+      "sha256": "F1741D3824F77794679FF8D8E6878DDC866407837F2F8775D04525F2B5C13E9B"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/FullScreenContentCallback.gd.uid",
+      "bytes": 21,
+      "sha256": "1F5121498CFD8B998717BFCA7A8D2D8CCFFDDEE05C258F1CF90C00CD56213F91"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/InterstitialAdLoadCallback.gd",
+      "bytes": 1336,
+      "sha256": "B89A0CA5B40CB45002E504581B0F1ABC8A5738FAB5B0D163B5A64995DE2C2380"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/InterstitialAdLoadCallback.gd.uid",
+      "bytes": 21,
+      "sha256": "807268D3050F199CEC68C2947F8DF2E04C0F3135633A4F0C85E586764B1AED96"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/OnInitializationCompleteListener.gd",
+      "bytes": 1282,
+      "sha256": "DEFB5E397A98105F61021E866FFF9E59A5A38495932A9033F36DBCFB3DDE43F1"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/OnInitializationCompleteListener.gd.uid",
+      "bytes": 20,
+      "sha256": "77A11DA04B3947DEE074DFCDBAA6AE7F730A0BDB8B4C5CF159B33964216EF387"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/OnUserEarnedRewardListener.gd",
+      "bytes": 1255,
+      "sha256": "62D1E3DE621E2A51217482F6C29BA73419B61DDA8F0A985978151F6027D1392A"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/OnUserEarnedRewardListener.gd.uid",
+      "bytes": 21,
+      "sha256": "AE220525AA7533FDD591E51C663210434437BF7253AC55FD8C374BF6E2670D10"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/RewardedAdLoadCallback.gd",
+      "bytes": 1324,
+      "sha256": "E28D4DE1FBA30762F1177A250178A44E66BDD97B018F42E1ACBAC96CF33A68D4"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/RewardedAdLoadCallback.gd.uid",
+      "bytes": 20,
+      "sha256": "AC7469236C55A7990EC94AFCEEA55E0F39613529EE289B8342E01AEE39C34471"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/RewardedInterstitialAdLoadCallback.gd",
+      "bytes": 1352,
+      "sha256": "6AF892338F1E3B571DC32295162B7E324756E5196A724FB0EFA13EE016427551"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/RewardedInterstitialAdLoadCallback.gd.uid",
+      "bytes": 21,
+      "sha256": "3174327FDA50223355ED8C9C106659C692E969B7CF4F8C016DDA8DA862B27FDA"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/VideoLifecycleCallbacks.gd",
+      "bytes": 1431,
+      "sha256": "6A4E1873155663D258DDEB054DB4B5BFCAF5153D2CF24F181B4EE548B703CDC3"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/listeners/VideoLifecycleCallbacks.gd.uid",
+      "bytes": 21,
+      "sha256": "1F19F1BD6F0E73B0AEDAC283FFDA0578B46DCFA58DED6AE5FB195BDB981FF439"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/MobileAds.gd",
+      "bytes": 4480,
+      "sha256": "09AAD1C0A671D6C039FE1FE6FDF6C70E14AADCF5904B77B395A91FB29CF9878D"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/MobileAds.gd.uid",
+      "bytes": 21,
+      "sha256": "8C3882DC31BD4BA38DFAAFC2754A886C561C16D2E897EE98E4D541EDEC41F84E"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/NativeOverlayAd.gd",
+      "bytes": 8839,
+      "sha256": "C3A58C338FB556A2B2991446B16FE7893EF4BC22753BAFBA436236E307D6D5F3"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/NativeOverlayAd.gd.uid",
+      "bytes": 20,
+      "sha256": "17C362D2C7A8BF1F2A0157FA1179049B46A85AC4C525A0676A672326777D4764"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/RewardedAd.gd",
+      "bytes": 4373,
+      "sha256": "B6C428FFC8BACFB8CE716E2B22CF4A884AC0BDE1152E24EAC703E395DAB49E4E"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/RewardedAd.gd.uid",
+      "bytes": 21,
+      "sha256": "AEB09DDA210AA9EF9C421FDBCC0BAF8E0990BB9694DB43485684A74E4E70E9E2"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/RewardedAdLoader.gd",
+      "bytes": 2356,
+      "sha256": "91DF961E2473C938E4BA048A268786A6002682F12B7015BD546F52A22436DF3F"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/RewardedAdLoader.gd.uid",
+      "bytes": 21,
+      "sha256": "CBFCCD8832A478ADFC86E57003FCAE88DA3F3DDB9D24FC37A797D2469169B98D"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/RewardedInterstitialAd.gd",
+      "bytes": 4709,
+      "sha256": "2565FBC8675CFA6301D3B20BD43C53C65B8E28CA1D6D2154110FC6CFA2D9518B"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/RewardedInterstitialAd.gd.uid",
+      "bytes": 21,
+      "sha256": "07BBEB4FF3F2BF39C4FDF5E177CAFBCFCAB5516CA5EE31081C458A8882B857A1"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/RewardedInterstitialAdLoader.gd",
+      "bytes": 2520,
+      "sha256": "6A91EE9836E4B631B2147359AC91289903FEADED1E7F4D804417D236C8EFCE85"
+    },
+    {
+      "path": "addons/admob/gdscript/src/api/RewardedInterstitialAdLoader.gd.uid",
+      "bytes": 21,
+      "sha256": "BDBE7A1F125A9F9775DE38C1BD5863A60E03B0D8DEFEBA59C94B2E49BD9380C5"
+    },
+    {
+      "path": "addons/admob/gdscript/src/core/MobileSingletonPlugin.gd",
+      "bytes": 2482,
+      "sha256": "7B3E5D72AE3183721C8081E007A065A435EA0D26068E6C2F28FB601262D7786A"
+    },
+    {
+      "path": "addons/admob/gdscript/src/core/MobileSingletonPlugin.gd.uid",
+      "bytes": 21,
+      "sha256": "A7E7E8C51540704F4567B9E7D04F414EDCB7C499AEDDCB7859D988F2D74536BD"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/applovin/AppLovin.gd",
+      "bytes": 1603,
+      "sha256": "BEA2BA6FD70A49582FE77DC56DA13C1A406BFE7FE3FE1EAF18186D5D378F7F6C"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/applovin/AppLovin.gd.uid",
+      "bytes": 21,
+      "sha256": "B42AFC339B22360B3D4D5F97AE15531E5AB60F1EE7738CE0DA27AD1951FD3D51"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/bidmachine/BidMachine.gd",
+      "bytes": 1665,
+      "sha256": "D69D4D60622E140B255C1E99E69B97ABF049B5031565D267067B2A7F949504AC"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/bidmachine/BidMachine.gd.uid",
+      "bytes": 20,
+      "sha256": "EDD112E8C13352148ADEF7DAEA50DAA39F1B158E4079377998B6BE73944846E5"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/chartboost/Chartboost.gd",
+      "bytes": 1470,
+      "sha256": "5BE2BD236FF9B457BEEF5486260FCBE2601ED044FF49B111DA86F3E83F291576"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/chartboost/Chartboost.gd.uid",
+      "bytes": 21,
+      "sha256": "2E7295D9542BA86059B4683BF54F0F3C003ED9C680CEAF141D37CC99B114EE1D"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/dtexchange/DTExchange.gd",
+      "bytes": 1631,
+      "sha256": "2EB3D5B5EE39706A23942F50BF8311A4100B8F8C94ACE7845418CD242605B572"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/dtexchange/DTExchange.gd.uid",
+      "bytes": 21,
+      "sha256": "EC522A6B5EEE11FDCD8069AACEE30E7B7865BB84AE03CF317B0B41D373670575"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/imobile/IMobile.gd",
+      "bytes": 1260,
+      "sha256": "58967110CEFFACC0B5F51E6D73D00CAAFBB1F7494B8943404DEAD86E5078DBC9"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/imobile/IMobile.gd.uid",
+      "bytes": 20,
+      "sha256": "0722EDEC374F1BC3B01A851D46F65F91A6DD3B0B4CC777A735A96EC9E9222D9D"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/inmobi/InMobi.gd",
+      "bytes": 1258,
+      "sha256": "2E44D67F1AC9316EE19EF7CA5F415F1D6A6ADED3D58A47C601F639714BEF56A3"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/inmobi/InMobi.gd.uid",
+      "bytes": 21,
+      "sha256": "B02E4FCE2D8F59CBAD21427E247AC972F75FE34E86E311A227891F18A360F9C7"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/ironsource/IronSource.gd",
+      "bytes": 1583,
+      "sha256": "6CFA611EC59A57DD7EE7632D2BFE97C027446FBD8B7C7E7C3A64D37C8CFF5CBC"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/ironsource/IronSource.gd.uid",
+      "bytes": 21,
+      "sha256": "3E8E0998F147B0B5C79742137219D6F8685BDE6CD9C0491A3249E32FF28979B1"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/line/LineAds.gd",
+      "bytes": 1360,
+      "sha256": "C7B4B84B2D920E6FFD94190C7739F08231BB50918A1405A78429162E77D9ACE3"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/line/LineAds.gd.uid",
+      "bytes": 21,
+      "sha256": "4EA1F3822A77AEA876B2DA1E3524B0896AE4C87C72880C81DBC5FE665A112F5B"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/line/LineMediationExtras.gd",
+      "bytes": 1558,
+      "sha256": "608BF08550ADB56CE67FD465BE974E50185B3D7B7CEEF248741806D15522D1C0"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/line/LineMediationExtras.gd.uid",
+      "bytes": 21,
+      "sha256": "80A47730A3A1183A07D5A34C981E67C97BFC21B0A9112B88A19CB56A0A5F3EB5"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/meta/FBAdSettings.gd",
+      "bytes": 1472,
+      "sha256": "2020906877CE47E0CDF2F14991B19D364CB613A64E06D9334BD21664B85101A1"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/meta/FBAdSettings.gd.uid",
+      "bytes": 21,
+      "sha256": "6349506C7E35FF042417F2D79A7050A73BA136C6B9959ACF11889B6C4AC50EB2"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/unity_ads/UnityAds.gd",
+      "bytes": 1512,
+      "sha256": "222D9C5E2F9D1342DA9C2E1DC0C92A3F2397BC154B99A4EF1A5E8CD680D33E39"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/unity_ads/UnityAds.gd.uid",
+      "bytes": 21,
+      "sha256": "514BCC6ECCF5EE110E6EFC1CFAE5EC12B8816E29D3CDDDA1A24AFAFCBEC0F6F7"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/vungle/Vungle.gd",
+      "bytes": 1590,
+      "sha256": "700F71CE4431646084DB2835AE79285D759D8AA8F1014D1B5DA799DE319BF889"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/vungle/Vungle.gd.uid",
+      "bytes": 20,
+      "sha256": "88A38DF65C5776709E8016C65800163D5D2BC317DAA1D04697CBC328F1C0402C"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/vungle/VungleInterstitialMediationExtras.gd",
+      "bytes": 1364,
+      "sha256": "E9B3BD9DE2FE2D6F53D2CBD8607075441A04A49931EF23636526F65B34842E2D"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/vungle/VungleInterstitialMediationExtras.gd.uid",
+      "bytes": 21,
+      "sha256": "D23CE5B0883812B9205F067001B39EB7693C51F3D7B9472EEFF984F5AD2F4335"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/vungle/VungleMediationExtras.gd",
+      "bytes": 1396,
+      "sha256": "2F7B660A6D50ABC3E732ABEC84380304CFE41E6EAE5EF0F8082109B5C13B24D3"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/vungle/VungleMediationExtras.gd.uid",
+      "bytes": 20,
+      "sha256": "5794EB83C05546D8B8D2B31089277098D6D0A0B3FB3297AFE003C0544C65F26C"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/vungle/VungleRewardedMediationExtras.gd",
+      "bytes": 1356,
+      "sha256": "E0FB7B9539C76C19BA1B91D33FA909110EC2D1D6FD14917FF7E91CCF0A30C203"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/extras/vungle/VungleRewardedMediationExtras.gd.uid",
+      "bytes": 21,
+      "sha256": "50329121F23A71315E59F7511FE1F88D89A4B611E1E26A1703389529A494B05D"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/MediationExtras.gd",
+      "bytes": 1652,
+      "sha256": "643796445F1A220598F257C7A6BDE8A23834BBC186B7C1DAE7199FC480D10896"
+    },
+    {
+      "path": "addons/admob/gdscript/src/mediation/MediationExtras.gd.uid",
+      "bytes": 20,
+      "sha256": "FDA17256EE85ABD39F01FC68D1F51C7D67C008F9E35A69CD788C67F93EB0614E"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/api/ConsentForm.gd",
+      "bytes": 2068,
+      "sha256": "C26E28F23F9E919513CE541EF1CCF05ACBE2836C0981DB15717E75B150A10187"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/api/ConsentForm.gd.uid",
+      "bytes": 21,
+      "sha256": "4C4794257D6DF4282B97A08AEDD092ED57B630B9453F7987B25133C980D1A171"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/api/ConsentInformation.gd",
+      "bytes": 2974,
+      "sha256": "7CBAB9012AA5EFC894AB9A622BDF42AB6EEDE78B7B8A7B415A20B94DEC7E3E8B"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/api/ConsentInformation.gd.uid",
+      "bytes": 21,
+      "sha256": "A03B985A0C1EB78066325A1406BC7149FC25282822815886DA782B1B29322B06"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/api/UserMessagingPlatform.gd",
+      "bytes": 3377,
+      "sha256": "F87ECBCE2D09D44473F4C8B707C32D15C2B535485E1DA1D5130C84EE55230AD2"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/api/UserMessagingPlatform.gd.uid",
+      "bytes": 21,
+      "sha256": "CC1C76EBA1B4A14D2D4A1324794774B58C95A45E7CC481D8B41B6F18DA07E249"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/core/ConsentDebugSettings.gd",
+      "bytes": 1692,
+      "sha256": "4EF5C64A9BE4C5749C7F50782091C52CE0E22D96D2F62F51CF5F78B86E9D9094"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/core/ConsentDebugSettings.gd.uid",
+      "bytes": 20,
+      "sha256": "CFCE0D653DD7127981CC85742FE9DAB1C7E3650D32C9EC20169F5689BA6FC648"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/core/ConsentRequestParameters.gd",
+      "bytes": 1508,
+      "sha256": "29552BE40DA60BAA1FD19C9D06317B011B5CBC5292F38487ACF9266156F4CEAA"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/core/ConsentRequestParameters.gd.uid",
+      "bytes": 21,
+      "sha256": "C2F7E4DDED3D0622BCD7F1777A72421522593E3B95008562A91ECA76A93B2AA8"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/core/DebugGeography.gd",
+      "bytes": 1204,
+      "sha256": "56E03BF2605CB6143B58F6B164C19D81CA7CA5D0D80343E975410E81EF888929"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/core/DebugGeography.gd.uid",
+      "bytes": 21,
+      "sha256": "F52FD2CA294322A0BCB9ECD0FE75AC4DE1E904A0D348276BC760247A21EC3394"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/core/FormError.gd",
+      "bytes": 1529,
+      "sha256": "3BAA685296E5080F5CF865EA87069A4C748B0C51BC881A90E60941296E81766C"
+    },
+    {
+      "path": "addons/admob/gdscript/src/ump/core/FormError.gd.uid",
+      "bytes": 20,
+      "sha256": "1473B405F4985F0B7A18FC1304F91CFDD00B11A17055887BF55714426DD02B6E"
+    },
+    {
+      "path": "addons/admob/internal/editor/components/ai_menu.gd",
+      "bytes": 2895,
+      "sha256": "5D64D5AF6BEAE6C5D79FADD7DF638A9E1C373693E83461DCB30B16487F99AA9E"
+    },
+    {
+      "path": "addons/admob/internal/editor/components/ai_menu.gd.uid",
+      "bytes": 21,
+      "sha256": "5207BD9415D82D53469FDA19AE02598DBA0B8A6A12AFC98735B18A10D5577C99"
+    },
+    {
+      "path": "addons/admob/internal/editor/components/android_menu.gd",
+      "bytes": 1808,
+      "sha256": "C8B1D2B7D0CAA8BEA9C7073D35736514E71ED974219B45EE68C9F59CBECFAD8D"
+    },
+    {
+      "path": "addons/admob/internal/editor/components/android_menu.gd.uid",
+      "bytes": 21,
+      "sha256": "DAA2E8301709ACD9F36E1D1C2AAAEA2F92B002D7B28F7CD3C81DD163A5203F6F"
+    },
+    {
+      "path": "addons/admob/internal/editor/components/documents_menu.gd",
+      "bytes": 1460,
+      "sha256": "2597690E2CFF48AC36BBF3632E7539D10D7503537EDE8A67449AC3CCC8A79363"
+    },
+    {
+      "path": "addons/admob/internal/editor/components/documents_menu.gd.uid",
+      "bytes": 21,
+      "sha256": "244B0468912C1FB8A16A94A852E85614C40B33871F4217DC1A92AF76D29016B6"
+    },
+    {
+      "path": "addons/admob/internal/editor/components/help_menu.gd",
+      "bytes": 1464,
+      "sha256": "E160245FDC13B2209F7B27B493CFD249EF4AD04F252AB5CB8EC17BD21B791A3A"
+    },
+    {
+      "path": "addons/admob/internal/editor/components/help_menu.gd.uid",
+      "bytes": 21,
+      "sha256": "C5DA28DA2D925A6AC1428BA9843782E0A5E1EB10662C34F55F35EBB9E81937E8"
+    },
+    {
+      "path": "addons/admob/internal/editor/components/ios_menu.gd",
+      "bytes": 1768,
+      "sha256": "CFD6A2B606C0C3ADAFC90607784E459A93B28E614FD9FDF76D9EA8D5C4BEFA07"
+    },
+    {
+      "path": "addons/admob/internal/editor/components/ios_menu.gd.uid",
+      "bytes": 21,
+      "sha256": "A72E7F22C69A70B8DF83F7E36AD986E16FA5638635750716ADD3062F87A18CA9"
+    },
+    {
+      "path": "addons/admob/internal/editor/components/support_menu.gd",
+      "bytes": 1554,
+      "sha256": "31A069657B5D408DA0FA3DEA54EAB3E97709732DC8E2A89CBF3124A648A19795"
+    },
+    {
+      "path": "addons/admob/internal/editor/components/support_menu.gd.uid",
+      "bytes": 21,
+      "sha256": "349DED691AEC6BC59AFC72C7F49ABDA958D01720D2F672B5C08F9828099B3058"
+    },
+    {
+      "path": "addons/admob/internal/editor/editor_menu.gd",
+      "bytes": 3596,
+      "sha256": "15FBD2E41780635EABFF95F60B29FA866E94F848247C9C0064C29338EA378A2C"
+    },
+    {
+      "path": "addons/admob/internal/editor/editor_menu.gd.uid",
+      "bytes": 21,
+      "sha256": "B3F0DCECCF9B7C1FE3D61C7199388CB7B0225DC437E784965095B9405ED475B8"
+    },
+    {
+      "path": "addons/admob/internal/editor/popup_menu.gd",
+      "bytes": 1476,
+      "sha256": "AD60728A0A7407BB145F4A015276D21D5EAD99A72D6E30D2B91F7A368AB4B006"
+    },
+    {
+      "path": "addons/admob/internal/editor/popup_menu.gd.uid",
+      "bytes": 21,
+      "sha256": "BDCCCEBD4370E5C8AC179DE095089E076C2E95019BAB8F2BA00AFB6A4ADF5506"
+    },
+    {
+      "path": "addons/admob/internal/exporters/android/export_plugin.gd",
+      "bytes": 10281,
+      "sha256": "AE90778BCF917F9ED7D76D947C5749D28504C0397CF8CE00ACFE0BB6E2578EB7"
+    },
+    {
+      "path": "addons/admob/internal/exporters/android/export_plugin.gd.uid",
+      "bytes": 21,
+      "sha256": "692E9519D7E33E257CA9A4000F56289883B37A0C2660EDC0CAB1944CDF3A82CA"
+    },
+    {
+      "path": "addons/admob/internal/exporters/android/library.gd",
+      "bytes": 1541,
+      "sha256": "31731224677488478CD5E4FD59D0CD5546C42F45F8C798CC3791D3A3B5D65076"
+    },
+    {
+      "path": "addons/admob/internal/exporters/android/library.gd.uid",
+      "bytes": 21,
+      "sha256": "37E7747D5B093870A179DDC373FB43FC2ADD888A358DD2C8CBBB5EEC0EE0BF33"
+    },
+    {
+      "path": "addons/admob/internal/exporters/base_export_plugin.gd",
+      "bytes": 2884,
+      "sha256": "5521502BCAEA25B3C1B9067BC08DB29138861C5C01EF5CD6FF069F6267656444"
+    },
+    {
+      "path": "addons/admob/internal/exporters/base_export_plugin.gd.uid",
+      "bytes": 21,
+      "sha256": "9CDAC0C0C38E15940C57D7C794ED65CB4225013211A5D8264B93EB09D21C499F"
+    },
+    {
+      "path": "addons/admob/internal/exporters/ios/export_plugin.gd",
+      "bytes": 13020,
+      "sha256": "C16EC41F54205D297FBA55F9F6023C5A8C57CECB57D282CD00A8772AF6D947D5"
+    },
+    {
+      "path": "addons/admob/internal/exporters/ios/export_plugin.gd.uid",
+      "bytes": 20,
+      "sha256": "1D3FB75F00E932FA002CB44C354BC05893AB69CEA491B1B3AF163270420E7908"
+    },
+    {
+      "path": "addons/admob/internal/exporters/ios/library.gd",
+      "bytes": 1727,
+      "sha256": "74DCD5ABAA3F43D6460630EECC5857CDA2066324594A25216ED9631D4AF734F2"
+    },
+    {
+      "path": "addons/admob/internal/exporters/ios/library.gd.uid",
+      "bytes": 21,
+      "sha256": "19ED7F9CA25B6E283A5620405392679691EE858DBB2C1C5441F97A8BD5A1774A"
+    },
+    {
+      "path": "addons/admob/internal/exporters/main_export_plugin.gd",
+      "bytes": 1714,
+      "sha256": "5BFC52E4CF044B48AD472C31CC12EDE4872126A4151ADF790D87F333E5BEAE7C"
+    },
+    {
+      "path": "addons/admob/internal/exporters/main_export_plugin.gd.uid",
+      "bytes": 21,
+      "sha256": "5CE92F5338C5844D1FCB545DC38D67A4DE513A95D2EAA93182931AF9CDFFF532"
+    },
+    {
+      "path": "addons/admob/internal/handlers/android_handler.gd",
+      "bytes": 3297,
+      "sha256": "2014D3BF6751A306707DADDD9FC453E453924B09049C1BDB563549F9BE6F7EE6"
+    },
+    {
+      "path": "addons/admob/internal/handlers/android_handler.gd.uid",
+      "bytes": 21,
+      "sha256": "E98D50DCA616A2BE90C44B53524D16336A9A1707B4DA18016C47DF0F1E4C7E0D"
+    },
+    {
+      "path": "addons/admob/internal/handlers/ios_handler.gd",
+      "bytes": 3383,
+      "sha256": "6F87908F79433B865A1D877398205C4E1D9476FFAB639DB00CC54355718D0EC3"
+    },
+    {
+      "path": "addons/admob/internal/handlers/ios_handler.gd.uid",
+      "bytes": 21,
+      "sha256": "9AB6B7756512AF65E06BC7BF50739C221D7972D7CBFB50766F7DD3AAEA28C955"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_ad_size_plugin.gd",
+      "bytes": 1550,
+      "sha256": "01081065295EAC4579B0616393FB4F93693043B4A3EFD14B646F57626BF88D86"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_ad_size_plugin.gd.uid",
+      "bytes": 21,
+      "sha256": "A91768EB69E99D12310D05538DD5BB9EED629656AD73D7B10DD9A88DE514DC28"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_ad_view_plugin.gd",
+      "bytes": 20647,
+      "sha256": "3D7AAB30F28DEE74D7A1F1DB93091AC756B3DAA3A59AE8ABB67CF5360C4AB660"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_ad_view_plugin.gd.uid",
+      "bytes": 21,
+      "sha256": "BC572C1F84A6924705678A24B85323C59714903686E9017921F14E47B3396D1A"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_admob_factory.gd",
+      "bytes": 2990,
+      "sha256": "AD88A41DFF827F9FFC6CAD3D94AC65BAF0A347D3B39A85DEF4BBF3FDE9F1B92A"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_admob_factory.gd.uid",
+      "bytes": 21,
+      "sha256": "24187338E6B53D2D39FB01259D5BAC437669403F14732E0E57BF8F9B0A3D5ED5"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_app_open_ad_plugin.gd",
+      "bytes": 18343,
+      "sha256": "67FFD69D26FA6DE9A0CEA6015899B9FC35204AA85BBB805582B422B602AC6EB8"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_app_open_ad_plugin.gd.uid",
+      "bytes": 20,
+      "sha256": "5389478491B7F5F0865DEB5FA61597B014361DB747742C573AAD7B0E7D352878"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_interstitial_ad_plugin.gd",
+      "bytes": 10875,
+      "sha256": "98D7033E69D1A943E11841C749F7964F3A90CB56EEFA9C11DD572085FACB6BA7"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_interstitial_ad_plugin.gd.uid",
+      "bytes": 20,
+      "sha256": "174BB23B9B18F1A75D4BF257E24D535B95B1744AE6671E72A00D4D5787B1DE15"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_mobile_ads_plugin.gd",
+      "bytes": 3087,
+      "sha256": "4F3850D9A837BEF1741D35F6D5EDC07981DF2DFBB6AEA983E4B4A4BAD3F700EE"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_mobile_ads_plugin.gd.uid",
+      "bytes": 21,
+      "sha256": "C7B891C6E8B487D1D097F4453B8953E40232997E0EC6890ADD6EA302569CE407"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_native_overlay_ad_plugin.gd",
+      "bytes": 29737,
+      "sha256": "53BB9FFE0E551FC31926F870F51720F42F4EFB4DAD4AB489B9227C39BF601E6C"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_native_overlay_ad_plugin.gd.uid",
+      "bytes": 20,
+      "sha256": "3553DE81D152BBA1CFBE440C365A4AD83352F7455BDED1211C79611DC738F267"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_rewarded_ad_plugin.gd",
+      "bytes": 26904,
+      "sha256": "36A59147D1426C47F810167F88DC3CA4FE6765E728083C9F6FE6A2648DB8EF4B"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_rewarded_ad_plugin.gd.uid",
+      "bytes": 21,
+      "sha256": "410E4967CB195EF7978904DA3013069525C714370AB89C048E5FDA5BD0328D5F"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_rewarded_interstitial_ad_plugin.gd",
+      "bytes": 27099,
+      "sha256": "C09367A065750D17437355A92C572AB79776F8AAF041037A8B8B4167378003ED"
+    },
+    {
+      "path": "addons/admob/internal/mock/mock_rewarded_interstitial_ad_plugin.gd.uid",
+      "bytes": 20,
+      "sha256": "0D35F0AEEE91C5A4FC58DA9298087641CD269B04550DA7AE7E2D306F94A84381"
+    },
+    {
+      "path": "addons/admob/internal/sample_registry.gd",
+      "bytes": 1595,
+      "sha256": "132C0606C74657C93159381D16EC115887ECFB431A3F00E8BDBBB71C36EF131B"
+    },
+    {
+      "path": "addons/admob/internal/sample_registry.gd.uid",
+      "bytes": 21,
+      "sha256": "F4AE725125735EB407E9ABFE0273A08B430925A2341D85AEC40950279CC5186F"
+    },
+    {
+      "path": "addons/admob/internal/services/archive/zip_service.gd",
+      "bytes": 4661,
+      "sha256": "DBF8DE5A3F4ED4F068C5A2F5A8F20D10274130F221D970C8CE42DC0E51354190"
+    },
+    {
+      "path": "addons/admob/internal/services/archive/zip_service.gd.uid",
+      "bytes": 21,
+      "sha256": "258DCE756E4CA995B26F580A45C2ACF711B6BCF8BD717381B8484A3DFB7295F9"
+    },
+    {
+      "path": "addons/admob/internal/services/csharp_service.gd",
+      "bytes": 2608,
+      "sha256": "EEB611E6EA28F1B6C0FCD073697C492C9733C2054F0FABA3360CA1A0EBD76C54"
+    },
+    {
+      "path": "addons/admob/internal/services/csharp_service.gd.uid",
+      "bytes": 21,
+      "sha256": "3B88AA89D3985963858A6F4A9AA2DEC5176A9CFE3C0E0CEF44D9EC434C6C6CF4"
+    },
+    {
+      "path": "addons/admob/internal/services/export_service.gd",
+      "bytes": 2218,
+      "sha256": "5A823F6FBA17345F8BCC5FB3C5D672FDE50AD153F00D401DCB73826CDDD37ACA"
+    },
+    {
+      "path": "addons/admob/internal/services/export_service.gd.uid",
+      "bytes": 20,
+      "sha256": "C582057CC675D994CFC6AF86A630E03FBA404ADEE6983AAFA6940DCB81FA735B"
+    },
+    {
+      "path": "addons/admob/internal/services/installer_service.gd",
+      "bytes": 2038,
+      "sha256": "AC314B56B01D1F9B0268830CBA68D8F93FDA7B3434FEEB1082EDD3E4061C772F"
+    },
+    {
+      "path": "addons/admob/internal/services/installer_service.gd.uid",
+      "bytes": 21,
+      "sha256": "78945A1C3941233ABC08DFAFD78AD40040893123777999C9E605CF46A903CE01"
+    },
+    {
+      "path": "addons/admob/internal/services/network/binary_installer.gd",
+      "bytes": 4747,
+      "sha256": "EA7B753F4BC12AA01DE0EF096906007DB8FF4D5C72CDD36E7C68B9A68FEE0435"
+    },
+    {
+      "path": "addons/admob/internal/services/network/binary_installer.gd.uid",
+      "bytes": 21,
+      "sha256": "CFA4C5826BD2E45E39809708F73053D449EF9FD0DC6EDBA6B51B08A6EC61C54F"
+    },
+    {
+      "path": "addons/admob/internal/services/network/download_service.gd",
+      "bytes": 3713,
+      "sha256": "DB2F60483DBD8C964096B16B0A0F6098932FE8F7282CE92F6A52F9F028AC2E95"
+    },
+    {
+      "path": "addons/admob/internal/services/network/download_service.gd.uid",
+      "bytes": 20,
+      "sha256": "25505D2458BD4352C944122B1F953816FE7249AE0E99D035D5083AD711D2FAFC"
+    },
+    {
+      "path": "addons/admob/internal/services/pbxproj_service.gd",
+      "bytes": 5103,
+      "sha256": "4881FEE550AF902B2DD622B383917F099F96E583EDA5645A20298FD66A5789A7"
+    },
+    {
+      "path": "addons/admob/internal/services/pbxproj_service.gd.uid",
+      "bytes": 20,
+      "sha256": "B33FCB876F6F3BCB2E8EBE2EAC6F37F92403017F507DFE1E96692CCBA1ADC5AE"
+    },
+    {
+      "path": "addons/admob/internal/services/project_settings_service.gd",
+      "bytes": 4532,
+      "sha256": "BCDF7441C4F07C6A4C8F95D39F2A540E3F6F8B78BDF6BCE90D92CFEF46A2FFE6"
+    },
+    {
+      "path": "addons/admob/internal/services/project_settings_service.gd.uid",
+      "bytes": 21,
+      "sha256": "4339B7457C22B3FAAF9A56BD4BBCEB0916880D50732E8AA32BB305E3E3E31BF9"
+    },
+    {
+      "path": "addons/admob/internal/services/translation_service.gd",
+      "bytes": 2753,
+      "sha256": "AE835D395C6BA35DA4E84FE9805B5F69604644182267FA68349D5D11990EC689"
+    },
+    {
+      "path": "addons/admob/internal/services/translation_service.gd.uid",
+      "bytes": 20,
+      "sha256": "FBFD0439DA979F0807D1845EE98DCF809193230726D859B32527382A1DAF4918"
+    },
+    {
+      "path": "addons/admob/internal/services/ui/dialog_service.gd",
+      "bytes": 2020,
+      "sha256": "A80B31FF176E072D6C44CF2AFBB83E6F6677ABE253DC1F4CBC9A15C9FFD3BB79"
+    },
+    {
+      "path": "addons/admob/internal/services/ui/dialog_service.gd.uid",
+      "bytes": 20,
+      "sha256": "80A05BB7841120456497A4ABB1A261EAE203C24C1FC17720A3F9F24AE7ACA926"
+    },
+    {
+      "path": "addons/admob/internal/services/ui/file_service.gd",
+      "bytes": 1871,
+      "sha256": "B9E9086D297ECBF8E2A91A617191A9CF18841769C52D567913E85942F8B04DA5"
+    },
+    {
+      "path": "addons/admob/internal/services/ui/file_service.gd.uid",
+      "bytes": 20,
+      "sha256": "418540F21E75F333E3707B5CE4B74A5F1B586AB2E42E06E8EDE4A12DA8ED7E53"
+    },
+    {
+      "path": "addons/admob/internal/version/plugin_version.gd",
+      "bytes": 4142,
+      "sha256": "B12840F9155DD7772512194495405DB4DDDD65027C7A6F11FABDB2FA6EEE70C8"
+    },
+    {
+      "path": "addons/admob/internal/version/plugin_version.gd.uid",
+      "bytes": 21,
+      "sha256": "08A94725FC3992D67B662393CD18EB1CA34FE99A653E9653A6C401A0668B92EC"
+    },
+    {
+      "path": "addons/admob/LICENSE",
+      "bytes": 1099,
+      "sha256": "B3CC06EEAE33B6C592385F798CED5D6ED637F7E1467510227495BE4DEE0947EF"
+    },
+    {
+      "path": "addons/admob/plugin.cfg",
+      "bytes": 139,
+      "sha256": "159A7AA50793841BC310AE365DFCBE39F4FED73E6504D7CBC28EA9E22757518D"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/assets/icons/achievements_client.svg",
+      "bytes": 5258,
+      "sha256": "7E910D37736C873425DBE801FEA7A4FF5FA485C567BED9E579F6C5B3C0611B6B"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/assets/icons/events_client.svg",
+      "bytes": 1912,
+      "sha256": "DD6EE78D95A273CE80A37667C0832A55772D2674870765753AD68A6828D56505"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/assets/icons/leaderboards_client.svg",
+      "bytes": 2993,
+      "sha256": "2E7803DFD2AB86DFD1959AD0D04D38233A9B55FB8B7FBF32421725545DE985E1"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/assets/icons/players_client.svg",
+      "bytes": 2114,
+      "sha256": "32209EC618BF107F1D0DFBB1583AE7FCE7CDF676C029DC3F0BBAA0D46BB11E73"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/assets/icons/sign_in_client.svg",
+      "bytes": 2244,
+      "sha256": "23657A0C83EB72CBEDF4551B6A507EA3E4630052F44BDB12A2A8FC97BE91ED37"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/assets/icons/snapshots_client.svg",
+      "bytes": 3183,
+      "sha256": "A89999CF231BA79D6B263D529739157012D51BEB461C987CD172AA1DFA792BBF"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/bin/debug/GodotPlayGameServices-debug.aar",
+      "bytes": 88321,
+      "sha256": "75B9EC61C3D8E013C8CA2EB150782E33519144DEE94713B44F96147F2DE55EE9"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/bin/release/GodotPlayGameServices-release.aar",
+      "bytes": 84195,
+      "sha256": "1F5545274A8B532E24D1F4489345DC8AF0E63A1CD506893F85DA34DFCEB2F708"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/export_plugin.gd",
+      "bytes": 3557,
+      "sha256": "22CDFCD823071B7FC19A1779E0C85AA4A89CFF4E9B41799B391C79EED4FB192F"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/export_plugin.gd.uid",
+      "bytes": 21,
+      "sha256": "8478E615645E9BECDFED2615AA144E4FCC4C77B94B9BDFE712CF77E17BC36044"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/LICENSE",
+      "bytes": 1101,
+      "sha256": "6BE9584BA2233FB74D12ECB61B23FBB0BE195F028181AED06C758244ADC51E80"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/plugin.cfg",
+      "bytes": 188,
+      "sha256": "E7E9B134A221CC6C820D66C1DE1F53BC18E4566E137A76EC27E8337B653A03A5"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/achievements/achievement.gd",
+      "bytes": 4295,
+      "sha256": "DB47BC127938C1641A22DB38CC2754CD0FD7C425CEC115150D73F516FB07CC4B"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/achievements/achievement.gd.uid",
+      "bytes": 20,
+      "sha256": "48F12C87B40242098C578A7D996471DF9059FEA3183709E47D72C9F0AF0B5170"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/achievements/achievements_client.gd",
+      "bytes": 5407,
+      "sha256": "232448F9886E7A559F91B9E54356DDB8BB42E3E4706D13FB4D81BDC8490BAD64"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/achievements/achievements_client.gd.uid",
+      "bytes": 21,
+      "sha256": "BE8FA6F6E55165F308E777A368FA638BFCFC3225E128C1E40FABA9FD65CB7034"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/autoloads/godot_play_game_services.gd",
+      "bytes": 2564,
+      "sha256": "A3363C027F050B4964E51B73EB43073A1B303E691158CBC21C3A9E3C7919E2F1"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/autoloads/godot_play_game_services.gd.uid",
+      "bytes": 20,
+      "sha256": "168F23043AE9A8F7DFB4BEE833706E261E9DE42B4D4F4528DB721A46E93C7BE9"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/events/event.gd",
+      "bytes": 2054,
+      "sha256": "72346EC98FBB873CF3193500572D7E7D48773E1BC66FC5ADE17D1EE54AF7C0D5"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/events/event.gd.uid",
+      "bytes": 20,
+      "sha256": "838BEFC28D67748A1D6E51F08004E58F13F6530F47B3F444BDDA0332E6118780"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/events/events_client.gd",
+      "bytes": 3105,
+      "sha256": "44D7B1BAFC201F2966849453F1EBE778D6D2F8235BD0646E30984C0FA046E047"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/events/events_client.gd.uid",
+      "bytes": 20,
+      "sha256": "E1A84F8E6B0F2F5D5C9A8E1E6E280E0A968FCB1D809E5A08993C721C8CE48B91"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/leaderboards/leaderboard.gd",
+      "bytes": 1964,
+      "sha256": "86327C363CF685AD87A368A46C125C9236B1DDD76EA32D8B0610FEEA023459D4"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/leaderboards/leaderboard.gd.uid",
+      "bytes": 21,
+      "sha256": "5BA89C9579851A254B0FDF5ED2FC162B00B14D9267DDFADE1B8643CC0078E116"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/leaderboards/leaderboard_score.gd",
+      "bytes": 2696,
+      "sha256": "E1999926600BA10DA05B11B839974235698570A11938EDDB1017F70C9DA2369F"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/leaderboards/leaderboard_score.gd.uid",
+      "bytes": 21,
+      "sha256": "5E750F5B134953B9874C025388AE0B42BBE60FCC4540873B101713E6A8825A7D"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/leaderboards/leaderboard_scores.gd",
+      "bytes": 1085,
+      "sha256": "1533FB75715EB70FA47F970D47A1479A1E617ACC21BF1C141F938138F80588E4"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/leaderboards/leaderboard_scores.gd.uid",
+      "bytes": 21,
+      "sha256": "6812DAF875923FBF44F645FF2976C2E47C18F79BC989EF454202278737378120"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/leaderboards/leaderboard_variant.gd",
+      "bytes": 2963,
+      "sha256": "92BCC6A54B5E572F62A6B1CD95ADEBA73864D337A34C449D0FE770269EB10620"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/leaderboards/leaderboard_variant.gd.uid",
+      "bytes": 21,
+      "sha256": "28692C92F74FAB74A166A48EE2ED4777D92D64F321485D4564B6CBB0A7FED45F"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/leaderboards/leaderboards_client.gd",
+      "bytes": 11162,
+      "sha256": "631ABC6E751ABB5B28FC6F59DC971AE56B089F807AD4D00EFA5058EE76A86FAE"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/leaderboards/leaderboards_client.gd.uid",
+      "bytes": 21,
+      "sha256": "6EF9C0C05D64CE343CB7967CC5881F8287FCC8B22623E5887CFD2B01588ABC56"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/marshalling/json_marshaller.gd",
+      "bytes": 1629,
+      "sha256": "FDD9A33B5046FB295A12EF7164DB1E3F3378B43AD905E0408E6772CDB7EBD055"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/marshalling/json_marshaller.gd.uid",
+      "bytes": 21,
+      "sha256": "A6E1693A3F8EF89BF82817C983DA5502FD895E291367DDD5566E7A2C64DFB3A9"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/players/player.gd",
+      "bytes": 4399,
+      "sha256": "FF37D8F78AEDAB2BB8C02DE1DF00E903086A4F0232DD58B438B97C6BB100E1B4"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/players/player.gd.uid",
+      "bytes": 21,
+      "sha256": "A7F3CFFA73578B34F4F820F36E25D1354F8B775ACD0523DD1069393734A4F70E"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/players/player_level.gd",
+      "bytes": 1023,
+      "sha256": "242FCDD0FE9B453F002740A7F21F59E3C20F9C2A2AE09060C3DD1F7577FF9BAD"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/players/player_level.gd.uid",
+      "bytes": 21,
+      "sha256": "2E77D77F69B39E3E4FCB92BED0D4580C2F6F8969D8F50285D943D8B2A17B5DFE"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/players/player_level_info.gd",
+      "bytes": 1762,
+      "sha256": "DF6566B01DF66549008174BFB1BF5D9C52CB5CF043E4A28CF31A59D623691BCF"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/players/player_level_info.gd.uid",
+      "bytes": 21,
+      "sha256": "C0C4BB32D2D4960E2886216E7D48947D8AA2ACA5CD4C0685EA01AAD35D997001"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/players/players_client.gd",
+      "bytes": 5604,
+      "sha256": "E3682AAD0E8483E5B05609A3B3478D861B67D880C13F576928D9A0378E465B15"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/players/players_client.gd.uid",
+      "bytes": 21,
+      "sha256": "A6BC10B4CD837DFF25B3B98144BF9C8F61809CCF63BEE2072A5FEB89CD67ED12"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/sign_in/sign_in_client.gd",
+      "bytes": 2847,
+      "sha256": "0FFD826F455334BC9F7859915F5EA1841018A72598281C4A39928EF23B8C8956"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/sign_in/sign_in_client.gd.uid",
+      "bytes": 21,
+      "sha256": "9AB8712A58B8F4091A1361C880C50D6681D23D6EE9E53C6B56595561AD292297"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/snapshots/game.gd",
+      "bytes": 3506,
+      "sha256": "746DDC40246AF2996ECEB4C756B12668F071331BD93C6708B6F164EF4972BE43"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/snapshots/game.gd.uid",
+      "bytes": 21,
+      "sha256": "D06D6506F0652B7E6B577AD18CD3D27AD8E5A92DE4044C0C96F4D55C411B9E90"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/snapshots/snapshot.gd",
+      "bytes": 1022,
+      "sha256": "BFCA4787D9AFF0FEA32BE07749B6EF769523F776D226B8CD6835DF7F5D77A79E"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/snapshots/snapshot.gd.uid",
+      "bytes": 21,
+      "sha256": "31DB405441C15E7726210524748A38590E5216BAF9739F5003F4C749A7C2A984"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/snapshots/snapshot_conflict.gd",
+      "bytes": 1600,
+      "sha256": "D026C330F46B7A42A87D7B45E4F50B2DB8624698317ACC7ACFF9B88FB2D73144"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/snapshots/snapshot_conflict.gd.uid",
+      "bytes": 21,
+      "sha256": "54E961834C777FCE3F2D9FF6238C60971486F836E9E2EC188C06A04FE3282C25"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/snapshots/snapshot_metadata.gd",
+      "bytes": 3219,
+      "sha256": "8D77209B0C334A78A622B43868692A0DD44F9DB870E986EAFF53D132B01161D6"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/snapshots/snapshot_metadata.gd.uid",
+      "bytes": 21,
+      "sha256": "CAC59E3769D5877FD4246584E5475EE2C6098AC2356135F418B8890B075720D9"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/snapshots/snapshots_client.gd",
+      "bytes": 7198,
+      "sha256": "E903C994435903A658247A3771CD332DFC09ECC46970E3C7CB922B87C8D27977"
+    },
+    {
+      "path": "addons/GodotPlayGameServices/scripts/snapshots/snapshots_client.gd.uid",
+      "bytes": 21,
+      "sha256": "592272B50372A566EB732BAAB160BB6B37B8D6955B48BFC9BBBE4D3D96EECAF4"
+    }
+  ]
+}

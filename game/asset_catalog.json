@@ -1,0 +1,212 @@
+{
+  "models": [
+    {
+      "path": "assets/kenney/market/cash-register.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "155F2EB666DEA3A931D133A4953379898C8ADB4B827AB60B86CAE07235B9B598"
+    },
+    {
+      "path": "assets/kenney/market/character-employee.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "8774B93A5FF11AF146176505035CC351D37A8A69AD0B1FDE612BBA9C8FFA84CC"
+    },
+    {
+      "path": "assets/kenney/market/display-fruit.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "4CC38DCBD0F703D5BC829FF4A627648872DD3F6578F3E7E01FDCEE066367873B"
+    },
+    {
+      "path": "assets/kenney/market/display-bread.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "33A57FEE0E331E5E40DF5F0DC7AF302E93266FD978DDA810AB9F0EA4A2C205D1"
+    },
+    {
+      "path": "assets/kenney/market/shelf-bags.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "17725A5F680AFF17DBC6AC3398EF0339D78B5B76BBFAA29292A5084479C4BD69"
+    },
+    {
+      "path": "assets/kenney/market/shelf-boxes.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "3F340FE9207A4B85739D8D11104CF5B4CAD3A130AFCBFC1FADB47C17D6A9E210"
+    },
+    {
+      "path": "assets/kenney/market/shelf-end.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "9A6F4528AE127689D538DE0FA45C07F58538C8572A1B858CC5E40CACEB7D2C69"
+    },
+    {
+      "path": "assets/kenney/market/freezers-standing.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "0FE103E694D7B9A733D2C1A8DDE3FCB15FD355D63ABA376AA8D7AA8E752ED9A1"
+    },
+    {
+      "path": "assets/kenney/market/freezer.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "CAAA456E8BC9C7322C0F42DD7CC3EF871963CBA890E84B492A57BDCE66CFE5C7"
+    },
+    {
+      "path": "assets/kenney/market/floor.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "B18DA447E10AE1AFB327C90BC316590C780C68B04097A038F3FBB26FD28CA0F8"
+    },
+    {
+      "path": "assets/kenney/market/wall.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "A926D264EC7D6A4344EE36E732F2F179469BFB727B89E5ADA9D61226FF5EFF2C"
+    },
+    {
+      "path": "assets/kenney/market/wall-window.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "58B59E2C18459B2190298021506882BC5F521289C694519C1B2CD6439E409CB0"
+    },
+    {
+      "path": "assets/kenney/market/wall-door-rotate.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "DE539CAFDC80C9944258105CBF5D57303A3A020E588B4A611FA4F4CE90CF5B29"
+    },
+    {
+      "path": "assets/kenney/market/wall-corner.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "7E6733A01314308D07B5CA218E460ABB041B1AAAD7ED252179FDFA3CFABEE958"
+    },
+    {
+      "path": "assets/kenney/market/shopping-basket.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "A7704926CB56C5A9AB74488230FC7C4D7B914387C59E9C1B6F62376965C0EA7D"
+    },
+    {
+      "path": "assets/kenney/market/shopping-cart.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "8933FDECE5C43B619EA6902FA03A5FEA9F490486048AE7543CC8B03EE98C98DD"
+    },
+    {
+      "path": "assets/kenney/market/fence.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "6671A0DA07F35388759A984D9B4FC6DC3E17307E9A46DE115E3A5F7A9896081D"
+    },
+    {
+      "path": "assets/kenney/market/fence-door-rotate.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "AE8B3335AD034A104D314C95ECBFD0B3521CCFE76812A5B63AD41018F80CEE87"
+    },
+    {
+      "path": "assets/kenney/market/column.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "6DAA25EE4DAF95F197D75210C176E19EFBDDE79E3CC6B0258B7BBF879746C9E9"
+    },
+    {
+      "path": "assets/kenney/market/bottle-return.glb",
+      "source_pack": "kenney_mini-market",
+      "sha256": "039EEFD7EB61876EB8BFA3937F2890E75EC4E6629A6C97640504BAA3EF51991F"
+    },
+    {
+      "path": "assets/kenney/characters/character-female-a.glb",
+      "source_pack": "kenney_mini-characters",
+      "sha256": "8CFCFF43460DA8B421F2A7FDFB43EC177321CAD2746DB9497CBF128D5806E2A8"
+    },
+    {
+      "path": "assets/kenney/characters/character-female-b.glb",
+      "source_pack": "kenney_mini-characters",
+      "sha256": "2288438E7BAF9ACC91A870C82DC00D66710BB486592CFC3474EF8ED93A03863A"
+    },
+    {
+      "path": "assets/kenney/characters/character-female-c.glb",
+      "source_pack": "kenney_mini-characters",
+      "sha256": "3CD9E1B5D6409FCE0BA1AF617D9E008C3069493185A4C100F49FB99A2626A055"
+    },
+    {
+      "path": "assets/kenney/characters/character-male-a.glb",
+      "source_pack": "kenney_mini-characters",
+      "sha256": "77572792BFE2773B715B8CD8E18644B52B3E1F155FE10450254B50F9C364382A"
+    },
+    {
+      "path": "assets/kenney/characters/character-male-b.glb",
+      "source_pack": "kenney_mini-characters",
+      "sha256": "791FC0C203924C175C0A3D5B60D030DAF36797B039506689CF7CD01EF5253B3C"
+    },
+    {
+      "path": "assets/kenney/characters/character-male-e.glb",
+      "source_pack": "kenney_mini-characters",
+      "sha256": "CD76681090CE29861B055B0F8B2BDCF84BFCCC4CA816F428DF42A9BB76D6E1B6"
+    },
+    {
+      "path": "assets/kenney/furniture/cardboardBoxClosed.glb",
+      "source_pack": "kenney_furniture-kit",
+      "sha256": "4AF079DCA52960912764574950F0549FF2AE1224B3DB1528718629473A2D5D81"
+    },
+    {
+      "path": "assets/kenney/furniture/cardboardBoxOpen.glb",
+      "source_pack": "kenney_furniture-kit",
+      "sha256": "960DA412564774C75E7B32F9AF0100895E1EDB877FC1E70DD34EE2422A2196D4"
+    },
+    {
+      "path": "assets/kenney/furniture/pottedPlant.glb",
+      "source_pack": "kenney_furniture-kit",
+      "sha256": "5B760EDA2766F75FDA36B2C5DF652A1662F82981EF64CD8FA7FE7BCD386B3A15"
+    },
+    {
+      "path": "assets/kenney/furniture/lampWall.glb",
+      "source_pack": "kenney_furniture-kit",
+      "sha256": "A9679ECD3BE05731846F22ADE97C37069598CA7A06DD9319F50230E63A1EA83C"
+    },
+    {
+      "path": "assets/kenney/furniture/bench.glb",
+      "source_pack": "kenney_furniture-kit",
+      "sha256": "BA05A6D23A5A5A44DA016757632070E47FF7587CE10E2F6D6D52328B4CF5489B"
+    },
+    {
+      "path": "assets/kenney/furniture/trashcan.glb",
+      "source_pack": "kenney_furniture-kit",
+      "sha256": "E0CCC1FE50CBD05386477FDFF527171D1CF7C0DE2BA7FF3233F8D9561FEB2561"
+    },
+    {
+      "path": "assets/kenney/nature/tree_small.glb",
+      "source_pack": "kenney_nature-kit",
+      "sha256": "D26C0EEED65CC681667F50042EF23EC72CE47AE3B39837BFEEC170B05BA6AB6A"
+    },
+    {
+      "path": "assets/kenney/nature/flower_yellowA.glb",
+      "source_pack": "kenney_nature-kit",
+      "sha256": "8A3B08CD2CA411C21F9C581D5BDA651D78B13C50CBA45AD8FA0389398EAD6D1D"
+    },
+    {
+      "path": "assets/kenney/nature/plant_bush.glb",
+      "source_pack": "kenney_nature-kit",
+      "sha256": "AE7B1BEB39E242B13F5F29E3EC23EF21034B814F82297B8AA00A9BF4E1B09590"
+    },
+    {
+      "path": "assets/kenney/nature/crop_carrot.glb",
+      "source_pack": "kenney_nature-kit",
+      "sha256": "2A3641C609DD837A4FEEBB4F5C95D4CD43C3046E800ACD416F4F6A3B923BA9D8"
+    },
+    {
+      "path": "assets/kenney/nature/crop_pumpkin.glb",
+      "source_pack": "kenney_nature-kit",
+      "sha256": "5B4878C5996033629419C26AC32153CE8AC06BBBDAC98E4FA8A5CBAB98F78077"
+    },
+    {
+      "path": "assets/kenney/commercial/detail-awning.glb",
+      "source_pack": "kenney_city-kit-commercial_2.1",
+      "sha256": "386978DAF81DC11AC601638F19A41918A391FF882A8C518AE5A3215A1BED4D8A"
+    },
+    {
+      "path": "assets/kenney/commercial/detail-awning-wide.glb",
+      "source_pack": "kenney_city-kit-commercial_2.1",
+      "sha256": "D37BA34BE414CEF84DB966E548E2C558088AEC3FDF68763565B9CAF95C11AC5F"
+    },
+    {
+      "path": "assets/kenney/commercial/building-a.glb",
+      "source_pack": "kenney_city-kit-commercial_2.1",
+      "sha256": "5CF220F90EE3F21E7ABE38055CA409A48AA8EF1D5FFAB6E2DEB99E5A5E1ED5E0"
+    },
+    {
+      "path": "assets/kenney/commercial/low-detail-building-b.glb",
+      "source_pack": "kenney_city-kit-commercial_2.1",
+      "sha256": "EF2AB63731C38A469DF7F993C26B0E8137746F90AC20ED9485D61F48AA50FBDB"
+    }
+  ],
+  "derived_assets": [{"path":"assets/kenney/market/display-fruit-stock.glb","source":"assets/kenney/market/display-fruit.glb","source_pack":"kenney_mini-market","sha256":"CEE942BC741DCDB0654BBBA7EA6CB9B73DA5D8B52E2D934F864E2A5897F707B8","generator":"game/derive_fruit_asset.py","change":"Original tray plus six original fruit/stem child groups; same geometry attributes and texture"}],
+  "texture_rule": "Preserve each pack external Textures/colormap.png",
+  "license_directory": "LICENSES/Assets"
+}

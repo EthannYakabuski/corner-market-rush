@@ -1,18 +1,80 @@
 Corner Market Rush distribution notices
 
+Paths below are relative to the repository root unless a notice filename
+begins Assets/, Audio/ or ThirdParty/; those are relative to LICENSES/.
 Original project work: Apache License 2.0; see root LICENSE and NOTICE.
+Third-party material retains its separate license and original notices.
+
+SELECTED SCENE, UI AND FONT ASSETS
+Kenney (www.kenney.nl), CC0-1.0; original notices retained unchanged:
+  assets/kenney/market/ - Mini Market 1.0:
+    Assets/kenney_mini-market-LICENSE.txt
+    Additional pack credits: Fleur Keijsers and Guus Vermeulen.
+  assets/kenney/characters/ - Mini Characters 1.0:
+    Assets/kenney_mini-characters-LICENSE.txt
+  assets/kenney/furniture/ - Furniture Kit 2.0:
+    Assets/kenney_furniture-kit-LICENSE.txt
+  assets/kenney/nature/ - Nature Kit 2.1:
+    Assets/kenney_nature-kit-LICENSE.txt
+  assets/kenney/commercial/ - City Kit Commercial 2.1:
+    Assets/kenney_city-kit-commercial_2.1-LICENSE.txt
+  assets/ui/ - selected UI Pack 2.0 textures:
+    Assets/kenney_ui-pack-LICENSE.txt
+  Asset-selection and derived fruit-display details:
+    Assets/MARKET-ASSETS.txt and game/derive_fruit_asset.py.
+  The stock-depletion fruit-display derivative retains the Mini Market
+    CC0 license; it is not separately claimed as wholly original artwork.
+  Game UI uses the Godot default font covered by the engine notices below;
+    no separate Kenney UI font file is shipped in this project's assets.
+
+SELECTED AUDIO
+Kenney effects retain their separate CC0-1.0 notices. Original music,
+composition/synthesis source and the original rail whistle are project
+work under Apache-2.0; only files actually listed for this game are shipped.
+  assets/audio/sfx/{click,confirm,error}.ogg - Interface Sounds 1.0:
+    Audio/kenney_interface-sounds-CC0.txt
+  assets/audio/sfx/{coin,door,restock}.ogg - RPG Audio:
+    Audio/kenney_rpg-audio-CC0.txt
+  assets/audio/sfx/footstep.ogg - Impact Sounds 1.0:
+    Audio/kenney_impact-sounds-CC0.txt
+  Four original music tracks under assets/audio/music/ - Apache-2.0:
+    Audio/ORIGINAL-MUSIC-NOTICE.txt and root LICENSE.
+  The shared original-music notice also mentions a railway whistle used
+    by the companion railway project; this market project ships no whistle.
+  Reproducible original score source: Audio/compose_original_music.py.
+  Per-file audio source paths and hashes: assets/audio/AUDIO_MANIFEST.json
+    and assets/audio/music/original_music_manifest.json.
+  Integration/provenance notes: docs/AUDIO.md. Licensing does not establish
+    auditory or native-runtime acceptance.
+
+PROJECT-CREATED PROMOTIONAL ARTWORK
+marketing/branding/app_icon.png and feature_graphic.png are raster
+illustrations created for this project with image-generation assistance.
+They are project work under the root project license, separate from the
+Kenney scene models. See docs/ART.md for provenance and exact image hashes.
+They are promotional illustrations, not gameplay screenshots.
+
+ENGINE, PLUGINS AND BUNDLED ADDON FONT
 Godot Engine 4.5.1: ThirdParty/GODOT-4.5.1-LICENSE.txt,
   ThirdParty/GODOT-4.5.1-COPYRIGHT.txt and ThirdParty/GODOT-4.5.1-AUTHORS.md.
+  Preserve the engine's bundled third-party/font notices as well as its MIT license.
 Poing Godot AdMob 5.1.0: ThirdParty/POING-ADMOB-MIT.txt and addons/admob/LICENSE.
 GodotPlayGameServices 3.4.0: ThirdParty/PLAY-GAMES-MIT.txt and addons/GodotPlayGameServices/LICENSE.
-Vendored file hashes: platform/VENDORED_PLUGINS.json.
+Vendored plugin file hashes and subset/modification notes: platform/VENDORED_PLUGINS.json.
+The AdMob addon includes addons/admob/assets/fonts/NotoSansSC-Regular.otf,
+  Noto Sans CJK SC Regular, copyright 2014-2021 Adobe, SIL OFL-1.1:
+  ThirdParty/NOTO-CJK-SC-NOTICE.txt and ThirdParty/NOTO-CJK-OFL-1.1.txt.
+  Matching distributed font SHA256: 0832CF607170F42922AAEB8DD590E346174E247800C35AA4137055542462DBFA
+  This addon font is distinct from Godot's bundled default fonts.
 
 The Android Gradle resolver also supplies Google Mobile Ads, UMP, Play Games
 and their dependencies. Preserve the license/notice metadata embedded in
 those SDK packages; the plugin MIT notices do not relicense Google's SDKs.
 
-Art/audio asset notices are supplied with the selected assets in assets/licenses
-and must be checked and added to this index before the completed distribution.
-No unused asset-pack or font license is claimed by this initial platform index.
-The build workflow accompanies APK/Web artifacts with this complete LICENSES
-directory plus root LICENSE and NOTICE. Keep these files with redistributions.
+DISTRIBUTION
+Keep root LICENSE and NOTICE plus the complete LICENSES directory with
+source and exported APK/Web artifacts. The build workflow accompanies its
+artifacts with those files; do not omit the selected asset/audio/font notices.
+LICENSES/MANIFEST.json hashes these actual notice/supporting-source files
+and root LICENSE/NOTICE, excluding the manifest itself. It is a license-only
+inventory, not a source-build or runtime-validation manifest.

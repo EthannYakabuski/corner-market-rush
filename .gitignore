@@ -33,3 +33,6 @@ evidence/
 *.tgz
 *.zip
 *.dmp
+*.bak
+*.pck
+*.wasm

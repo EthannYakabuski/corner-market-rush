@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "scope": "license notices and accompanying original composition source only",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 11560,
+      "sha256": "3DDF9BE5C28FE27DAD143A5DC76EEA25222AD1DD68934A047064E56ED2FA40C5"
+    },
+    {
+      "path": "LICENSES/Assets/kenney_city-kit-commercial_2.1-LICENSE.txt",
+      "bytes": 708,
+      "sha256": "C38CEE408D022E57E44E49F1CD655C2FE0DC881A07B881276B795215CDC0DE69"
+    },
+    {
+      "path": "LICENSES/Assets/kenney_furniture-kit-LICENSE.txt",
+      "bytes": 614,
+      "sha256": "BC0DE1A0742CB490F9ED4BAE0BD284286EBB27E23149B9917C7D8C0D590B8B29"
+    },
+    {
+      "path": "LICENSES/Assets/kenney_mini-characters-LICENSE.txt",
+      "bytes": 718,
+      "sha256": "28358AE5ACCC85B572EB42507956AFC8BEAE05ACB4648BB9026A5714D421B785"
+    },
+    {
+      "path": "LICENSES/Assets/kenney_mini-market-LICENSE.txt",
+      "bytes": 767,
+      "sha256": "5EE4DF809330C05896F223C97F250CC1BDC13B46A370EB464533C85C94146070"
+    },
+    {
+      "path": "LICENSES/Assets/kenney_nature-kit-LICENSE.txt",
+      "bytes": 611,
+      "sha256": "CB96B75E3560AC78D7A53CE6F083F4CDB5C53FAEA6141B62D63458DCFE1E4B9D"
+    },
+    {
+      "path": "LICENSES/Assets/kenney_ui-pack-LICENSE.txt",
+      "bytes": 565,
+      "sha256": "69F7EAA5E05913B4D09CF5848F75390B5C3C9A409EF8555777803D9CA0C171FB"
+    },
+    {
+      "path": "LICENSES/Assets/MARKET-ASSETS.txt",
+      "bytes": 784,
+      "sha256": "AFF82F142DD5C5624543F96EDC3312DD347FD7C9B56CAD2892DE7CEAC5ACDA57"
+    },
+    {
+      "path": "LICENSES/Audio/compose_original_music.py",
+      "bytes": 17560,
+      "sha256": "0DA876CC6A7A455C2E83518D150E8F2AF5C6CD0A56DB59258946A1F0B735DEDD"
+    },
+    {
+      "path": "LICENSES/Audio/kenney_impact-sounds-CC0.txt",
+      "bytes": 608,
+      "sha256": "B49AA9C56B04528B95913DE13E506A0F7C5E807B9925DB9BFEF86AF1F91120DB"
+    },
+    {
+      "path": "LICENSES/Audio/kenney_interface-sounds-CC0.txt",
+      "bytes": 574,
+      "sha256": "F7966C773BBED0ECA6A9C75081C44A178B38EAE112724DBB5FDFBD4192D118A9"
+    },
+    {
+      "path": "LICENSES/Audio/kenney_rpg-audio-CC0.txt",
+      "bytes": 478,
+      "sha256": "5735DFD72CB64CBBCEDA4EBC00C380C41CA680EDB82FF153AA7C9AB97614C539"
+    },
+    {
+      "path": "LICENSES/Audio/ORIGINAL-MUSIC-NOTICE.txt",
+      "bytes": 522,
+      "sha256": "E397335E542F20AE5983F475A33988FAE77C4756C5A62003D400C0ADA8C36319"
+    },
+    {
+      "path": "LICENSES/INDEX.txt",
+      "bytes": 4638,
+      "sha256": "B0DD014E6CBE7E1A39EEB5A8335004AD92A9014F791BB48DBFA6E5BB06F23A15"
+    },
+    {
+      "path": "LICENSES/ThirdParty/GODOT-4.5.1-AUTHORS.md",
+      "bytes": 10740,
+      "sha256": "6CC644B01583B74F5FFDAF5D84994CC611CA2368F20EB7AC69C870E035C24EA2"
+    },
+    {
+      "path": "LICENSES/ThirdParty/GODOT-4.5.1-COPYRIGHT.txt",
+      "bytes": 99559,
+      "sha256": "DDFBF4FC1A00938393D35C77432A7ACA91FAC216C0ACE548288E036163D72255"
+    },
+    {
+      "path": "LICENSES/ThirdParty/GODOT-4.5.1-LICENSE.txt",
+      "bytes": 1169,
+      "sha256": "0CC27400B8DA8C06BB35350422C14715647CD2632C138921FD49CAA6610A1EF6"
+    },
+    {
+      "path": "LICENSES/ThirdParty/NOTO-CJK-OFL-1.1.txt",
+      "bytes": 4393,
+      "sha256": "88F117575237307BDD86A17EF15E21790FC9A662FE4DFB103CA1CA077F0D9982"
+    },
+    {
+      "path": "LICENSES/ThirdParty/NOTO-CJK-SC-NOTICE.txt",
+      "bytes": 583,
+      "sha256": "873F5FEE6C7C80484FB1CA2607B2F1E00BDA165058A012375A28DA9137C6269E"
+    },
+    {
+      "path": "LICENSES/ThirdParty/PLAY-GAMES-MIT.txt",
+      "bytes": 1101,
+      "sha256": "6BE9584BA2233FB74D12ECB61B23FBB0BE195F028181AED06C758244ADC51E80"
+    },
+    {
+      "path": "LICENSES/ThirdParty/POING-ADMOB-MIT.txt",
+      "bytes": 1099,
+      "sha256": "B3CC06EEAE33B6C592385F798CED5D6ED637F7E1467510227495BE4DEE0947EF"
+    },
+    {
+      "path": "NOTICE",
+      "bytes": 1674,
+      "sha256": "9ECD66560646EF398C2B286D80942FA96D56978828B61F7CC2A6A1ADB2C545BA"
+    }
+  ]
+}

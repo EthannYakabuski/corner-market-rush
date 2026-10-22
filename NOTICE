@@ -1,4 +1,29 @@
 Corner Market Rush
 Copyright 2026 EthannYakabuski
 Original project work is licensed under Apache License 2.0.
-Third-party assets and plugins retain their own licenses; see LICENSES and assets/licenses as populated during implementation.
+Third-party assets, fonts and plugins retain their own licenses; see
+LICENSES/INDEX.txt and the original notices under LICENSES/Assets/,
+LICENSES/Audio/ and LICENSES/ThirdParty/.
+
+Selected Kenney assets are CC0: Mini Market 1.0, Mini Characters 1.0,
+Furniture Kit 2.0, Nature Kit 2.1, City Kit Commercial 2.1 and UI Pack 2.0.
+Mini Market additional credits: Fleur Keijsers and Guus Vermeulen.
+The original pack notices and fruit-display derivative description are
+preserved in LICENSES/Assets/. The derived stock-depletion fruit display
+retains the original Mini Market CC0 license.
+
+Selected unchanged Kenney CC0 sound effects are from Interface Sounds,
+RPG Audio and Impact Sounds. The four original music tracks are Apache-2.0
+project work. See LICENSES/Audio/ and assets/audio/AUDIO_MANIFEST.json
+for the separate notices and provenance. The shared original-music notice
+mentions a railway whistle; no whistle is included in this market game.
+
+Promotional icon and feature illustrations were created for this project
+with image-generation assistance; provenance is documented in docs/ART.md.
+They are separate from Kenney's scene assets and are not gameplay captures.
+
+Godot Engine, Poing AdMob and GodotPlayGameServices retain their MIT notices
+and bundled third-party notices. The AdMob addon also includes Noto Sans
+CJK SC Regular, copyright 2014-2021 Adobe, under SIL Open Font License 1.1;
+the matching font notice and full OFL text are in LICENSES/ThirdParty/.
+Plugin MIT licenses do not relicense Google's SDK dependencies.

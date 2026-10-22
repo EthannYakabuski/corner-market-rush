@@ -1,0 +1,56 @@
+{
+  "title": "Corner Market Rush",
+  "version": 1,
+  "sku_order": ["apple", "bread", "milk", "cereal", "greens", "juice"],
+  "products": {
+    "apple": {"name": "Apples", "symbol": "A", "price": 4, "color": "e97561", "model": "display-fruit-stock"},
+    "bread": {"name": "Bread", "symbol": "B", "price": 5, "color": "d6a65e", "model": "display-bread"},
+    "milk": {"name": "Milk", "symbol": "M", "price": 6, "color": "83bbcf", "model": "freezers-standing"},
+    "cereal": {"name": "Cereal", "symbol": "C", "price": 5, "color": "e9bd4f", "model": "shelf-boxes"},
+    "greens": {"name": "Greens", "symbol": "G", "price": 4, "color": "88b67b", "model": "shelf-bags"},
+    "juice": {"name": "Juice", "symbol": "J", "price": 6, "color": "c891ba", "model": "shelf-end"}
+  },
+  "regulars": [
+    {"name":"Mina", "model":"character-female-a", "line":"A bright apple makes any morning better.", "favorite":"apple"},
+    {"name":"Theo", "model":"character-male-a", "line":"Bread for the ride home, please!", "favorite":"bread"},
+    {"name":"Jun", "model":"character-female-b", "line":"The little things make this corner special.", "favorite":"milk"},
+    {"name":"Otis", "model":"character-male-b", "line":"My breakfast club is counting on me.", "favorite":"cereal"},
+    {"name":"Ivy", "model":"character-female-c", "line":"Something green for the neighborhood table.", "favorite":"greens"},
+    {"name":"Sol", "model":"character-male-e", "line":"One last stop before the lanterns come on.", "favorite":"juice"}
+  ],
+  "themes": [
+    {"name":"Maple Corner", "subtitle":"Every regular starts with a hello.", "color":"459b91", "music":"day"},
+    {"name":"Morning Bakery", "subtitle":"Warm loaves. A lively morning.", "color":"d49358", "music":"day"},
+    {"name":"Rainy Window", "subtitle":"A welcoming light on a rainy street.", "color":"658fba", "music":"day"},
+    {"name":"Market Square", "subtitle":"Big baskets, little decisions.", "color":"b16f87", "music":"rush"},
+    {"name":"Tram Stop Express", "subtitle":"Keep the neighborhood moving.", "color":"6ca57c", "music":"rush"},
+    {"name":"Lantern Night", "subtitle":"The whole corner glows after dusk.", "color":"8272ac", "music":"evening"}
+  ],
+  "achievements": [
+    {"key":"first_basket","name":"A Warm Welcome","description":"Check out your first complete basket.","metric":"served","target":1,"icon":"marketing/achievements/first_basket.png"},
+    {"key":"shelf_keeper","name":"Shelf Keeper","description":"Finish 10 restocking jobs.","metric":"restocks","target":10,"icon":"marketing/achievements/shelf_keeper.png"},
+    {"key":"perfect_shift","name":"Not One Neighbor Missed","description":"Complete a shift without losing a customer.","metric":"perfect_shifts","target":1,"icon":"marketing/achievements/perfect_shift.png"},
+    {"key":"know_the_regulars","name":"Our Kind of Corner","description":"Serve all six neighborhood regulars.","metric":"regular_count","target":6,"icon":"marketing/achievements/know_the_regulars.png"},
+    {"key":"maple_corner","name":"Maple Neighbor","description":"Complete the six Maple Corner shifts.","metric":"chapter_0","target":6,"icon":"marketing/achievements/maple_corner.png"},
+    {"key":"morning_bakery","name":"The Morning Crowd","description":"Complete the six Morning Bakery shifts.","metric":"chapter_1","target":6,"icon":"marketing/achievements/morning_bakery.png"},
+    {"key":"rainy_window","name":"A Light in the Rain","description":"Complete the six Rainy Window shifts.","metric":"chapter_2","target":6,"icon":"marketing/achievements/rainy_window.png"},
+    {"key":"market_square","name":"Heart of the Square","description":"Complete the six Market Square shifts.","metric":"chapter_3","target":6,"icon":"marketing/achievements/market_square.png"},
+    {"key":"tram_stop","name":"Right on Time","description":"Complete the six Tram Stop Express shifts.","metric":"chapter_4","target":6,"icon":"marketing/achievements/tram_stop.png"},
+    {"key":"lantern_night","name":"Lantern Keeper","description":"Complete the six Lantern Night shifts.","metric":"chapter_5","target":6,"icon":"marketing/achievements/lantern_night.png"},
+    {"key":"queue_composer","name":"A Lovely Rhythm","description":"Reach a five-customer service combo.","metric":"best_combo","target":5,"icon":"marketing/achievements/queue_composer.png"},
+    {"key":"hundred_hellos","name":"A Hundred Hellos","description":"Serve 100 customers.","metric":"served","target":100,"icon":"marketing/achievements/hundred_hellos.png"},
+    {"key":"neighborhood_anchor","name":"Neighborhood Anchor","description":"Serve 250 customers.","metric":"served","target":250,"icon":"marketing/achievements/neighborhood_anchor.png"},
+    {"key":"fresh_every_day","name":"Fresh Every Day","description":"Finish 100 restocking jobs.","metric":"restocks","target":100,"icon":"marketing/achievements/fresh_every_day.png"},
+    {"key":"market_manager","name":"Market Manager","description":"Reach manager level 5.","metric":"level","target":5,"icon":"marketing/achievements/market_manager.png"},
+    {"key":"corner_legend","name":"Corner Legend","description":"Reach manager level 10.","metric":"level","target":10,"icon":"marketing/achievements/corner_legend.png"},
+    {"key":"daily_regular","name":"Same Time Tomorrow","description":"Complete daily baskets on three different days.","metric":"daily_wins","target":3,"icon":"marketing/achievements/daily_regular.png"},
+    {"key":"week_welcome","name":"A Week of Welcomes","description":"Collect all seven welcome-calendar rewards.","metric":"login_claims","target":7,"icon":"marketing/achievements/week_welcome.png"},
+    {"key":"unassisted_rhythm","name":"All in a Day's Care","description":"Reach a 10-customer combo without earned assistance.","metric":"best_combo","target":10,"icon":"marketing/achievements/unassisted_rhythm.png"},
+    {"key":"every_corner","name":"Every Corner a Story","description":"Complete all 36 campaign shifts.","metric":"completed_count","target":36,"icon":"marketing/achievements/every_corner.png"}
+  ],
+  "leaderboards": [
+    {"key":"served_customers","name":"Neighborhood Welcomes","description":"Total customers served across completed and settled shifts; higher is better.","metric":"served","icon":"marketing/leaderboards/served_customers.png"},
+    {"key":"best_unassisted_combo","name":"A Perfect Service Rhythm","description":"Best customer combo in an unassisted shift; higher is better.","metric":"best_combo","icon":"marketing/leaderboards/best_unassisted_combo.png"},
+    {"key":"manager_xp","name":"Corner Market Managers","description":"Total manager experience earned; higher is better.","metric":"xp","icon":"marketing/leaderboards/manager_xp.png"}
+  ]
+}

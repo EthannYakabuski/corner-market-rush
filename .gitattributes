@@ -1,0 +1,5 @@
+# Preserve vendored and license bytes so provenance hashes survive cross-platform checkouts.
+addons/** -text
+LICENSES/** -text
+LICENSE -text
+NOTICE -text

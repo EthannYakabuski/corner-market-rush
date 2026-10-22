@@ -1,0 +1,2 @@
+# Required Android plugin source and AAR binaries are deliberately vendored.
+# Keep bin/ tracked; exclude generated project Android builds at the repository root.

@@ -1,0 +1,4127 @@
+{
+  "version": 1,
+  "title": "Corner Market Rush",
+  "design_note": "Authored shift manifests; source feasibility is not native evidence. Timing targets need Android playtesting.",
+  "chapters": [
+    {
+      "id": 1,
+      "name": "Maple Corner",
+      "first_shift": 1,
+      "last_shift": 6
+    },
+    {
+      "id": 2,
+      "name": "Morning Bakery",
+      "first_shift": 7,
+      "last_shift": 12
+    },
+    {
+      "id": 3,
+      "name": "Rainy Window",
+      "first_shift": 13,
+      "last_shift": 18
+    },
+    {
+      "id": 4,
+      "name": "Market Square",
+      "first_shift": 19,
+      "last_shift": 24
+    },
+    {
+      "id": 5,
+      "name": "Tram Stop Express",
+      "first_shift": 25,
+      "last_shift": 30
+    },
+    {
+      "id": 6,
+      "name": "Lantern Night",
+      "first_shift": 31,
+      "last_shift": 36
+    }
+  ],
+  "shifts": [
+    {
+      "id": 1,
+      "chapter": 1,
+      "chapter_name": "Maple Corner",
+      "title": "Open the Awning",
+      "brief": "Learn a shelf, then serve a basket.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 1,
+        "bread": 1
+      },
+      "reserve": {
+        "apple": 3,
+        "bread": 3
+      },
+      "deliveries": [],
+      "duration": 90,
+      "target": 4,
+      "mastery_seconds": 57,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 10,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Mina",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 50
+        },
+        {
+          "at": 12,
+          "name": "Theo",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 50
+        },
+        {
+          "at": 24,
+          "name": "Jun",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 50
+        },
+        {
+          "at": 36,
+          "name": "Otis",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 50
+        }
+      ],
+      "tutorial": true,
+      "daily_eligible": false
+    },
+    {
+      "id": 2,
+      "chapter": 1,
+      "chapter_name": "Maple Corner",
+      "title": "A Familiar Face",
+      "brief": "Keep bread ready for the morning regulars.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 1,
+        "bread": 1
+      },
+      "reserve": {
+        "apple": 3,
+        "bread": 3
+      },
+      "deliveries": [],
+      "duration": 90,
+      "target": 3,
+      "mastery_seconds": 56,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 11,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Theo",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 11.55,
+          "name": "Jun",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 23.1,
+          "name": "Otis",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 34.65,
+          "name": "Ivy",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 44
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": false
+    },
+    {
+      "id": 3,
+      "chapter": 1,
+      "chapter_name": "Maple Corner",
+      "title": "Two for the Table",
+      "brief": "Read quantities before choosing a job.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 1,
+        "bread": 1
+      },
+      "reserve": {
+        "apple": 5,
+        "bread": 3
+      },
+      "deliveries": [],
+      "duration": 90,
+      "target": 4,
+      "mastery_seconds": 65,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 12,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Jun",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 11.1,
+          "name": "Otis",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 22.2,
+          "name": "Ivy",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 44
+        },
+        {
+          "at": 33.3,
+          "name": "Sol",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 44.4,
+          "name": "Mina",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 44
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": false
+    },
+    {
+      "id": 4,
+      "chapter": 1,
+      "chapter_name": "Maple Corner",
+      "title": "School Run",
+      "brief": "Small baskets arrive closer together.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 1,
+        "bread": 1
+      },
+      "reserve": {
+        "apple": 4,
+        "bread": 5
+      },
+      "deliveries": [],
+      "duration": 90,
+      "target": 4,
+      "mastery_seconds": 64,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 13,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Otis",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 10.65,
+          "name": "Ivy",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 44
+        },
+        {
+          "at": 21.3,
+          "name": "Sol",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 31.95,
+          "name": "Mina",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 42.6,
+          "name": "Theo",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 44
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": false
+    },
+    {
+      "id": 5,
+      "chapter": 1,
+      "chapter_name": "Maple Corner",
+      "title": "Neighbors at Noon",
+      "brief": "A full shelf buys time for checkout.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 1,
+        "bread": 1
+      },
+      "reserve": {
+        "apple": 5,
+        "bread": 5
+      },
+      "deliveries": [],
+      "duration": 90,
+      "target": 5,
+      "mastery_seconds": 72,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 14,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Ivy",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 44
+        },
+        {
+          "at": 10.2,
+          "name": "Sol",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 20.4,
+          "name": "Mina",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 30.6,
+          "name": "Theo",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 44
+        },
+        {
+          "at": 40.8,
+          "name": "Jun",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 51,
+          "name": "Otis",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": false
+    },
+    {
+      "id": 6,
+      "chapter": 1,
+      "chapter_name": "Maple Corner",
+      "title": "The Corner Welcomes",
+      "brief": "Complete your first neighborhood rush.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 1,
+        "bread": 1
+      },
+      "reserve": {
+        "apple": 5,
+        "bread": 5
+      },
+      "deliveries": [],
+      "duration": 90,
+      "target": 5,
+      "mastery_seconds": 70,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 15,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Sol",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 9.75,
+          "name": "Mina",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 19.5,
+          "name": "Theo",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 44
+        },
+        {
+          "at": 29.25,
+          "name": "Jun",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 39,
+          "name": "Otis",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 48.75,
+          "name": "Ivy",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 44
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": false
+    },
+    {
+      "id": 7,
+      "chapter": 2,
+      "chapter_name": "Morning Bakery",
+      "title": "Warm Loaves",
+      "brief": "A third product joins the bakery counter.",
+      "weather": "day",
+      "skus": [
+        "bread",
+        "apple",
+        "milk"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "bread": 2,
+        "apple": 2,
+        "milk": 2
+      },
+      "reserve": {
+        "bread": 3,
+        "apple": 5,
+        "milk": 3
+      },
+      "deliveries": [],
+      "duration": 90,
+      "target": 5,
+      "mastery_seconds": 69,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 13,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Theo",
+          "basket": {
+            "bread": 1,
+            "apple": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 9.55,
+          "name": "Jun",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 44
+        },
+        {
+          "at": 19.1,
+          "name": "Otis",
+          "basket": {
+            "milk": 1,
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 28.65,
+          "name": "Ivy",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 38.2,
+          "name": "Sol",
+          "basket": {
+            "apple": 2,
+            "milk": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 47.75,
+          "name": "Mina",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 44
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 8,
+      "chapter": 2,
+      "chapter_name": "Morning Bakery",
+      "title": "Breakfast Baskets",
+      "brief": "Bread and fruit share the spotlight.",
+      "weather": "day",
+      "skus": [
+        "bread",
+        "apple",
+        "milk"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "bread": 2,
+        "apple": 2,
+        "milk": 2
+      },
+      "reserve": {
+        "bread": 3,
+        "apple": 5,
+        "milk": 3
+      },
+      "deliveries": [],
+      "duration": 90,
+      "target": 5,
+      "mastery_seconds": 68,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 14,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Jun",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 44
+        },
+        {
+          "at": 9.33,
+          "name": "Otis",
+          "basket": {
+            "milk": 1,
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 18.66,
+          "name": "Ivy",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 27.99,
+          "name": "Sol",
+          "basket": {
+            "apple": 2,
+            "milk": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 37.32,
+          "name": "Mina",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 46.65,
+          "name": "Theo",
+          "basket": {
+            "bread": 1,
+            "apple": 1
+          },
+          "patience": 44
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 9,
+      "chapter": 2,
+      "chapter_name": "Morning Bakery",
+      "title": "Milk Before Tea",
+      "brief": "Watch the chilled shelf while bread sells.",
+      "weather": "day",
+      "skus": [
+        "bread",
+        "apple",
+        "milk"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "bread": 2,
+        "apple": 2,
+        "milk": 2
+      },
+      "reserve": {
+        "bread": 3,
+        "apple": 5,
+        "milk": 3
+      },
+      "deliveries": [],
+      "duration": 90,
+      "target": 5,
+      "mastery_seconds": 67,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 15,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Otis",
+          "basket": {
+            "milk": 1,
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 9.11,
+          "name": "Ivy",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 18.22,
+          "name": "Sol",
+          "basket": {
+            "apple": 2,
+            "milk": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 27.33,
+          "name": "Mina",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 36.44,
+          "name": "Theo",
+          "basket": {
+            "bread": 1,
+            "apple": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 45.55,
+          "name": "Jun",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 44
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 10,
+      "chapter": 2,
+      "chapter_name": "Morning Bakery",
+      "title": "The Early Queue",
+      "brief": "Choose a ready basket before the shortage.",
+      "weather": "day",
+      "skus": [
+        "bread",
+        "apple",
+        "milk"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "bread": 2,
+        "apple": 2,
+        "milk": 2
+      },
+      "reserve": {
+        "bread": 4,
+        "apple": 5,
+        "milk": 3
+      },
+      "deliveries": [],
+      "duration": 90,
+      "target": 6,
+      "mastery_seconds": 74,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 16,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Ivy",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 8.89,
+          "name": "Sol",
+          "basket": {
+            "apple": 2,
+            "milk": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 17.78,
+          "name": "Mina",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 26.67,
+          "name": "Theo",
+          "basket": {
+            "bread": 1,
+            "apple": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 35.56,
+          "name": "Jun",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 44
+        },
+        {
+          "at": 44.45,
+          "name": "Otis",
+          "basket": {
+            "milk": 1,
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 53.34,
+          "name": "Ivy",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 11,
+      "chapter": 2,
+      "chapter_name": "Morning Bakery",
+      "title": "Picnic Plans",
+      "brief": "Mixed picnic baskets reward a stocked shop.",
+      "weather": "day",
+      "skus": [
+        "bread",
+        "apple",
+        "milk"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "bread": 2,
+        "apple": 2,
+        "milk": 2
+      },
+      "reserve": {
+        "bread": 3,
+        "apple": 7,
+        "milk": 4
+      },
+      "deliveries": [],
+      "duration": 90,
+      "target": 6,
+      "mastery_seconds": 73,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 17,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Sol",
+          "basket": {
+            "apple": 2,
+            "milk": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 8.67,
+          "name": "Mina",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 17.34,
+          "name": "Theo",
+          "basket": {
+            "bread": 1,
+            "apple": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 26.01,
+          "name": "Jun",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 44
+        },
+        {
+          "at": 34.68,
+          "name": "Otis",
+          "basket": {
+            "milk": 1,
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 43.35,
+          "name": "Ivy",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 52.02,
+          "name": "Sol",
+          "basket": {
+            "apple": 2,
+            "milk": 1
+          },
+          "patience": 44
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 12,
+      "chapter": 2,
+      "chapter_name": "Morning Bakery",
+      "title": "Golden Morning",
+      "brief": "Serve a complete breakfast wave.",
+      "weather": "day",
+      "skus": [
+        "bread",
+        "apple",
+        "milk"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "bread": 2,
+        "apple": 2,
+        "milk": 2
+      },
+      "reserve": {
+        "bread": 3,
+        "apple": 5,
+        "milk": 4
+      },
+      "deliveries": [],
+      "duration": 90,
+      "target": 6,
+      "mastery_seconds": 72,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 18,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Mina",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 8.45,
+          "name": "Theo",
+          "basket": {
+            "bread": 1,
+            "apple": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 16.9,
+          "name": "Jun",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 44
+        },
+        {
+          "at": 25.35,
+          "name": "Otis",
+          "basket": {
+            "milk": 1,
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 33.8,
+          "name": "Ivy",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 42.25,
+          "name": "Sol",
+          "basket": {
+            "apple": 2,
+            "milk": 1
+          },
+          "patience": 44
+        },
+        {
+          "at": 50.7,
+          "name": "Mina",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 44
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 13,
+      "chapter": 3,
+      "chapter_name": "Rainy Window",
+      "title": "First Raindrops",
+      "brief": "Cereal boxes brighten a rainy day.",
+      "weather": "rain",
+      "skus": [
+        "bread",
+        "milk",
+        "cereal",
+        "apple"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "apple": 2
+      },
+      "reserve": {
+        "bread": 2,
+        "milk": 4,
+        "cereal": 2,
+        "apple": 2
+      },
+      "deliveries": [
+        {
+          "at": 20,
+          "stock": {
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "apple": 1
+          }
+        }
+      ],
+      "duration": 90,
+      "target": 6,
+      "mastery_seconds": 74,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 16,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Jun",
+          "basket": {
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 8.9,
+          "name": "Otis",
+          "basket": {
+            "milk": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 17.8,
+          "name": "Ivy",
+          "basket": {
+            "cereal": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 26.7,
+          "name": "Sol",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 35.6,
+          "name": "Mina",
+          "basket": {
+            "bread": 2,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 44.5,
+          "name": "Theo",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 53.4,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1,
+            "apple": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 14,
+      "chapter": 3,
+      "chapter_name": "Rainy Window",
+      "title": "Breakfast Indoors",
+      "brief": "Breakfast orders draw from many shelves.",
+      "weather": "rain",
+      "skus": [
+        "bread",
+        "milk",
+        "cereal",
+        "apple"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "apple": 2
+      },
+      "reserve": {
+        "bread": 2,
+        "milk": 3,
+        "cereal": 2,
+        "apple": 4
+      },
+      "deliveries": [
+        {
+          "at": 20,
+          "stock": {
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "apple": 1
+          }
+        }
+      ],
+      "duration": 90,
+      "target": 6,
+      "mastery_seconds": 73,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 17,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Otis",
+          "basket": {
+            "milk": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 8.68,
+          "name": "Ivy",
+          "basket": {
+            "cereal": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 17.36,
+          "name": "Sol",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 26.04,
+          "name": "Mina",
+          "basket": {
+            "bread": 2,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 34.72,
+          "name": "Theo",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 43.4,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 52.08,
+          "name": "Otis",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 15,
+      "chapter": 3,
+      "chapter_name": "Rainy Window",
+      "title": "The Van Is Coming",
+      "brief": "A timed reserve delivery is on its way.",
+      "weather": "rain",
+      "skus": [
+        "bread",
+        "milk",
+        "cereal",
+        "apple"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "apple": 2
+      },
+      "reserve": {
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "apple": 4
+      },
+      "deliveries": [
+        {
+          "at": 20,
+          "stock": {
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "apple": 1
+          }
+        }
+      ],
+      "duration": 90,
+      "target": 6,
+      "mastery_seconds": 72,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 18,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Ivy",
+          "basket": {
+            "cereal": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 8.46,
+          "name": "Sol",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 16.92,
+          "name": "Mina",
+          "basket": {
+            "bread": 2,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 25.38,
+          "name": "Theo",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 33.84,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 42.3,
+          "name": "Otis",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 50.76,
+          "name": "Ivy",
+          "basket": {
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 16,
+      "chapter": 3,
+      "chapter_name": "Rainy Window",
+      "title": "Window Seat",
+      "brief": "Keep a stock cushion for the next basket.",
+      "weather": "rain",
+      "skus": [
+        "bread",
+        "milk",
+        "cereal",
+        "apple"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "apple": 2
+      },
+      "reserve": {
+        "bread": 2,
+        "milk": 3,
+        "cereal": 2,
+        "apple": 4
+      },
+      "deliveries": [
+        {
+          "at": 20,
+          "stock": {
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "apple": 1
+          }
+        },
+        {
+          "at": 48,
+          "stock": {
+            "apple": 2
+          }
+        }
+      ],
+      "duration": 92,
+      "target": 7,
+      "mastery_seconds": 79,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 19,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Sol",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 8.24,
+          "name": "Mina",
+          "basket": {
+            "bread": 2,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 16.48,
+          "name": "Theo",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 24.72,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 32.96,
+          "name": "Otis",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 41.2,
+          "name": "Ivy",
+          "basket": {
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 49.44,
+          "name": "Sol",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 57.68,
+          "name": "Mina",
+          "basket": {
+            "cereal": 2,
+            "apple": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 17,
+      "chapter": 3,
+      "chapter_name": "Rainy Window",
+      "title": "Umbrella Parade",
+      "brief": "Umbrellas bring a patient but busy wave.",
+      "weather": "rain",
+      "skus": [
+        "bread",
+        "milk",
+        "cereal",
+        "apple"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "apple": 2
+      },
+      "reserve": {
+        "bread": 2,
+        "milk": 3,
+        "cereal": 2,
+        "apple": 4
+      },
+      "deliveries": [
+        {
+          "at": 20,
+          "stock": {
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "apple": 1
+          }
+        },
+        {
+          "at": 48,
+          "stock": {
+            "bread": 2
+          }
+        }
+      ],
+      "duration": 90,
+      "target": 7,
+      "mastery_seconds": 77,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 20,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Mina",
+          "basket": {
+            "bread": 2,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 8.02,
+          "name": "Theo",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 16.04,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 24.06,
+          "name": "Otis",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 32.08,
+          "name": "Ivy",
+          "basket": {
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 40.1,
+          "name": "Sol",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 48.12,
+          "name": "Mina",
+          "basket": {
+            "cereal": 2,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 56.14,
+          "name": "Theo",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 18,
+      "chapter": 3,
+      "chapter_name": "Rainy Window",
+      "title": "After the Shower",
+      "brief": "Work around two marked deliveries.",
+      "weather": "rain",
+      "skus": [
+        "bread",
+        "milk",
+        "cereal",
+        "apple"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "apple": 2
+      },
+      "reserve": {
+        "bread": 2,
+        "milk": 3,
+        "cereal": 2,
+        "apple": 4
+      },
+      "deliveries": [
+        {
+          "at": 20,
+          "stock": {
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "apple": 1
+          }
+        },
+        {
+          "at": 48,
+          "stock": {
+            "milk": 2
+          }
+        }
+      ],
+      "duration": 90,
+      "target": 7,
+      "mastery_seconds": 76,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 21,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Theo",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 7.8,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 15.6,
+          "name": "Otis",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 23.4,
+          "name": "Ivy",
+          "basket": {
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 31.2,
+          "name": "Sol",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 39,
+          "name": "Mina",
+          "basket": {
+            "cereal": 2,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 46.8,
+          "name": "Theo",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 54.6,
+          "name": "Jun",
+          "basket": {
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 19,
+      "chapter": 4,
+      "chapter_name": "Market Square",
+      "title": "Garden Delivery",
+      "brief": "Fresh greens make their first appearance.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2
+      },
+      "reserve": {
+        "apple": 2,
+        "bread": 3,
+        "milk": 3,
+        "cereal": 2,
+        "greens": 2
+      },
+      "deliveries": [
+        {
+          "at": 27,
+          "stock": {
+            "apple": 1,
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1
+          }
+        }
+      ],
+      "duration": 92,
+      "target": 7,
+      "mastery_seconds": 79,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 19,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Otis",
+          "basket": {
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 8.25,
+          "name": "Ivy",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 16.5,
+          "name": "Sol",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 24.75,
+          "name": "Mina",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 33,
+          "name": "Theo",
+          "basket": {
+            "greens": 2,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 41.25,
+          "name": "Jun",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 49.5,
+          "name": "Otis",
+          "basket": {
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 57.75,
+          "name": "Ivy",
+          "basket": {
+            "milk": 2
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 20,
+      "chapter": 4,
+      "chapter_name": "Market Square",
+      "title": "Five Fresh Choices",
+      "brief": "Five shelves make priority matter.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2
+      },
+      "reserve": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 3,
+        "cereal": 2,
+        "greens": 2
+      },
+      "deliveries": [
+        {
+          "at": 27,
+          "stock": {
+            "apple": 1,
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1
+          }
+        }
+      ],
+      "duration": 90,
+      "target": 7,
+      "mastery_seconds": 77,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 20,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Ivy",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 8.03,
+          "name": "Sol",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 16.06,
+          "name": "Mina",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 24.09,
+          "name": "Theo",
+          "basket": {
+            "greens": 2,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 32.12,
+          "name": "Jun",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 40.15,
+          "name": "Otis",
+          "basket": {
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 48.18,
+          "name": "Ivy",
+          "basket": {
+            "milk": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 56.21,
+          "name": "Sol",
+          "basket": {
+            "cereal": 1,
+            "greens": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 21,
+      "chapter": 4,
+      "chapter_name": "Market Square",
+      "title": "The Lunch List",
+      "brief": "Lunch mixes produce and pantry staples.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2
+      },
+      "reserve": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 3,
+        "cereal": 2,
+        "greens": 3
+      },
+      "deliveries": [
+        {
+          "at": 27,
+          "stock": {
+            "apple": 1,
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1
+          }
+        }
+      ],
+      "duration": 90,
+      "target": 7,
+      "mastery_seconds": 76,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 21,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Sol",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 7.81,
+          "name": "Mina",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 15.62,
+          "name": "Theo",
+          "basket": {
+            "greens": 2,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 23.43,
+          "name": "Jun",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 31.24,
+          "name": "Otis",
+          "basket": {
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 39.05,
+          "name": "Ivy",
+          "basket": {
+            "milk": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 46.86,
+          "name": "Sol",
+          "basket": {
+            "cereal": 1,
+            "greens": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 54.67,
+          "name": "Mina",
+          "basket": {
+            "greens": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 22,
+      "chapter": 4,
+      "chapter_name": "Market Square",
+      "title": "Square Fair",
+      "brief": "Different baskets share the checkout.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2
+      },
+      "reserve": {
+        "apple": 4,
+        "bread": 3,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 3
+      },
+      "deliveries": [
+        {
+          "at": 27,
+          "stock": {
+            "apple": 1,
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1
+          }
+        },
+        {
+          "at": 48,
+          "stock": {
+            "cereal": 2
+          }
+        }
+      ],
+      "duration": 95,
+      "target": 8,
+      "mastery_seconds": 82,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 22,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Mina",
+          "basket": {
+            "cereal": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 7.59,
+          "name": "Theo",
+          "basket": {
+            "greens": 2,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 15.18,
+          "name": "Jun",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 22.77,
+          "name": "Otis",
+          "basket": {
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 30.36,
+          "name": "Ivy",
+          "basket": {
+            "milk": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 37.95,
+          "name": "Sol",
+          "basket": {
+            "cereal": 1,
+            "greens": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 45.54,
+          "name": "Mina",
+          "basket": {
+            "greens": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 53.13,
+          "name": "Theo",
+          "basket": {
+            "apple": 2,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 60.72,
+          "name": "Jun",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 23,
+      "chapter": 4,
+      "chapter_name": "Market Square",
+      "title": "Everyone Knows Your Name",
+      "brief": "Regulars return with bigger lists.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2
+      },
+      "reserve": {
+        "apple": 3,
+        "bread": 3,
+        "milk": 4,
+        "cereal": 2,
+        "greens": 4
+      },
+      "deliveries": [
+        {
+          "at": 27,
+          "stock": {
+            "apple": 1,
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1
+          }
+        },
+        {
+          "at": 48,
+          "stock": {
+            "greens": 2
+          }
+        }
+      ],
+      "duration": 93,
+      "target": 8,
+      "mastery_seconds": 80,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 23,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Theo",
+          "basket": {
+            "greens": 2,
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 7.37,
+          "name": "Jun",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 14.74,
+          "name": "Otis",
+          "basket": {
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 22.11,
+          "name": "Ivy",
+          "basket": {
+            "milk": 2,
+            "greens": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 29.48,
+          "name": "Sol",
+          "basket": {
+            "cereal": 1,
+            "greens": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 36.85,
+          "name": "Mina",
+          "basket": {
+            "greens": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 44.22,
+          "name": "Theo",
+          "basket": {
+            "apple": 2,
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 51.59,
+          "name": "Jun",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 58.96,
+          "name": "Otis",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 24,
+      "chapter": 4,
+      "chapter_name": "Market Square",
+      "title": "Market Day",
+      "brief": "Balance a full market wave.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2
+      },
+      "reserve": {
+        "apple": 3,
+        "bread": 2,
+        "milk": 4,
+        "cereal": 4,
+        "greens": 2
+      },
+      "deliveries": [
+        {
+          "at": 27,
+          "stock": {
+            "apple": 1,
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1
+          }
+        },
+        {
+          "at": 48,
+          "stock": {
+            "apple": 2
+          }
+        }
+      ],
+      "duration": 91,
+      "target": 8,
+      "mastery_seconds": 78,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 24,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Jun",
+          "basket": {
+            "apple": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 7.15,
+          "name": "Otis",
+          "basket": {
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 14.3,
+          "name": "Ivy",
+          "basket": {
+            "milk": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 21.45,
+          "name": "Sol",
+          "basket": {
+            "cereal": 1,
+            "greens": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 28.6,
+          "name": "Mina",
+          "basket": {
+            "greens": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 35.75,
+          "name": "Theo",
+          "basket": {
+            "apple": 2,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 42.9,
+          "name": "Jun",
+          "basket": {
+            "bread": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 50.05,
+          "name": "Otis",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 57.2,
+          "name": "Ivy",
+          "basket": {
+            "cereal": 2
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 25,
+      "chapter": 5,
+      "chapter_name": "Tram Stop Express",
+      "title": "First Tram",
+      "brief": "Six products meet the tram crowd.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens",
+        "juice"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2,
+        "juice": 2
+      },
+      "reserve": {
+        "apple": 4,
+        "bread": 3,
+        "milk": 3,
+        "cereal": 3,
+        "greens": 3,
+        "juice": 3
+      },
+      "deliveries": [],
+      "duration": 95,
+      "target": 8,
+      "mastery_seconds": 82,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 22,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Ivy",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 7.6,
+          "name": "Sol",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 15.2,
+          "name": "Mina",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 22.8,
+          "name": "Theo",
+          "basket": {
+            "cereal": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 30.4,
+          "name": "Jun",
+          "basket": {
+            "greens": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 38,
+          "name": "Otis",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 45.6,
+          "name": "Ivy",
+          "basket": {
+            "apple": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 53.2,
+          "name": "Sol",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 60.8,
+          "name": "Mina",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 26,
+      "chapter": 5,
+      "chapter_name": "Tram Stop Express",
+      "title": "Just One Thing",
+      "brief": "Short orders arrive close together.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens",
+        "juice"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2,
+        "juice": 2
+      },
+      "reserve": {
+        "apple": 3,
+        "bread": 4,
+        "milk": 3,
+        "cereal": 3,
+        "greens": 3,
+        "juice": 3
+      },
+      "deliveries": [],
+      "duration": 93,
+      "target": 8,
+      "mastery_seconds": 80,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 23,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Sol",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 7.38,
+          "name": "Mina",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 14.76,
+          "name": "Theo",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 22.14,
+          "name": "Jun",
+          "basket": {
+            "greens": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 29.52,
+          "name": "Otis",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 36.9,
+          "name": "Ivy",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 44.28,
+          "name": "Sol",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 51.66,
+          "name": "Mina",
+          "basket": {
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 59.04,
+          "name": "Theo",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 27,
+      "chapter": 5,
+      "chapter_name": "Tram Stop Express",
+      "title": "Juice on the Go",
+      "brief": "Juice adds another shelf to watch.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens",
+        "juice"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2,
+        "juice": 2
+      },
+      "reserve": {
+        "apple": 3,
+        "bread": 3,
+        "milk": 4,
+        "cereal": 3,
+        "greens": 3,
+        "juice": 3
+      },
+      "deliveries": [],
+      "duration": 91,
+      "target": 8,
+      "mastery_seconds": 78,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 24,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Mina",
+          "basket": {
+            "milk": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 7.16,
+          "name": "Theo",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 14.32,
+          "name": "Jun",
+          "basket": {
+            "greens": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 21.48,
+          "name": "Otis",
+          "basket": {
+            "juice": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 28.64,
+          "name": "Ivy",
+          "basket": {
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 35.8,
+          "name": "Sol",
+          "basket": {
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 42.96,
+          "name": "Mina",
+          "basket": {
+            "milk": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 50.12,
+          "name": "Theo",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 57.28,
+          "name": "Jun",
+          "basket": {
+            "greens": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 28,
+      "chapter": 5,
+      "chapter_name": "Tram Stop Express",
+      "title": "Platform Picnic",
+      "brief": "Travel baskets mix a snack and a staple.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens",
+        "juice"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2,
+        "juice": 2
+      },
+      "reserve": {
+        "apple": 3,
+        "bread": 4,
+        "milk": 3,
+        "cereal": 3,
+        "greens": 4,
+        "juice": 6
+      },
+      "deliveries": [],
+      "duration": 96,
+      "target": 9,
+      "mastery_seconds": 83,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 25,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Theo",
+          "basket": {
+            "cereal": 1,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 6.94,
+          "name": "Jun",
+          "basket": {
+            "greens": 2,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 13.88,
+          "name": "Otis",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 20.82,
+          "name": "Ivy",
+          "basket": {
+            "apple": 1,
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 27.76,
+          "name": "Sol",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 34.7,
+          "name": "Mina",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 41.64,
+          "name": "Theo",
+          "basket": {
+            "cereal": 1,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 48.58,
+          "name": "Jun",
+          "basket": {
+            "greens": 2,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 55.52,
+          "name": "Otis",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 62.46,
+          "name": "Ivy",
+          "basket": {
+            "apple": 1,
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 29,
+      "chapter": 5,
+      "chapter_name": "Tram Stop Express",
+      "title": "The Evening Connection",
+      "brief": "Choose an urgent checkout or empty shelf.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens",
+        "juice"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2,
+        "juice": 2
+      },
+      "reserve": {
+        "apple": 4,
+        "bread": 6,
+        "milk": 3,
+        "cereal": 4,
+        "greens": 4,
+        "juice": 4
+      },
+      "deliveries": [],
+      "duration": 94,
+      "target": 9,
+      "mastery_seconds": 81,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 26,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Jun",
+          "basket": {
+            "greens": 2,
+            "juice": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 6.72,
+          "name": "Otis",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 13.44,
+          "name": "Ivy",
+          "basket": {
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 20.16,
+          "name": "Sol",
+          "basket": {
+            "bread": 2,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 26.88,
+          "name": "Mina",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 33.6,
+          "name": "Theo",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 40.32,
+          "name": "Jun",
+          "basket": {
+            "greens": 2,
+            "juice": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 47.04,
+          "name": "Otis",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 53.76,
+          "name": "Ivy",
+          "basket": {
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 60.48,
+          "name": "Sol",
+          "basket": {
+            "bread": 2,
+            "cereal": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 30,
+      "chapter": 5,
+      "chapter_name": "Tram Stop Express",
+      "title": "Express Service",
+      "brief": "A brisk wave rewards a calm job queue.",
+      "weather": "day",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens",
+        "juice"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2,
+        "juice": 2
+      },
+      "reserve": {
+        "apple": 3,
+        "bread": 8,
+        "milk": 3,
+        "cereal": 3,
+        "greens": 4,
+        "juice": 3
+      },
+      "deliveries": [],
+      "duration": 93,
+      "target": 9,
+      "mastery_seconds": 80,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 27,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Otis",
+          "basket": {
+            "juice": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 6.6,
+          "name": "Ivy",
+          "basket": {
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 13.2,
+          "name": "Sol",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 19.8,
+          "name": "Mina",
+          "basket": {
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 26.4,
+          "name": "Theo",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 33,
+          "name": "Jun",
+          "basket": {
+            "greens": 2,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 39.6,
+          "name": "Otis",
+          "basket": {
+            "juice": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 46.2,
+          "name": "Ivy",
+          "basket": {
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 52.8,
+          "name": "Sol",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 59.4,
+          "name": "Mina",
+          "basket": {
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 31,
+      "chapter": 6,
+      "chapter_name": "Lantern Night",
+      "title": "Lights in the Window",
+      "brief": "Warm windows glow on the blue street.",
+      "weather": "evening",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens",
+        "juice"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2,
+        "juice": 2
+      },
+      "reserve": {
+        "apple": 2,
+        "bread": 4,
+        "milk": 2,
+        "cereal": 3,
+        "greens": 2,
+        "juice": 2
+      },
+      "deliveries": [
+        {
+          "at": 27,
+          "stock": {
+            "apple": 1,
+            "bread": 2,
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1,
+            "juice": 1
+          }
+        }
+      ],
+      "duration": 97,
+      "target": 9,
+      "mastery_seconds": 84,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 25,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Sol",
+          "basket": {
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 6.95,
+          "name": "Mina",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 13.9,
+          "name": "Theo",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 20.85,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 27.8,
+          "name": "Otis",
+          "basket": {
+            "greens": 2,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 34.75,
+          "name": "Ivy",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 41.7,
+          "name": "Sol",
+          "basket": {
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 48.65,
+          "name": "Mina",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 55.6,
+          "name": "Theo",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 62.55,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 32,
+      "chapter": 6,
+      "chapter_name": "Lantern Night",
+      "title": "Supper Baskets",
+      "brief": "Supper lists combine familiar products.",
+      "weather": "evening",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens",
+        "juice"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2,
+        "juice": 2
+      },
+      "reserve": {
+        "apple": 2,
+        "bread": 4,
+        "milk": 2,
+        "cereal": 3,
+        "greens": 3,
+        "juice": 2
+      },
+      "deliveries": [
+        {
+          "at": 27,
+          "stock": {
+            "apple": 1,
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1,
+            "juice": 1
+          }
+        }
+      ],
+      "duration": 95,
+      "target": 9,
+      "mastery_seconds": 82,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 26,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Mina",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 6.73,
+          "name": "Theo",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 13.46,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 20.19,
+          "name": "Otis",
+          "basket": {
+            "greens": 2,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 26.92,
+          "name": "Ivy",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 33.65,
+          "name": "Sol",
+          "basket": {
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 40.38,
+          "name": "Mina",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 47.11,
+          "name": "Theo",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 53.84,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 60.57,
+          "name": "Otis",
+          "basket": {
+            "greens": 2,
+            "juice": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 33,
+      "chapter": 6,
+      "chapter_name": "Lantern Night",
+      "title": "The Last Delivery",
+      "brief": "Plan around the final reserve delivery.",
+      "weather": "evening",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens",
+        "juice"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2,
+        "juice": 2
+      },
+      "reserve": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 3,
+        "greens": 3,
+        "juice": 3
+      },
+      "deliveries": [
+        {
+          "at": 27,
+          "stock": {
+            "apple": 1,
+            "bread": 1,
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1,
+            "juice": 1
+          }
+        }
+      ],
+      "duration": 93,
+      "target": 9,
+      "mastery_seconds": 80,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 27,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Theo",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 6.6,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 13.2,
+          "name": "Otis",
+          "basket": {
+            "greens": 2,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 19.8,
+          "name": "Ivy",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 26.4,
+          "name": "Sol",
+          "basket": {
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 33,
+          "name": "Mina",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 39.6,
+          "name": "Theo",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 46.2,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 52.8,
+          "name": "Otis",
+          "basket": {
+            "greens": 2,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 59.4,
+          "name": "Ivy",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 34,
+      "chapter": 6,
+      "chapter_name": "Lantern Night",
+      "title": "Neighbors After Dark",
+      "brief": "Serve evening regulars with care.",
+      "weather": "evening",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens",
+        "juice"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2,
+        "juice": 2
+      },
+      "reserve": {
+        "apple": 2,
+        "bread": 4,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 3,
+        "juice": 4
+      },
+      "deliveries": [
+        {
+          "at": 27,
+          "stock": {
+            "apple": 1,
+            "bread": 2,
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1,
+            "juice": 2
+          }
+        },
+        {
+          "at": 48,
+          "stock": {
+            "cereal": 2
+          }
+        }
+      ],
+      "duration": 100,
+      "target": 10,
+      "mastery_seconds": 87,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 28,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 6.6,
+          "name": "Otis",
+          "basket": {
+            "greens": 2,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 13.2,
+          "name": "Ivy",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 19.8,
+          "name": "Sol",
+          "basket": {
+            "apple": 1,
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 26.4,
+          "name": "Mina",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 33,
+          "name": "Theo",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 39.6,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 46.2,
+          "name": "Otis",
+          "basket": {
+            "greens": 2,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 52.8,
+          "name": "Ivy",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 59.4,
+          "name": "Sol",
+          "basket": {
+            "apple": 1,
+            "bread": 1,
+            "milk": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 66,
+          "name": "Mina",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 35,
+      "chapter": 6,
+      "chapter_name": "Lantern Night",
+      "title": "Lantern Festival",
+      "brief": "A festival wave tests every shelf.",
+      "weather": "evening",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens",
+        "juice"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2,
+        "juice": 2
+      },
+      "reserve": {
+        "apple": 3,
+        "bread": 4,
+        "milk": 2,
+        "cereal": 4,
+        "greens": 3,
+        "juice": 3
+      },
+      "deliveries": [
+        {
+          "at": 27,
+          "stock": {
+            "apple": 1,
+            "bread": 2,
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1,
+            "juice": 1
+          }
+        },
+        {
+          "at": 48,
+          "stock": {
+            "greens": 2
+          }
+        }
+      ],
+      "duration": 100,
+      "target": 10,
+      "mastery_seconds": 87,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 29,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Otis",
+          "basket": {
+            "greens": 2,
+            "juice": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 6.6,
+          "name": "Ivy",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 13.2,
+          "name": "Sol",
+          "basket": {
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 19.8,
+          "name": "Mina",
+          "basket": {
+            "bread": 2,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 26.4,
+          "name": "Theo",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 33,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 39.6,
+          "name": "Otis",
+          "basket": {
+            "greens": 2,
+            "juice": 1,
+            "apple": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 46.2,
+          "name": "Ivy",
+          "basket": {
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 52.8,
+          "name": "Sol",
+          "basket": {
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 59.4,
+          "name": "Mina",
+          "basket": {
+            "bread": 2,
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 66,
+          "name": "Theo",
+          "basket": {
+            "milk": 1,
+            "cereal": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    },
+    {
+      "id": 36,
+      "chapter": 6,
+      "chapter_name": "Lantern Night",
+      "title": "The Corner Everyone Knows",
+      "brief": "Use every skill in the final shift.",
+      "weather": "evening",
+      "skus": [
+        "apple",
+        "bread",
+        "milk",
+        "cereal",
+        "greens",
+        "juice"
+      ],
+      "capacity": 4,
+      "starting_stock": {
+        "apple": 2,
+        "bread": 2,
+        "milk": 2,
+        "cereal": 2,
+        "greens": 2,
+        "juice": 2
+      },
+      "reserve": {
+        "apple": 2,
+        "bread": 6,
+        "milk": 2,
+        "cereal": 3,
+        "greens": 3,
+        "juice": 2
+      },
+      "deliveries": [
+        {
+          "at": 27,
+          "stock": {
+            "apple": 1,
+            "bread": 2,
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1,
+            "juice": 1
+          }
+        },
+        {
+          "at": 48,
+          "stock": {
+            "juice": 2
+          }
+        }
+      ],
+      "duration": 100,
+      "target": 10,
+      "mastery_seconds": 87,
+      "restock_seconds": 2.8,
+      "checkout_seconds": 3.2,
+      "completion_bonus": 30,
+      "orders": [
+        {
+          "at": 0,
+          "name": "Ivy",
+          "basket": {
+            "juice": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 6.6,
+          "name": "Sol",
+          "basket": {
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 13.2,
+          "name": "Mina",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 19.8,
+          "name": "Theo",
+          "basket": {
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 26.4,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 33,
+          "name": "Otis",
+          "basket": {
+            "greens": 2,
+            "juice": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 39.6,
+          "name": "Ivy",
+          "basket": {
+            "juice": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 46.2,
+          "name": "Sol",
+          "basket": {
+            "apple": 1,
+            "bread": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 52.8,
+          "name": "Mina",
+          "basket": {
+            "bread": 2
+          },
+          "patience": 42
+        },
+        {
+          "at": 59.4,
+          "name": "Theo",
+          "basket": {
+            "milk": 1,
+            "cereal": 1,
+            "greens": 1
+          },
+          "patience": 42
+        },
+        {
+          "at": 66,
+          "name": "Jun",
+          "basket": {
+            "cereal": 1
+          },
+          "patience": 42
+        }
+      ],
+      "tutorial": false,
+      "daily_eligible": true
+    }
+  ]
+}

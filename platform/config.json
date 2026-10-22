@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "admob": {
+    "test_mode": true,
+    "app_id": "ca-app-pub-3940256099942544~3347511713",
+    "banner_unit_id": "ca-app-pub-3940256099942544/6300978111",
+    "interstitial_unit_id": "ca-app-pub-3940256099942544/1033173712",
+    "rewarded_unit_id": "ca-app-pub-3940256099942544/5224354917",
+    "tag_for_under_age_of_consent": false
+  },
+  "play_games": {
+    "enabled": false,
+    "game_id": "",
+    "achievements": {
+      "first_basket": "",
+      "shelf_keeper": "",
+      "perfect_shift": "",
+      "know_the_regulars": "",
+      "maple_corner": "",
+      "morning_bakery": "",
+      "rainy_window": "",
+      "market_square": "",
+      "tram_stop": "",
+      "lantern_night": "",
+      "queue_composer": "",
+      "hundred_hellos": "",
+      "neighborhood_anchor": "",
+      "fresh_every_day": "",
+      "market_manager": "",
+      "corner_legend": "",
+      "daily_regular": "",
+      "week_welcome": "",
+      "unassisted_rhythm": "",
+      "every_corner": ""
+    },
+    "leaderboards": {
+      "served_customers": "",
+      "best_unassisted_combo": "",
+      "manager_xp": ""
+    }
+  }
+}
