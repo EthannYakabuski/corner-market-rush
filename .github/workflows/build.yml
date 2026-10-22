@@ -61,7 +61,7 @@ jobs:
           for script in "${game_tests[@]}"; do
             log="/tmp/game-$(basename "$script").log"
             test_data="$(mktemp -d "$RUNNER_TEMP/godot-game.XXXXXX")"
-            XDG_DATA_HOME="$test_data" timeout 120s godot --headless --path . --script "$script" -- --qa-isolated 2>&1 | tee "$log"
+            XDG_DATA_HOME="$test_data" timeout 120s godot --headless --verbose --path . --script "$script" -- --qa-isolated 2>&1 | tee "$log"
             if grep -Eq 'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|resources still in use|ObjectDB instances leaked' "$log"; then
               exit 1
             fi
@@ -71,6 +71,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p build/web
+          touch build/.gdignore
           godot --headless --path . --export-release Web build/web/index.html 2>&1 | tee /tmp/web-export.log
           if grep -Eq 'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|resources still in use|ObjectDB instances leaked' /tmp/web-export.log; then
             exit 1
@@ -95,7 +96,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          godot --headless --path . --install-android-build-template --export-debug Android build/android/game-debug.apk 2>&1 | tee /tmp/android-export.log
+          godot --headless --verbose --path . --install-android-build-template --export-debug Android build/android/game-debug.apk 2>&1 | tee /tmp/android-export.log
           if grep -Eq 'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|resources still in use|ObjectDB instances leaked' /tmp/android-export.log; then
             exit 1
           fi

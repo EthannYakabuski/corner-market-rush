@@ -244,6 +244,15 @@ func _run() -> void:
 	app._process(0.1)
 	check(app.paused,"focus return never silently advances time")
 	app.show_home()
+	# Diagnostic only: identify owned streams before the unchanged teardown.
+	# Linux verbose exit diagnostics determine which resources actually remain.
+	var owned_stream_paths: Array[String] = []
+	if is_instance_valid(app.music) and app.music.stream != null:
+		owned_stream_paths.append(str(app.music.stream.resource_path))
+	for player in app.effects:
+		if is_instance_valid(player) and player.stream != null:
+			owned_stream_paths.append(str(player.stream.resource_path))
+	print("MARKET_UI_TEARDOWN owned_stream_paths=%s time_to_next_mix=%s" % [owned_stream_paths,AudioServer.get_time_to_next_mix()])
 	app._shutdown_audio()
 	app.queue_free()
 	fake.queue_free()
