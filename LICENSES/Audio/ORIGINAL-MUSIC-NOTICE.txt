@@ -1,0 +1,8 @@
+Original music and original railway whistle
+Copyright 2026 EthannYakabuski
+
+Licensed under Apache License 2.0; see the project root LICENSE.
+The complete musical arrangements, melodic phrases and synthesis source were created for these games.
+No external music recordings, soundfonts, musical samples or reference-game audio were used.
+The deterministic composition source is compose_original_music.py in this folder.
+Kenney sound effects have their separate CC0 notices and are not covered by this original-music notice.

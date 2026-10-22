@@ -1,0 +1,107 @@
+{
+  "game": "corner-market-rush",
+  "sfx": [
+    {
+      "file": "sfx/click.ogg",
+      "source_pack_path": "kenney_interface-sounds/Audio/click_003.ogg",
+      "license": "CC0-1.0",
+      "sha256": "2FA929138BC3A0F432696588F66EAC94B8F6D463905EC8808C6461CE4B054292",
+      "bytes": 4371,
+      "modified": false,
+      "channels": 1,
+      "sample_rate": 44100,
+      "duration_seconds": 0.010022675736961452
+    },
+    {
+      "file": "sfx/coin.ogg",
+      "source_pack_path": "kenney_rpg-audio/Audio/handleCoins.ogg",
+      "license": "CC0-1.0",
+      "sha256": "8A91F969E932DF709DF80EE124D86A51389EED9B67F22E5E716BC2BBF60D8DAB",
+      "bytes": 25394,
+      "modified": false,
+      "channels": 2,
+      "sample_rate": 48000,
+      "duration_seconds": 0.8455208333333334
+    },
+    {
+      "file": "sfx/door.ogg",
+      "source_pack_path": "kenney_rpg-audio/Audio/doorOpen_1.ogg",
+      "license": "CC0-1.0",
+      "sha256": "4AB93BAB96522D8EB109FF96DC57CB6765DEB02448FE14C10472084BE5BB2A0B",
+      "bytes": 22848,
+      "modified": false,
+      "channels": 2,
+      "sample_rate": 48000,
+      "duration_seconds": 0.9189583333333333
+    },
+    {
+      "file": "sfx/footstep.ogg",
+      "source_pack_path": "kenney_impact-sounds/Audio/footstep_concrete_000.ogg",
+      "license": "CC0-1.0",
+      "sha256": "D7267E183067757C92C169DE2A379ABEA592CFCA6B39BB2E8FEEA15221AD79FE",
+      "bytes": 5808,
+      "modified": false,
+      "channels": 2,
+      "sample_rate": 44100,
+      "duration_seconds": 0.10591836734693877
+    },
+    {
+      "file": "sfx/confirm.ogg",
+      "source_pack_path": "kenney_interface-sounds/Audio/confirmation_002.ogg",
+      "license": "CC0-1.0",
+      "sha256": "33B17A9A9A2397C62B285C52C33A907FDFFB476909C99E42DDE603F6A7A8B12C",
+      "bytes": 14169,
+      "modified": false,
+      "channels": 1,
+      "sample_rate": 44100,
+      "duration_seconds": 0.5390022675736962
+    },
+    {
+      "file": "sfx/error.ogg",
+      "source_pack_path": "kenney_interface-sounds/Audio/error_002.ogg",
+      "license": "CC0-1.0",
+      "sha256": "76810EC365F41078FD0507101DA5BB7B8730FE011DDE43908329FDABD8575E79",
+      "bytes": 7369,
+      "modified": false,
+      "channels": 2,
+      "sample_rate": 44100,
+      "duration_seconds": 0.1645578231292517
+    },
+    {
+      "file": "sfx/restock.ogg",
+      "source_pack_path": "kenney_rpg-audio/Audio/cloth1.ogg",
+      "license": "CC0-1.0",
+      "sha256": "DDB93A3671233F95DA0E0B10367F082F7EB42FA6CAADDCF776410AA8833C747D",
+      "bytes": 16508,
+      "modified": false,
+      "channels": 2,
+      "sample_rate": 48000,
+      "duration_seconds": 0.6610416666666666
+    }
+  ],
+  "kenney_licenses": [
+    {
+      "pack": "kenney_impact-sounds",
+      "file": "kenney_impact-sounds-CC0.txt",
+      "sha256": "B49AA9C56B04528B95913DE13E506A0F7C5E807B9925DB9BFEF86AF1F91120DB",
+      "license": "CC0-1.0"
+    },
+    {
+      "pack": "kenney_interface-sounds",
+      "file": "kenney_interface-sounds-CC0.txt",
+      "sha256": "F7966C773BBED0ECA6A9C75081C44A178B38EAE112724DBB5FDFBD4192D118A9",
+      "license": "CC0-1.0"
+    },
+    {
+      "pack": "kenney_rpg-audio",
+      "file": "kenney_rpg-audio-CC0.txt",
+      "sha256": "5735DFD72CB64CBBCEDA4EBC00C380C41CA680EDB82FF153AA7C9AB97614C539",
+      "license": "CC0-1.0"
+    }
+  ],
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "music_manifest": "music/original_music_manifest.json",
+  "actual_audio_output_validation": false,
+  "engine_import_validation": false,
+  "note": "Source byte/hash, Ogg page duration and WAV sample/loop/headroom checks completed; listening and engine/native checks remain separate."
+}

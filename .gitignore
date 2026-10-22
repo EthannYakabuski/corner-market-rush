@@ -21,3 +21,15 @@ local-backups/
 local.properties
 Thumbs.db
 .DS_Store
+
+# Local test profiles/evidence and package archives
+qa/
+private/
+profiles/
+evidence/
+*.save
+*.backup
+*.tar
+*.tgz
+*.zip
+*.dmp

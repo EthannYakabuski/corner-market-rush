@@ -1,0 +1,18 @@
+Corner Market Rush distribution notices
+
+Original project work: Apache License 2.0; see root LICENSE and NOTICE.
+Godot Engine 4.5.1: ThirdParty/GODOT-4.5.1-LICENSE.txt,
+  ThirdParty/GODOT-4.5.1-COPYRIGHT.txt and ThirdParty/GODOT-4.5.1-AUTHORS.md.
+Poing Godot AdMob 5.1.0: ThirdParty/POING-ADMOB-MIT.txt and addons/admob/LICENSE.
+GodotPlayGameServices 3.4.0: ThirdParty/PLAY-GAMES-MIT.txt and addons/GodotPlayGameServices/LICENSE.
+Vendored file hashes: platform/VENDORED_PLUGINS.json.
+
+The Android Gradle resolver also supplies Google Mobile Ads, UMP, Play Games
+and their dependencies. Preserve the license/notice metadata embedded in
+those SDK packages; the plugin MIT notices do not relicense Google's SDKs.
+
+Art/audio asset notices are supplied with the selected assets in assets/licenses
+and must be checked and added to this index before the completed distribution.
+No unused asset-pack or font license is claimed by this initial platform index.
+The build workflow accompanies APK/Web artifacts with this complete LICENSES
+directory plus root LICENSE and NOTICE. Keep these files with redistributions.
