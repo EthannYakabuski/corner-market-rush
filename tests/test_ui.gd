@@ -38,7 +38,8 @@ func check(condition: bool, message: String) -> void:
 		push_error("Assertion failed: "+message)
 
 func find_button(node: Node, text: String) -> Button:
-	if node is Button and node.text == text: return node
+	if node.is_queued_for_deletion(): return null
+	if node is Button and node.text == text and node.is_visible_in_tree(): return node
 	for child in node.get_children():
 		var found := find_button(child,text)
 		if found != null: return found
@@ -50,8 +51,11 @@ func press(text: String) -> void:
 	if button != null: button.pressed.emit()
 
 func inside_app(control: Control) -> bool:
-	if not is_instance_valid(control): return false
-	var outer: Rect2 = app.get_global_rect()
+	return inside_control(control,app)
+
+func inside_control(control: Control, container: Control) -> bool:
+	if not is_instance_valid(control) or not is_instance_valid(container): return false
+	var outer: Rect2 = container.get_global_rect()
 	var inner := control.get_global_rect()
 	return inner.position.x >= outer.position.x-1 and inner.position.y >= outer.position.y-1 and inner.end.x <= outer.end.x+1 and inner.end.y <= outer.end.y+1
 
@@ -80,7 +84,11 @@ func geometry(profile_name: String, dimensions: Vector2i, density: float) -> voi
 	await process_frame
 	check(app.header.get_line_count() == 2 and header_panel.size.y <= 150,"large wallet values cannot expand header: "+profile_name)
 	app.profile.data = prior
-	app._start_shift(31,true)
+	# Authored shift29 starts with an actual maximum three-product basket and
+	# all six shelves. Advance its model so customer checks cannot be vacuous.
+	app._start_shift(29,true)
+	app._process(0.1)
+	app._refresh_game()
 	await process_frame
 	await process_frame
 	check(app.stock_buttons.size() == 6,"full product controls present: "+profile_name)
@@ -92,11 +100,27 @@ func geometry(profile_name: String, dimensions: Vector2i, density: float) -> voi
 			var control: Control = app.stock_buttons[sku]
 			print("TOUCH_GEOMETRY %s: window=%s app=%s viewport=%s control=%s screen_transform=%s dp=%s density=%s" % [profile_name,root.size,app.size,app.get_viewport_rect().size,control.size,control.get_screen_transform(),dp,density])
 		check(dp.x >= 48 and dp.y >= 48-0.01,"product action meets48dp in actual canvas scale: "+profile_name+"/"+str(sku))
-	for button in app.customer_buttons.values():
+	var tested_customers := 0
+	var maximum_basket := 0
+	for id in app.customer_buttons:
+		var button: Button = app.customer_buttons[id]
 		if not button.is_visible_in_tree(): continue
+		tested_customers += 1
+		var card: Dictionary = app.customer_cards[id]
+		maximum_basket = maxi(maximum_basket,card.amounts.size())
 		var dp := touch_dp(button,density)
 		check(inside_app(button) and dp.x >= 48 and dp.y >= 48,"whole customer checkout target is reachable48dp: "+profile_name)
 		check(button.get_signal_connection_list("pressed").size() == 1,"whole checkout card has only one action handler: "+profile_name)
+		check(inside_control(card.action_panel,button) and inside_control(card.action_panel,app.customer_row.get_parent()),"checkout footer fully inside card and scroll clip: "+profile_name)
+		check(inside_control(card.action_text,card.action_panel) and card.action_text.get_line_count() == 1,"checkout instruction fully visible on one line: "+profile_name)
+		for sku in card.amounts:
+			var amount: Label = card.amounts[sku]
+			var product_name: Label = card.product_names[sku]
+			var product_row: Control = card.product_rows[sku]
+			check(amount.get_line_count() == 1 and amount.size.x >= 48 and inside_control(amount,product_row),"basket quantity remains a bounded single line: "+profile_name+"/"+str(sku))
+			check(product_name.text == str(app.catalog.products[sku].name) and product_name.get_line_count() == 1 and product_name.size.x >= 96 and inside_control(product_name,product_row),"basket product name is readable next to pictogram: "+profile_name+"/"+str(sku))
+			check(product_name.get_global_rect().end.x <= amount.get_global_rect().position.x and inside_control(product_row,button),"basket name/count never overlap or leave card: "+profile_name+"/"+str(sku))
+	check(tested_customers > 0 and maximum_basket == 3,"actual maximum three-product basket was laid out: "+profile_name)
 	check(inside_app(find_button(app,"Pause")),"Pause remains reachable: "+profile_name)
 	check(app.shift_label.get_global_rect().end.y < app.stock_buttons.apple.get_global_rect().position.y-220,"shop has visible space between HUD and actions: "+profile_name)
 	app.show_home()
@@ -132,8 +156,18 @@ func _run() -> void:
 	root.size = Vector2i(960,1440)
 	app.profile.data = Profile.fresh()
 	app.profile.data.tutorial_seen = true
-	app._start_shift(1)
+	app.show_home()
 	await process_frame
+	await process_frame
+	var old_open: Button = find_button(app,"Open the shop  ·  Shift 1")
+	var retired_page_children: Array = app.page.get_children()
+	press("Open the shop  ·  Shift 1")
+	check(is_instance_valid(old_open) and old_open.is_inside_tree() and not old_open.is_visible_in_tree(),"pressed page control stays in tree while hidden until dispatch finishes")
+	for retired in retired_page_children:
+		check(retired.is_inside_tree() and retired.is_queued_for_deletion() and retired.process_mode == Node.PROCESS_MODE_DISABLED,"retired page stays attached but cannot process another action")
+	await process_frame
+	await process_frame
+	check(not is_instance_valid(old_open),"old pressed page is freed after dispatch")
 	check(app.stock_buttons.size() == 2,"tutorial has exactly two product controls")
 	check(not app.paused,"ordinary source fixture starts ready")
 	app._pause_shift("Fixture pause","No owner profile is used.")
@@ -141,7 +175,12 @@ func _run() -> void:
 	app._process(0.2)
 	check(is_equal_approx(float(app.model.state.elapsed),elapsed),"modal freezes actual scene model")
 	check(app.world.frozen,"modal freezes actual customer animation players")
+	var retired_modal: Control = app.modal
 	press("Resume the shop")
+	check(retired_modal.is_inside_tree() and not retired_modal.visible and retired_modal.is_queued_for_deletion() and retired_modal.process_mode == Node.PROCESS_MODE_DISABLED,"pressed modal stays attached and inert until dispatch finishes")
+	await process_frame
+	await process_frame
+	check(not is_instance_valid(retired_modal),"old pressed modal frees after dispatch")
 	app._process(0.05)
 	app._queue_task("restock","apple")
 	app._queue_task("restock","bread")

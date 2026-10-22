@@ -216,7 +216,11 @@ func _spacer(parent: Node, ratio: float=1) -> Control:
 func _page(name_value: String, subtitle: String) -> void:
 	screen = name_value
 	for child in page.get_children():
-		page.remove_child(child)
+		# A pressed control must stay in the tree until GUI dispatch returns.
+		if child is Control:
+			child.hide()
+			child.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		child.process_mode = Node.PROCESS_MODE_DISABLED
 		child.queue_free()
 	stock_buttons.clear()
 	customer_buttons.clear()
@@ -567,34 +571,46 @@ func _refresh_game() -> void:
 			# there is no nested second handler that could duplicate checkout.
 			var button := _button(customer_row,"",func(): _queue_task("checkout",id),Color("e1ead6"))
 			button.custom_minimum_size = Vector2(300,214)
-			var card := _vbox(button,5)
+			var card := _vbox(button,4)
 			card.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-			card.offset_left = 12
-			card.offset_right = -12
-			card.offset_top = 12
-			card.offset_bottom = -12
+			card.offset_left = 10
+			card.offset_right = -10
+			card.offset_top = 8
+			card.offset_bottom = -8
 			var row := _row(card,7)
 			var regular: Dictionary = catalog.regulars[int(customer.get("regular",id%6))]
-			_picture(row,"res://assets/ui/regulars/%s.png" % regular.model,48)
-			var name_label := _text(row,"",23,TEAL)
+			_picture(row,"res://assets/ui/regulars/%s.png" % regular.model,36)
+			var name_label := _text(row,"",21,TEAL)
+			name_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 			name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			var order := _row(card,6)
+			var order := _vbox(card,3)
 			var amounts: Dictionary = {}
+			var product_names: Dictionary = {}
+			var product_rows: Dictionary = {}
 			for sku in customer.order:
-				var item := _row(order,3)
-				_picture(item,_product_icon_path(str(sku)),36)
-				amounts[sku] = _text(item,"",20)
+				var item := _row(order,6)
+				_picture(item,_product_icon_path(str(sku)),28)
+				var product_name := _text(item,str(catalog.products[sku].name),19)
+				product_name.autowrap_mode = TextServer.AUTOWRAP_OFF
+				product_name.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				var amount := _text(item,"",19)
+				amount.autowrap_mode = TextServer.AUTOWRAP_OFF
+				amount.custom_minimum_size.x = 48
+				amount.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+				amounts[sku] = amount
+				product_names[sku] = product_name
+				product_rows[sku] = item
 			var patience := ProgressBar.new()
 			patience.show_percentage = false
-			patience.custom_minimum_size.y = 8
+			patience.custom_minimum_size.y = 6
 			card.add_child(patience)
 			var action_panel := _panel(card,TEAL)
-			action_panel.custom_minimum_size.y = 58
+			action_panel.custom_minimum_size.y = 44
 			var action_text := _text(action_panel,"",22,Color("fff9ea"))
 			action_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			action_text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 			customer_buttons[id] = button
-			customer_cards[id] = {"panel":button,"name":name_label,"amounts":amounts,"patience":patience,"action_panel":action_panel,"action_text":action_text}
+			customer_cards[id] = {"panel":button,"name":name_label,"amounts":amounts,"product_names":product_names,"product_rows":product_rows,"patience":patience,"action_panel":action_panel,"action_text":action_text}
 			_ignore_child_mouse(button)
 		var button: Button = customer_buttons[id]
 		var card: Dictionary = customer_cards[id]
@@ -793,7 +809,9 @@ func _modal(title: String, message: String) -> VBoxContainer:
 
 func _close_modal() -> void:
 	if is_instance_valid(modal):
-		remove_child(modal)
+		modal.hide()
+		modal.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		modal.process_mode = Node.PROCESS_MODE_DISABLED
 		modal.queue_free()
 	modal = null
 

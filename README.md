@@ -61,7 +61,7 @@ godot --headless --path . --script tests/test_profile.gd -- --qa-isolated
 godot --headless --path . --script tests/test_ui.gd -- --qa-isolated
 ```
 
-The current isolated engine checks pass **1,552 model checks**, including legal baseline strategies for all 36 shifts; **62 progression/save checks**; **132 scene/lifecycle checks**; and **17 audio checks**. The import and service smoke checks also pass without strict diagnostics. Keep the strict script/error/assertion log gate alongside exit codes. The scene test's service callbacks are explicitly synthetic fixtures, never evidence of a real SDK ad or native reward.
+The current isolated engine checks pass **1,552 model checks**, including legal baseline strategies for all 36 shifts; **62 progression/save checks**; **176 scene/lifecycle checks**; and **17 audio checks**. The import and service smoke checks also pass without strict diagnostics. Keep the strict script/error/assertion log gate alongside exit codes. The scene test's service callbacks are explicitly synthetic fixtures, never evidence of a real SDK ad or native reward.
 
 The first Android presentation review found an oversized wallet header and overbright scenery. Source corrections and phone/tablet touch-geometry checks now pass; acceptance of the revised Android rendering and controls is still pending an updated build and genuine play.
 
