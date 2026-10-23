@@ -854,20 +854,23 @@ func _notice(message: String) -> void:
 		footer.text = message
 	else:
 		# Nonblocking toast; do not replace an active ad/resume/result modal.
-		var toast := Label.new()
-		toast.text = message
+		var context: Control = header.get_parent().get_parent() if is_instance_valid(header) else null
+		if screen == "game" and is_instance_valid(shift_label) and shift_label.is_inside_tree():
+			context = shift_label.get_parent().get_parent()
+		var notice_top := 24.0
+		if is_instance_valid(context):
+			var context_end: Vector2 = get_global_transform().affine_inverse()*context.get_global_rect().end
+			notice_top = context_end.y+12
+		var toast := _panel(self,CREAM)
 		toast.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
 		toast.offset_left = 32
 		toast.offset_right = -32
-		toast.offset_top = 165
-		toast.offset_bottom = 260
-		toast.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		toast.add_theme_font_size_override("font_size",25)
-		toast.add_theme_color_override("font_color",CREAM)
-		toast.add_theme_color_override("font_outline_color",INK)
-		toast.add_theme_constant_override("outline_size",8)
+		toast.offset_top = notice_top
+		toast.offset_bottom = notice_top+100
 		toast.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		add_child(toast)
+		var text := _text(toast,message,25,INK)
+		text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		text.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		get_tree().create_timer(3).timeout.connect(func():
 			if is_instance_valid(toast): toast.queue_free())
 

@@ -132,16 +132,25 @@ func geometry(profile_name: String, dimensions: Vector2i, density: float) -> voi
 	var notice_text := "A reserve delivery is available once per ordinary shift after the first."
 	app._notice(notice_text)
 	var toast: Label = null
-	for child in app.get_children():
+	for child in app.find_children("*","Label",true,false):
 		if child is Label and child.text == notice_text: toast = child
 	check(toast != null,"actual gameplay notice creates a visible text control: "+profile_name)
 	await process_frame
 	await process_frame
 	if toast != null:
-		check(inside_app(toast) and toast.get_global_rect().position.x >= app.get_global_rect().position.x+16 and toast.get_global_rect().end.x <= app.get_global_rect().end.x-16,"whole gameplay notice stays inside both viewport margins: "+profile_name)
+		var notice_card: PanelContainer = toast.get_parent() as PanelContainer
+		check(notice_card != null,"gameplay notice has a contained background card: "+profile_name)
 		check(toast.get_line_count() > 0 and toast.get_visible_line_count() == toast.get_line_count(),"wrapped notice text is vertically complete: "+profile_name)
-		check(toast.mouse_filter == Control.MOUSE_FILTER_IGNORE and app.modal == notice_modal and notice_modal.is_visible_in_tree() and find_button(app,"Resume the shop") != null,"notice neither replaces the pause modal nor intercepts Resume: "+profile_name)
-		toast.queue_free()
+		if notice_card != null:
+			var hud_panel: Control = app.shift_label.get_parent().get_parent()
+			var controls_panel: Control = app.stock_buttons.apple.get_parent().get_parent().get_parent()
+			check(inside_app(notice_card) and inside_control(toast,notice_card) and notice_card.get_global_rect().position.x >= app.get_global_rect().position.x+16 and notice_card.get_global_rect().end.x <= app.get_global_rect().end.x-16,"whole notice card and text stay inside viewport margins: "+profile_name)
+			check(notice_card.get_global_rect().position.y >= hud_panel.get_global_rect().end.y+8 and not notice_card.get_global_rect().intersects(hud_panel.get_global_rect()) and not notice_card.get_global_rect().intersects(app.shift_progress.get_global_rect()),"notice stays below actual timer/served HUD and progress: "+profile_name)
+			check(notice_card.get_global_rect().end.y <= controls_panel.get_global_rect().position.y-8,"notice stays above the shelf and checkout controls: "+profile_name)
+			var background_style: StyleBoxFlat = notice_card.get_theme_stylebox("panel") as StyleBoxFlat
+			check(background_style != null and background_style.bg_color.a >= 0.98,"opaque notice background prevents world-label text collision: "+profile_name)
+			check(toast.mouse_filter == Control.MOUSE_FILTER_IGNORE and notice_card.mouse_filter == Control.MOUSE_FILTER_IGNORE and app.modal == notice_modal and notice_modal.is_visible_in_tree() and find_button(app,"Resume the shop") != null,"notice neither replaces the pause modal nor intercepts Resume: "+profile_name)
+			notice_card.queue_free()
 	app.show_home()
 
 func _run() -> void:
