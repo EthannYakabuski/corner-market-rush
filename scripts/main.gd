@@ -856,9 +856,11 @@ func _notice(message: String) -> void:
 		# Nonblocking toast; do not replace an active ad/resume/result modal.
 		var toast := Label.new()
 		toast.text = message
-		toast.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
-		toast.position = Vector2(32,165)
-		toast.size = Vector2(maxf(280,size.x-64),95)
+		toast.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+		toast.offset_left = 32
+		toast.offset_right = -32
+		toast.offset_top = 165
+		toast.offset_bottom = 260
 		toast.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		toast.add_theme_font_size_override("font_size",25)
 		toast.add_theme_color_override("font_color",CREAM)

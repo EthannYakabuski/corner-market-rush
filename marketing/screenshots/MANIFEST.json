@@ -1,18 +1,200 @@
 {
-  "status": "partial; not final screenshot acceptance",
-  "source_commit": "25f1ab5a711ec7b19e3b132e71f5069d907c8710",
-  "apk_sha256": "20FE1A17921AF274D64B3F7991991883280136FEC4B4600FE12FAE74F0254683",
-  "ci_run": 39872243207,
+  "status": "18 selected raw screenshots visually accepted",
+  "source_runtime_commit": "cfaed9d429e15796895e30ee7cc54112bb7796b5",
+  "apk_sha256": "783206FB6BA83A365000AB6DA0277D6F87F6AE19BB88FBB09BDB8BCBA2C8A694",
+  "ci_run": 39882752533,
+  "ci_run_url": "https://github.com/EthannYakabuski/corner-market-rush/actions/runs/39882752533",
   "required_count": 18,
-  "accepted_count": 1,
+  "accepted_count": 18,
+  "accepted_per_profile": {
+    "phone": 6,
+    "seven-inch": 6,
+    "ten-inch": 6
+  },
   "logical_emulator_profiles_not_physical_devices": true,
   "unaltered_raw_pixels": true,
+  "same_genuine_first_shift_result_across_profiles": true,
+  "qualification": "The three result frames show the same genuine first-shift result at different logical emulator display profiles. Practice views are real untimed gameplay without banked rewards. Screenshot acceptance covers still-image readability and composition; physical-device behavior and overall native acceptance are separate. These captures retain their CFA runtime provenance and do not represent a future build.",
   "images": [
     {
       "path": "marketing/screenshots/phone/01-home.png",
+      "profile": "phone",
+      "category": "home",
       "width": 1080,
       "height": 1920,
-      "sha256": "274CF3C1162574E7E6C8F820A63AAB1861170CB0E18AF932CA613574B1AF3033"
+      "density": 420,
+      "practice_only": false,
+      "sha256": "BA59D098D04F42EC5ABA73B958CB59CCA7DF0E0AB8D74AE4152C06F6A2A88497"
+    },
+    {
+      "path": "marketing/screenshots/phone/04-campaign.png",
+      "profile": "phone",
+      "category": "campaign",
+      "width": 1080,
+      "height": 1920,
+      "density": 420,
+      "practice_only": false,
+      "sha256": "56932A5DF251E23D5E82E1D03D49F3F889BEEBE94F3D200B3F352037F2056B16"
+    },
+    {
+      "path": "marketing/screenshots/phone/05-growth.png",
+      "profile": "phone",
+      "category": "growth",
+      "width": 1080,
+      "height": 1920,
+      "density": 420,
+      "practice_only": false,
+      "sha256": "27BEC6E519E94BA54CEA4EB2D51F35E47F7BAC540579FA47A9AE4FF11AFB7216"
+    },
+    {
+      "path": "marketing/screenshots/phone/03-bakery-practice.png",
+      "profile": "phone",
+      "category": "distinct_theme_practice",
+      "width": 1080,
+      "height": 1920,
+      "density": 420,
+      "practice_only": true,
+      "sha256": "2411E8AF53909E604130496745F5E71C8372181692EE6FE0E3F469967AFE5184"
+    },
+    {
+      "path": "marketing/screenshots/phone/02-shop.png",
+      "profile": "phone",
+      "category": "actual_shop",
+      "width": 1080,
+      "height": 1920,
+      "density": 420,
+      "practice_only": false,
+      "sha256": "77FCB736D7E3FD979ADAE7BC54F82717E609C2AEFBD944AE507577860CA29A1F"
+    },
+    {
+      "path": "marketing/screenshots/phone/06-first-result.png",
+      "profile": "phone",
+      "category": "genuine_result",
+      "width": 1080,
+      "height": 1920,
+      "density": 420,
+      "practice_only": false,
+      "sha256": "6765B94AA75B2E41AFA6CA287C0E1813FC423C1F4B4D4AFF886E6107B3F6B013"
+    },
+    {
+      "path": "marketing/screenshots/seven-inch/01-home.png",
+      "profile": "seven-inch",
+      "category": "home",
+      "width": 1200,
+      "height": 1920,
+      "density": 320,
+      "practice_only": false,
+      "sha256": "580ACBA23323D6059A7E4D9887DA6F9FCAB0B4E73BF7BA83FCA5A745B96E2AA8"
+    },
+    {
+      "path": "marketing/screenshots/seven-inch/04-campaign.png",
+      "profile": "seven-inch",
+      "category": "campaign",
+      "width": 1200,
+      "height": 1920,
+      "density": 320,
+      "practice_only": false,
+      "sha256": "6F67AE90E9905C0D836ECBFD5BDEB3211A76E5A68185D7F747E1985BE246B8CA"
+    },
+    {
+      "path": "marketing/screenshots/seven-inch/05-growth.png",
+      "profile": "seven-inch",
+      "category": "growth",
+      "width": 1200,
+      "height": 1920,
+      "density": 320,
+      "practice_only": false,
+      "sha256": "A3817F573074BAE73E28E5365AD5854CEC4C9CBE09229EA50F1742E94D93815F"
+    },
+    {
+      "path": "marketing/screenshots/seven-inch/03-bakery-practice.png",
+      "profile": "seven-inch",
+      "category": "distinct_theme_practice",
+      "width": 1200,
+      "height": 1920,
+      "density": 320,
+      "practice_only": true,
+      "sha256": "75CBFDB764EF6D6721D2A4C69BE2F4C4A357C9914D9ABF49CEC6275C7FFFE1D8"
+    },
+    {
+      "path": "marketing/screenshots/seven-inch/02-shop.png",
+      "profile": "seven-inch",
+      "category": "actual_shop",
+      "width": 1200,
+      "height": 1920,
+      "density": 320,
+      "practice_only": true,
+      "sha256": "2DC5CAA4B5B899FF29F171DECAFD65792D50D1D14625599BB9E8ECDED9A2928E"
+    },
+    {
+      "path": "marketing/screenshots/seven-inch/06-first-result.png",
+      "profile": "seven-inch",
+      "category": "genuine_result",
+      "width": 1200,
+      "height": 1920,
+      "density": 320,
+      "practice_only": false,
+      "sha256": "F5088701F97D82434D77989D7438165BA6B82F40D045E11EADFFE4FFEDBF746A"
+    },
+    {
+      "path": "marketing/screenshots/ten-inch/01-home.png",
+      "profile": "ten-inch",
+      "category": "home",
+      "width": 1600,
+      "height": 2560,
+      "density": 300,
+      "practice_only": false,
+      "sha256": "8D515AC69ADFAC3BD2793DD21E5C74C3C700823DD3E0A4627FACC4C41778D4C0"
+    },
+    {
+      "path": "marketing/screenshots/ten-inch/04-campaign.png",
+      "profile": "ten-inch",
+      "category": "campaign",
+      "width": 1600,
+      "height": 2560,
+      "density": 300,
+      "practice_only": false,
+      "sha256": "8CB193328EA033886A322BFBFEDBFC504122010EA3BED6E82A3C253431155ABB"
+    },
+    {
+      "path": "marketing/screenshots/ten-inch/05-growth.png",
+      "profile": "ten-inch",
+      "category": "growth",
+      "width": 1600,
+      "height": 2560,
+      "density": 300,
+      "practice_only": false,
+      "sha256": "DFA6B81D5D8350BD30FE8358F08F92DB7BD3B4CE422CC7C3E59E62C321E0734E"
+    },
+    {
+      "path": "marketing/screenshots/ten-inch/03-bakery-practice.png",
+      "profile": "ten-inch",
+      "category": "distinct_theme_practice",
+      "width": 1600,
+      "height": 2560,
+      "density": 300,
+      "practice_only": true,
+      "sha256": "FA0EFB28344141AF1EB006258C5AFC9D0919F1166FA95815A61E60FA8046F6AE"
+    },
+    {
+      "path": "marketing/screenshots/ten-inch/02-shop.png",
+      "profile": "ten-inch",
+      "category": "actual_shop",
+      "width": 1600,
+      "height": 2560,
+      "density": 300,
+      "practice_only": true,
+      "sha256": "8899B415E4141237EE713E8A75084013CCF9480738B31C1409A37B65A5AC08A3"
+    },
+    {
+      "path": "marketing/screenshots/ten-inch/06-first-result.png",
+      "profile": "ten-inch",
+      "category": "genuine_result",
+      "width": 1600,
+      "height": 2560,
+      "density": 300,
+      "practice_only": false,
+      "sha256": "173B3623C8A1493DD25E6906EA2868A038B4613C55B484B655B1021139F78C22"
     }
   ]
 }

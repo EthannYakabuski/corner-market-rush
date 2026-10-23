@@ -76,6 +76,8 @@ func geometry(profile_name: String, dimensions: Vector2i, density: float) -> voi
 	check(header_panel.size.y <= 150,"header bounded height on "+profile_name)
 	check(app.header.size.x >= 160 and app.header.get_line_count() == 2,"wallet is readable two-line text, never a one-letter column: "+profile_name)
 	check(inside_app(find_button(app,"Open the shop  ·  Shift %d" % app.profile.available_shift())),"primary Open control inside viewport: "+profile_name)
+	app._notice("Menu notice fixture")
+	check(app.footer.text == "Menu notice fixture","menu notices still use the existing footer: "+profile_name)
 	# Financial stress is an isolated presentation fixture, not a grant or save.
 	var prior: Dictionary = app.profile.data.duplicate(true)
 	app.profile.data.coins = 99999999
@@ -123,6 +125,23 @@ func geometry(profile_name: String, dimensions: Vector2i, density: float) -> voi
 	check(tested_customers > 0 and maximum_basket == 3,"actual maximum three-product basket was laid out: "+profile_name)
 	check(inside_app(find_button(app,"Pause")),"Pause remains reachable: "+profile_name)
 	check(app.shift_label.get_global_rect().end.y < app.stock_buttons.apple.get_global_rect().position.y-220,"shop has visible space between HUD and actions: "+profile_name)
+	# This actual once-only message was clipped off the right edge on Android.
+	# Exercise its real nonblocking toast branch, including an existing modal.
+	app._pause_shift("Notice geometry","The scene and isolated draft remain paused.")
+	var notice_modal: Control = app.modal
+	var notice_text := "A reserve delivery is available once per ordinary shift after the first."
+	app._notice(notice_text)
+	var toast: Label = null
+	for child in app.get_children():
+		if child is Label and child.text == notice_text: toast = child
+	check(toast != null,"actual gameplay notice creates a visible text control: "+profile_name)
+	await process_frame
+	await process_frame
+	if toast != null:
+		check(inside_app(toast) and toast.get_global_rect().position.x >= app.get_global_rect().position.x+16 and toast.get_global_rect().end.x <= app.get_global_rect().end.x-16,"whole gameplay notice stays inside both viewport margins: "+profile_name)
+		check(toast.get_line_count() > 0 and toast.get_visible_line_count() == toast.get_line_count(),"wrapped notice text is vertically complete: "+profile_name)
+		check(toast.mouse_filter == Control.MOUSE_FILTER_IGNORE and app.modal == notice_modal and notice_modal.is_visible_in_tree() and find_button(app,"Resume the shop") != null,"notice neither replaces the pause modal nor intercepts Resume: "+profile_name)
+		toast.queue_free()
 	app.show_home()
 
 func _run() -> void:
