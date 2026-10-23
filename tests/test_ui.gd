@@ -272,17 +272,48 @@ func _run() -> void:
 	stale.call(true)
 	app._process(0.1)
 	check(not app.model.state.reward_used and app.model.state.reserve == before_reserve,"stale earned callback cannot alter replacement run")
-	# Background/focus recovery preserves state and requires a deliberate return.
+	# Propagate exactly as Android does: Node locks its child list while the
+	# notification visits this scene. Direct _notification calls miss that lock.
 	app.ad_waiting = false
 	app.reward_pending = false
-	app._notification(Node.NOTIFICATION_APPLICATION_PAUSED)
+	app._close_modal()
+	var pause_additions: Array[int] = [0]
+	var count_pause := func(child: Node):
+		if child is ColorRect: pause_additions[0] += 1
+	app.child_entered_tree.connect(count_pause)
 	elapsed = float(app.model.state.elapsed)
+	app.propagate_notification(Node.NOTIFICATION_APPLICATION_PAUSED)
+	app.propagate_notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+	check(app.paused and app.model.state.paused and app.world.frozen,"propagated background freezes simulation and actors immediately")
+	check(app.modal == null and pause_additions[0] == 0,"propagated notification never adds children while the tree is locked")
+	check(bool(app.profile.data.active.model.state.paused) and is_equal_approx(float(app.profile.data.active.model.state.elapsed),elapsed),"background persists the exact paused draft before deferred UI")
 	app._process(5)
 	check(is_equal_approx(float(app.model.state.elapsed),elapsed),"background preserves exact shop time")
-	app._notification(Node.NOTIFICATION_APPLICATION_RESUMED)
+	await process_frame
+	check(app.modal != null and pause_additions[0] == 1,"duplicate pause/focus notifications create exactly one usable deferred modal")
+	press("Resume the shop")
+	check(app.paused and app.modal != null,"Resume cannot close the pause while application remains backgrounded")
+	app.propagate_notification(Node.NOTIFICATION_APPLICATION_RESUMED)
+	app.propagate_notification(Node.NOTIFICATION_APPLICATION_FOCUS_IN)
 	app._process(0.1)
-	check(app.paused,"focus return never silently advances time")
+	check(app.paused and is_equal_approx(float(app.model.state.elapsed),elapsed),"foreground return never silently advances time")
+	press("Resume the shop")
+	app._process(0.2)
+	check(not app.paused and not app.model.state.paused and float(app.model.state.elapsed) > elapsed,"explicit foreground Resume advances the actual model")
+	# A queued notification belongs only to its captured model/run and page.
+	app.propagate_notification(Node.NOTIFICATION_APPLICATION_PAUSED)
+	app.propagate_notification(Node.NOTIFICATION_APPLICATION_RESUMED)
+	app._start_shift(3)
+	var replacement_run := str(app.model.state.run_id)
+	await process_frame
+	check(app.modal == null and not app.paused and str(app.model.state.run_id) == replacement_run,"deferred pause cannot attach to a replacement run")
+	app.propagate_notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+	app.propagate_notification(Node.NOTIFICATION_APPLICATION_FOCUS_IN)
 	app.show_home()
+	await process_frame
+	check(app.screen == "home" and app.modal == null,"deferred pause cannot appear after leaving the game")
+	app._start_shift(3)
+	app.child_entered_tree.disconnect(count_pause)
 	# Linux verbose diagnostics identified owned WAV/Ogg playbacks surviving
 	# fast frame-only teardown. Keep their owner alive for bounded mixer time.
 	var owned_stream_paths: Array[String] = []
@@ -291,6 +322,7 @@ func _run() -> void:
 	for player in app.effects:
 		if is_instance_valid(player) and player.stream != null:
 			owned_stream_paths.append(str(player.stream.resource_path))
+	check(not owned_stream_paths.is_empty(),"audio teardown exercises actual owned streams before shutdown")
 	print("MARKET_UI_TEARDOWN owned_stream_paths=%s time_to_next_mix=%s" % [owned_stream_paths,AudioServer.get_time_to_next_mix()])
 	app.set_process(false)
 	app._shutdown_audio()
@@ -299,6 +331,12 @@ func _run() -> void:
 	while Time.get_ticks_usec() < deadline_us:
 		await process_frame
 	await process_frame
+	# Check teardown invalidation only after observing/draining the original
+	# owner's audio, so this lifecycle case cannot vacate the audio regression.
+	app.propagate_notification(Node.NOTIFICATION_APPLICATION_PAUSED)
+	root.remove_child(app)
+	await process_frame
+	check(app.pending_pause_ui.is_empty() and app.modal == null,"tree exit invalidates pending pause UI without adding detached controls")
 	app.queue_free()
 	fake.queue_free()
 	await process_frame

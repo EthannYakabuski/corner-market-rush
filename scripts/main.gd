@@ -44,6 +44,8 @@ var music_key := ""
 var sound_clock := 0.0
 var result_banked := false
 var settle_error := false
+var pause_ui_generation := 0
+var pending_pause_ui: Dictionary = {}
 
 func _ready() -> void:
 	get_tree().auto_accept_quit = false
@@ -214,6 +216,7 @@ func _spacer(parent: Node, ratio: float=1) -> Control:
 	return spacer
 
 func _page(name_value: String, subtitle: String) -> void:
+	pending_pause_ui.clear()
 	screen = name_value
 	for child in page.get_children():
 		# A pressed control must stay in the tree until GUI dispatch returns.
@@ -735,20 +738,50 @@ func _check_badges() -> void:
 	profile.save()
 	_refresh_header()
 
-func _save_active() -> void:
-	if model == null or model.state.is_empty() or result_banked: return
+func _save_active(show_error: bool=true) -> bool:
+	if model == null or model.state.is_empty() or result_banked: return true
 	profile.data.active = {"model":model.snapshot(),"daily":daily_mode,"daily_day":daily_day}
-	if not profile.save(): _notice("The shop could not save. Please check free device space.")
+	var saved: bool = profile.save()
+	if not saved and show_error: _notice("The shop could not save. Please check free device space.")
+	return saved
 
-func _pause_shift(title: String, message: String) -> void:
+func _pause_shift(title: String, message: String, defer_ui: bool=false) -> void:
 	if model == null or model.state.status != "active": return
 	paused = true
 	model.set_paused(true)
 	world.set_frozen(true)
-	_save_active()
+	# Application notifications propagate with Node's child list locked. Freeze
+	# and persist now, but create controls only after propagation has returned.
+	var saved: bool = _save_active(not defer_ui)
+	if not defer_ui:
+		pending_pause_ui.clear()
+		_show_pause_controls(title,message)
+		return
+	var run_id := str(model.state.run_id)
+	if not pending_pause_ui.is_empty() and pending_pause_ui.model == model and pending_pause_ui.run_id == run_id:
+		pending_pause_ui.save_failed = bool(pending_pause_ui.save_failed) or not saved
+		return
+	pause_ui_generation += 1
+	pending_pause_ui = {"token":pause_ui_generation,"model":model,"run_id":run_id,"title":title,"message":message,"save_failed":not saved}
+	_flush_pause_controls.call_deferred(pause_ui_generation)
+
+func _flush_pause_controls(token: int) -> void:
+	if pending_pause_ui.is_empty() or int(pending_pause_ui.token) != token: return
+	var request: Dictionary = pending_pause_ui
+	pending_pause_ui = {}
+	if not is_inside_tree() or is_queued_for_deletion() or screen != "game": return
+	if model == null or model != request.model or str(model.state.get("run_id","")) != str(request.run_id) or model.state.get("status","") != "active": return
+	if reward_pending or ad_waiting or (services != null and services.fullscreen_ad_active()): return
+	_show_pause_controls(str(request.title),str(request.message))
+	if bool(request.save_failed): _notice("The shop could not save. Please check free device space.")
+
+func _show_pause_controls(title: String, message: String) -> void:
+	var paused_model: Model = model
+	var paused_run := str(model.state.run_id)
 	var box := _modal(title,message)
 	_button(box,"Resume the shop",func():
-		if reward_pending or (services != null and services.fullscreen_ad_active()): return
+		if background or reward_pending or ad_waiting or (services != null and services.fullscreen_ad_active()): return
+		if screen != "game" or model != paused_model or str(model.state.run_id) != paused_run: return
 		paused = false
 		_close_modal())
 	_button(box,"Save & Home",func():
@@ -859,13 +892,15 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_APPLICATION_FOCUS_OUT:
 		background = true
 		if model != null and screen == "game" and not reward_pending and not ad_waiting:
-			_pause_shift("Your shop waited","Resume when you are ready.")
+			_pause_shift("Your shop waited","Resume when you are ready.",true)
 	elif what == NOTIFICATION_APPLICATION_RESUMED or what == NOTIFICATION_APPLICATION_FOCUS_IN:
 		background = false
 	elif what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		_back()
 	elif what == NOTIFICATION_WM_CLOSE_REQUEST:
 		_quit()
+	elif what == NOTIFICATION_EXIT_TREE:
+		pending_pause_ui.clear()
 
 func _quit() -> void:
 	_save_active()
