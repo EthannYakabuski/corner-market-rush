@@ -1,0 +1,31 @@
+CORNER MARKET RUSH - QUALIFIED LOCAL TEST BUILD
+9934 source/export and affected phone toast presentation passed. Full native process-log strict status remains FALSE with listed diagnostics; this is not final native-ready or production-ready acceptance.
+
+PLAY
+Restock shelves and Checkout complete baskets with one active/one queued clerk job. Includes 36 shifts/six themes, non-paying practice, progression/dailies, 20 achievements and three records.
+
+PINNED BUILD
+Repository: https://github.com/EthannYakabuski/corner-market-rush
+Runtime: 9934b51ecb47ea221abdc571ad56447bb5dadde6
+Exact CI: https://github.com/EthannYakabuski/corner-market-rush/actions/runs/39892408564 - SUCCESS (215 UI / 92 lifetime / 1552 model / 62 profile / 17 audio/services/AndroidWeb).
+Android: build/first-pass-ci-9934b51e-run39892408564/android/game-debug.apk
+198,406,952 bytes; SHA256: 572A1F2F3A1122CCF76997E4ABB07C07EC8BD2B299B086EFC3877DCC420F0043
+Web: build/first-pass-ci-9934b51e-run39892408564/web/index.html
+HTML SHA256: 382774E6335A47FBC7A11B164F9B1FC5DD6E9B9E11283177F5E5E7383F7EB5C2
+Keep the whole verified Web bundle/notices. Debug APK, portrait, arm64-v8a + x86; Godot 4.5.1 Compatibility, Android primary/Web additional/no Windows. Min API 24 / target API 35 is an engine/test constraint, not current Play eligibility. Build warnings remain recorded; accepted does not mean warning-free.
+
+VERIFIED / PROVENANCE
+9934: actual phone notice is opaque, fully readable/contained below the HUD and above controls, without clipping or timer collision. Pause still worked with transient input ignored. The used-Reserve action opened no new ad or grant: bank 28/35 and reserve 6/6 stayed unchanged. Genuine data was restored for the changed debug signer; this is not replacement retention or re-earning. Final normal Save&Close exited once with the same genuine bank/reserves and paused shift; original display/rotation were restored.
+131f separately passed actual same-phone foreground, one Pause modal and explicit Resume; do not call that a new 9934 lifecycle result.
+Cfa: genuine first shift, four customers/two restocks/three stars in 51.73s, +28 coins / 35 XP once; first Mina sale was genuinely earned on the predecessor, remaining customers/settlement on cfa. Result close and same-APK cold launch preserved exact settled data without restore/extra payout. Earned reserve granted once, held time through endcard/dismissal and required neutral Resume; used Reserve gave no extra ad/grant. These core/ad/cold checks are cfa evidence, not re-earned 9934 progress.
+All 18 original cfa images are accepted/copied, six each logical phone/7-inch/10-inch. marketing/screenshots/MANIFEST.json keeps actual hashes/source/APK/profile/practice flags. Five views are non-paying practice; result views show the same settled result. No physical tablet or 9934 screenshot claim.
+
+QUALIFICATIONS
+Final 9934 exit had no Godot script/ObjectDB/retained-resource errors. Whole-process logs retain distinct EGL shutdown, AdMob header-handling and emulator video-codec diagnostics; full strict status is FALSE. The engine/GLES3 hypothesis applies only to EGL; numbered-object ownership remains unproven. No observed crash in the checked ad/control flows.
+A cfa black foreground after repeated display-profile switching recovered with one Market-only force-stop/cold launch and exact save, without restart/restore/reward replay. Retain that surface-return concern. Native earned reserve is verified; native interstitial, unearned dismissal, unavailable-ad and actual offline paths are unverified. Source fixtures are separate. Physical-device, audible output, interactive Web and production services remain unverified; browser inventory is empty and emulator audio disabled.
+
+PACKAGES / CONTINUATION
+Local test packages: build/first-pass-qualified-20261023/packages/. LOCAL_PACKAGE_RECEIPT.json identifies verified archive hashes/source/runtime; if absent, packaging is incomplete. Next: verify package receipt, review/audit final docs/commit and exact final public CI; retain owner/device and diagnostic qualifiers. No future package-source commit is assumed.
+Fresh agent: AGENTS.md, README.md, docs/QA_STATUS.md, docs/PLATFORM_SETUP.md. ID/name/icon maps: game/catalog.json and docs/PLATFORM_CATALOG.md. Real IDs go in existing platform/config.json play_games.achievements/leaderboards values; set play_games.game_id there AND export_presets.cfg godot_play_game_services/game_id before configured PGS enablement. No cloud saves.
+AdMob manifest App ID: project.godot [admob] general/android/app_id, separate from JSON admob.app_id; verify the manifest. test_mode does not turn production unit IDs into test requests. Owner handles real IDs, signing, consent/privacy and Play publication.
+Store: marketing/STORE_LISTING.md, marketing/WEBSITE_COPY.md. Preserve LICENSE/NOTICE/complete LICENSES; exclude private logs/saves/backups/signing material.

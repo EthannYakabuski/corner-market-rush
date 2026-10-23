@@ -2,7 +2,17 @@
 
 A little shop. A lively rush. Run a welcoming neighborhood grocery, keep the shelves stocked, and help every complete basket reach the checkout.
 
-The gameplay source and exact-source Android/Web CI build have passed their source gates. Genuine Android acceptance is unfinished: the guest System UI became unstable before the saved shift could be played. One real portrait Home view is reviewed. A focused SDK-loader cleanup has passed isolated regressions in source and still needs a replacement build/native exit check. See [acceptance status](docs/QA_STATUS.md). Final packages and `HANDOFF.txt` have not been issued.
+Final toast-card source `9934b51e` is public with passing exact-source
+Android/Web CI: 215 UI, 92 lifetime, 1552 model, 62 profile, 17 audio and services. The affected
+phone native card presentation passed after genuine signer-restoration; final
+normal Save&Close, unchanged genuine state and display restoration are verified. Earlier
+cfa core/payout/cold/earned-reserve checks and 18 accepted screenshots keep their
+original provenance; 131f separately verified same-phone foreground/pause/Resume.
+Whole-process logs retain distinct EGL, ad-header and emulator media diagnostics;
+full native strict status is false. Local test package location:
+`build/first-pass-qualified-20261023/packages/`. Its `LOCAL_PACKAGE_RECEIPT.json`
+identifies verified archive hashes/source/runtime; if absent, packaging is
+incomplete. See [acceptance status](docs/QA_STATUS.md).
 
 ## Play
 
@@ -22,7 +32,7 @@ The first shift introduces apples and bread with four customers and generous pat
 - Six regular customers, manager XP/levels with a modest coin welcome gift at each new level, capped shelf/reserve improvements and visible shop decorations. Level gifts share the once-only saved shift receipt.
 - A daily basket, three daily goals and a seven-claim welcome calendar. Claims use UTC dates; missing a day does not erase the welcome calendar. Offline play does not invent idle earnings.
 - **20 achievement definitions and three higher-is-better records**. The best-combo record excludes earned assistance. Exact names, descriptions, criteria and icon paths live in [game/catalog.json](game/catalog.json).
-- Selected Kenney CC0 shop, character, furniture, nature, street and UI assets; original music and matching licensed sound effects with separate persisted volume toggles.
+- Selected Kenney CC0 shop, character, furniture, nature, street and UI assets; original music and matching licensed sound effects with separate persisted Music/Effects On/Off settings.
 - Local versioned saves, previous-good backup recovery and atomic, idempotent reward settlement. Private saves and test evidence must remain outside publication.
 
 Google Play Games and AdMob adapters are included with disabled blank production mappings and Google test advertising IDs. Local play remains available without services. An optional earned reserve delivery grants assistance only from a valid earned callback; close, unavailable and obsolete callbacks grant nothing. Play stays frozen through the endcard and dismissal, then waits for Resume. Web never simulates an earned reward.
@@ -45,7 +55,7 @@ Read [AGENTS.md](AGENTS.md), [the design](docs/DESIGN.md) and the current handof
 | Illustration provenance and asset treatment | [Art](docs/ART.md) |
 | Data disclosures | [Privacy](docs/PRIVACY.md), [data safety](docs/DATA_SAFETY.md) |
 
-The AdMob **manifest App ID in `project.godot` is separate from the JSON configuration**. `test_mode` wording does not turn production ad IDs into test requests. The owner must configure and verify production Google Play Games, advertising/consent, signing and Play Console details. The current Android min24/target35 settings are a tested engine/export constraint, **not a claim of current Play release eligibility**.
+The AdMob **manifest App ID in `project.godot` is separate from the JSON configuration**. `test_mode` does not turn production unit IDs into test requests. The owner must configure and verify production Google Play Games, advertising/consent, signing and Play Console details. The current Android min24/target35 settings are a tested engine/export constraint, **not a claim of current Play release eligibility**.
 
 ## Validate
 
@@ -62,11 +72,11 @@ godot --headless --path . --script tests/test_ui.gd -- --qa-isolated
 godot --headless --path . --script tests/test_ad_load_lifetime.gd -- --qa-isolated
 ```
 
-The current isolated engine checks pass **1,552 model checks**, including legal baseline strategies for all 36 shifts; **62 progression/save checks**; **176 scene/lifecycle checks**; and **17 audio checks**. The import and service smoke checks also pass without strict diagnostics. Keep the strict script/error/assertion log gate alongside exit codes. The scene test's service callbacks are explicitly synthetic fixtures, never evidence of a real SDK ad or native reward.
+The current 9934 exact-source CI passed **1,552 model checks**, including legal baseline strategies for all 36 shifts; **62 progression/save checks**; **215 scene/lifecycle checks**; and **17 audio checks**. The 92 lifetime checks, import and service smoke checks also passed strict source gates; known export/runner warnings remain recorded. Keep the strict script/error/assertion log gate alongside exit codes. The scene test's service callbacks are explicitly synthetic fixtures, never evidence of a real SDK ad or native reward.
 
-The revised Android Home is readable on the verified CI25 APK. Basket-count/footer and deferred page cleanup fixes have 176 source UI/lifecycle checks; their actual shop acceptance is still pending. The real saved shift remains paused at 13.14 seconds with no checkouts or rewards. The new SDK-loader ownership suite adds 92 local checks, automatically discovered by CI, without replacing native shutdown validation.
+The prior cfa APK has genuine native checkout/restock/completed-shift evidence and byte-identical settled-profile retention across result close and same-APK cold launch. The first Mina sale belonged to the genuine predecessor run; the remaining three customers and settlement completed on cfa. Actual background-modal and normal SDK cleanup checks passed. Actual native earned reserve and all 18 visual reviews passed on cfa; local package receipt/final docs/public CI and distinct EGL/SDK-media/surface-return qualifications are tracked in docs/QA_STATUS.md.
 
-Still required for acceptance: genuine Android completion/restock/checkout and once-only payment across cold load; real pause/Back/save behavior; available real service flows; actual offline verification; reviewed Android/Web packages; and six genuine views each for phone, seven-inch and ten-inch profiles. Auditory listening, physical-device, interactive Web and production-service validation have not been established by these source checks. Illustrated marketing images are never gameplay screenshots.
+Still open: verification of the local package receipt and final reviewed docs/commit/public CI and retained EGL/SDK-media/surface-return qualifications. Actual offline verification, auditory listening, physical-device, interactive Web and production-service validation remain unverified. The 18 accepted logical-profile images are genuine raw Android captures, with practice explicitly labelled; illustrations are never gameplay screenshots.
 
 ## Licenses
 
