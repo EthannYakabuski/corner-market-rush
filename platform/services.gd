@@ -1,4 +1,6 @@
 extends Node
+
+const AdLoads = preload("res://platform/ad_load_lifetime.gd")
 ## Android-only native integrations. Web and editor never simulate ad entitlement.
 
 signal availability_changed
@@ -8,6 +10,8 @@ signal menu_bottom_reserve_changed
 var settings: Dictionary = {}
 var _native_ads := false
 var _ads_ready := false
+var _ads_shutting_down := false
+var _pending_ad_loaders: Dictionary = {}
 var _pgs_ready := false
 var _signed_in := false
 var _menu_visible := true
@@ -195,6 +199,8 @@ func privacy_options() -> void:
 		_set_notice("Privacy options for advertising are available in the Android app.")
 
 func _on_ads_initialized(_initialization: InitializationStatus) -> void:
+	if _ads_shutting_down:
+		return
 	_ads_ready = true
 	_load_banner()
 	_load_interstitial()
@@ -231,20 +237,38 @@ func _load_banner() -> void:
 func _load_interstitial() -> void:
 	if not _ads_ready or _ad_id("interstitial").is_empty():
 		return
+	var loader := AdLoads.Interstitial.new()
+	var ticket := loader.get_instance_id()
+	_pending_ad_loaders[ticket] = loader
 	var callback := InterstitialAdLoadCallback.new()
-	callback.on_ad_loaded = func(ad: InterstitialAd) -> void:
-		_interstitial = ad
-		var content := FullScreenContentCallback.new()
-		content.on_ad_showed_full_screen_content = func() -> void: _ad_diagnostic("interstitial_presented")
-		content.on_ad_dismissed_full_screen_content = func() -> void:
-			_ad_diagnostic("interstitial_dismissed")
-			_interstitial_closed()
-		content.on_ad_failed_to_show_full_screen_content = func(error: AdError) -> void:
-			_ad_diagnostic("interstitial_failed", error.message)
-			_interstitial_closed()
-		ad.full_screen_content_callback = content
-	callback.on_ad_failed_to_load = func(error: LoadAdError) -> void: _set_notice("Interstitial unavailable: " + error.message)
-	InterstitialAdLoader.new().load(_ad_id("interstitial"), AdRequest.new(), callback)
+	callback.on_ad_loaded = _interstitial_loaded.bind(ticket)
+	callback.on_ad_failed_to_load = _interstitial_load_failed.bind(ticket)
+	loader.load(_ad_id("interstitial"), AdRequest.new(), callback)
+	if not loader.is_pending_load():
+		_pending_ad_loaders.erase(ticket)
+
+func _interstitial_loaded(ad: InterstitialAd, ticket: int) -> void:
+	# The adapter retains the loader across the vendor's deferred release.
+	# Retire the pending ticket before any notification can reenter shutdown.
+	_pending_ad_loaders.erase(ticket)
+	if _ads_shutting_down:
+		ad.destroy()
+		return
+	_interstitial = ad
+	var content := FullScreenContentCallback.new()
+	content.on_ad_showed_full_screen_content = func() -> void: _ad_diagnostic("interstitial_presented")
+	content.on_ad_dismissed_full_screen_content = func() -> void:
+		_ad_diagnostic("interstitial_dismissed")
+		_interstitial_closed()
+	content.on_ad_failed_to_show_full_screen_content = func(error: AdError) -> void:
+		_ad_diagnostic("interstitial_failed", error.message)
+		_interstitial_closed()
+	ad.full_screen_content_callback = content
+
+func _interstitial_load_failed(error: LoadAdError, ticket: int) -> void:
+	_pending_ad_loaders.erase(ticket)
+	if not _ads_shutting_down:
+		_set_notice("Interstitial unavailable: " + error.message)
 
 func round_finished() -> void:
 	_round_count += 1
@@ -266,23 +290,38 @@ func _interstitial_closed() -> void:
 func _load_rewarded() -> void:
 	if not _ads_ready or _ad_id("rewarded").is_empty():
 		return
+	var loader := AdLoads.Rewarded.new()
+	var ticket := loader.get_instance_id()
+	_pending_ad_loaders[ticket] = loader
 	var callback := RewardedAdLoadCallback.new()
-	callback.on_ad_loaded = func(ad: RewardedAd) -> void:
-		_rewarded = ad
-		var content := FullScreenContentCallback.new()
-		content.on_ad_showed_full_screen_content = func() -> void: _ad_diagnostic("rewarded_presented", _reward_context)
-		content.on_ad_dismissed_full_screen_content = func() -> void:
-			_ad_diagnostic("rewarded_dismissed", _reward_context)
-			_rewarded_closed()
-		content.on_ad_failed_to_show_full_screen_content = func(error: AdError) -> void:
-			_ad_diagnostic("rewarded_failed", _reward_context + ": " + error.message)
-			_rewarded_closed()
-		ad.full_screen_content_callback = content
-		availability_changed.emit()
-	callback.on_ad_failed_to_load = func(error: LoadAdError) -> void:
+	callback.on_ad_loaded = _rewarded_loaded.bind(ticket)
+	callback.on_ad_failed_to_load = _rewarded_load_failed.bind(ticket)
+	loader.load(_ad_id("rewarded"), AdRequest.new(), callback)
+	if not loader.is_pending_load():
+		_pending_ad_loaders.erase(ticket)
+
+func _rewarded_loaded(ad: RewardedAd, ticket: int) -> void:
+	_pending_ad_loaders.erase(ticket)
+	if _ads_shutting_down:
+		ad.destroy()
+		return
+	_rewarded = ad
+	var content := FullScreenContentCallback.new()
+	content.on_ad_showed_full_screen_content = func() -> void: _ad_diagnostic("rewarded_presented", _reward_context)
+	content.on_ad_dismissed_full_screen_content = func() -> void:
+		_ad_diagnostic("rewarded_dismissed", _reward_context)
+		_rewarded_closed()
+	content.on_ad_failed_to_show_full_screen_content = func(error: AdError) -> void:
+		_ad_diagnostic("rewarded_failed", _reward_context + ": " + error.message)
+		_rewarded_closed()
+	ad.full_screen_content_callback = content
+	availability_changed.emit()
+
+func _rewarded_load_failed(error: LoadAdError, ticket: int) -> void:
+	_pending_ad_loaders.erase(ticket)
+	if not _ads_shutting_down:
 		_set_notice("Rewarded ad unavailable: " + error.message)
 		availability_changed.emit()
-	RewardedAdLoader.new().load(_ad_id("rewarded"), AdRequest.new(), callback)
 
 func can_reward() -> bool:
 	return _native_ads and _ads_ready and is_instance_valid(_rewarded) and not _reward_showing and not _interstitial_showing
@@ -427,6 +466,12 @@ func _save_pending() -> void:
 		file.store_string(JSON.stringify({"unlocks": _pending_unlocks, "scores": _pending_scores}))
 
 func _exit_tree() -> void:
+	_ads_shutting_down = true
+	_ads_ready = false
+	# Keep ordinary owner Refs alive while cancelling each outstanding SDK hold.
+	for loader in _pending_ad_loaders.values():
+		loader.cancel()
+	_pending_ad_loaders.clear()
 	if is_instance_valid(_banner):
 		_banner.destroy()
 	if is_instance_valid(_interstitial):

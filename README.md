@@ -2,7 +2,7 @@
 
 A little shop. A lively rush. Run a welcoming neighborhood grocery, keep the shelves stocked, and help every complete basket reach the checkout.
 
-The source implementation and isolated Godot checks are available. Android acceptance, final packages, real screenshots and hosted CI are still delivery gates; this README does not claim they have passed. The final delivery record will be in `HANDOFF.txt` when issued.
+The gameplay source and exact-source Android/Web CI build have passed their source gates. Genuine Android acceptance is unfinished: the guest System UI became unstable before the saved shift could be played. One real portrait Home view is reviewed. A focused SDK-loader cleanup has passed isolated regressions in source and still needs a replacement build/native exit check. See [acceptance status](docs/QA_STATUS.md). Final packages and `HANDOFF.txt` have not been issued.
 
 ## Play
 
@@ -59,11 +59,12 @@ godot --headless --path . --script platform/tests/services_smoke.gd -- --qa-isol
 godot --headless --path . --script tests/test_market_model.gd -- --qa-isolated
 godot --headless --path . --script tests/test_profile.gd -- --qa-isolated
 godot --headless --path . --script tests/test_ui.gd -- --qa-isolated
+godot --headless --path . --script tests/test_ad_load_lifetime.gd -- --qa-isolated
 ```
 
 The current isolated engine checks pass **1,552 model checks**, including legal baseline strategies for all 36 shifts; **62 progression/save checks**; **176 scene/lifecycle checks**; and **17 audio checks**. The import and service smoke checks also pass without strict diagnostics. Keep the strict script/error/assertion log gate alongside exit codes. The scene test's service callbacks are explicitly synthetic fixtures, never evidence of a real SDK ad or native reward.
 
-The first Android presentation review found an oversized wallet header and overbright scenery. Source corrections and phone/tablet touch-geometry checks now pass; acceptance of the revised Android rendering and controls is still pending an updated build and genuine play.
+The revised Android Home is readable on the verified CI25 APK. Basket-count/footer and deferred page cleanup fixes have 176 source UI/lifecycle checks; their actual shop acceptance is still pending. The real saved shift remains paused at 13.14 seconds with no checkouts or rewards. The new SDK-loader ownership suite adds 92 local checks, automatically discovered by CI, without replacing native shutdown validation.
 
 Still required for acceptance: genuine Android completion/restock/checkout and once-only payment across cold load; real pause/Back/save behavior; available real service flows; actual offline verification; reviewed Android/Web packages; and six genuine views each for phone, seven-inch and ten-inch profiles. Auditory listening, physical-device, interactive Web and production-service validation have not been established by these source checks. Illustrated marketing images are never gameplay screenshots.
 

@@ -1,0 +1,18 @@
+{
+  "status": "partial; not final screenshot acceptance",
+  "source_commit": "25f1ab5a711ec7b19e3b132e71f5069d907c8710",
+  "apk_sha256": "20FE1A17921AF274D64B3F7991991883280136FEC4B4600FE12FAE74F0254683",
+  "ci_run": 39872243207,
+  "required_count": 18,
+  "accepted_count": 1,
+  "logical_emulator_profiles_not_physical_devices": true,
+  "unaltered_raw_pixels": true,
+  "images": [
+    {
+      "path": "marketing/screenshots/phone/01-home.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "274CF3C1162574E7E6C8F820A63AAB1861170CB0E18AF932CA613574B1AF3033"
+    }
+  ]
+}
