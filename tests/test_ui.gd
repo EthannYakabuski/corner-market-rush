@@ -94,6 +94,9 @@ func geometry(profile_name: String, dimensions: Vector2i, density: float) -> voi
 	await process_frame
 	await process_frame
 	check(app.stock_buttons.size() == 6,"full product controls present: "+profile_name)
+	check(inside_app(app.checkout_button),"counter standby control stays inside viewport: "+profile_name)
+	var counter_dp := touch_dp(app.checkout_button,density)
+	check(counter_dp.x >= 48 and counter_dp.y >= 48-.01,"counter standby target meets48dp: "+profile_name)
 	for sku in app.stock_buttons:
 		check(ResourceLoader.exists(app._product_icon_path(str(sku))),"actual runtime product pictogram imported: "+str(sku))
 		check(inside_app(app.stock_buttons[sku]),"product action inside viewport: "+profile_name+"/"+str(sku))
@@ -248,7 +251,7 @@ func _run() -> void:
 	app.show_daily()
 	check(app.content.get_child_count() > 8,"calendar, basket and three daily goals reachable")
 	app.show_growth()
-	check(app.profile.data.upgrades.size() == 3,"all improvement types reachable")
+	check(app.profile.data.upgrades.size() == 10,"all improvement types reachable")
 	# Synthetic callback/endcard fixture: main handler, model aid and neutral Resume.
 	app._start_shift(2)
 	app._process(0.1)

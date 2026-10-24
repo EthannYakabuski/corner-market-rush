@@ -20,6 +20,8 @@ Kenney (www.kenney.nl), CC0-1.0; original notices retained unchanged:
     Assets/kenney_city-kit-commercial_2.1-LICENSE.txt
   assets/ui/ - selected UI Pack 2.0 textures:
     Assets/kenney_ui-pack-LICENSE.txt
+  assets/ui/emotes/ - unchanged Emotes Pack Vector Style 1 exclamation/happy/sad:
+    Assets/kenney_emotes-pack-LICENSE.txt
   Asset-selection and derived fruit-display details:
     Assets/MARKET-ASSETS.txt and game/derive_fruit_asset.py.
   The stock-depletion fruit-display derivative retains the Mini Market

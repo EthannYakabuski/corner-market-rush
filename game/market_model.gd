@@ -10,6 +10,7 @@ const REGULARS := ["Mina", "Theo", "Jun", "Otis", "Ivy", "Sol"]
 const WALK_SPEED := 2.5
 const PICKUP_SECONDS := 0.75
 const MAX_CUSTOMERS := 4
+const SERVICE_KEYS := ["restock_apple","restock_bread","restock_milk","restock_cereal","restock_greens","restock_juice","checkout"]
 const ENTRY := Vector2(3.2, 3.6)
 const EXIT := Vector2(4.7, 4.3)
 const CLERK_HOME := Vector2(0.0, 1.35)
@@ -52,7 +53,10 @@ func new_shift(shift_id: int, practice: bool = false, upgrades: Dictionary = {})
 		capacities[sku] = int(definition["capacity"]) + capacity_bonus
 		shelves[sku] = mini(int(definition["starting_stock"].get(sku, 1)), int(capacities[sku]))
 		reserve[sku] = int(definition["reserve"].get(sku, 0)) + reserve_bonus * 2
+	var service_ranks: Dictionary = {}
+	for key in SERVICE_KEYS: service_ranks[key] = clampi(int(upgrades.get(key,0)),0,3)
 	state = {
+		"service_ranks": service_ranks,
 		"shift_id": shift_id, "run_id": "%s-%s-%s" % [shift_id, Time.get_unix_time_from_system(), Time.get_ticks_usec()],
 		"status": "active", "practice": practice, "paused": false,
 		"elapsed": 0.0, "remaining": float(definition["duration"]),
@@ -90,9 +94,11 @@ func queue_task(kind: String, target: Variant) -> bool:
 			return _reject("That shelf is already full.")
 		target = sku
 	else:
-		var customer := customer_by_id(int(target))
-		if customer.is_empty() or customer["phase"] != "ready":
-			return _reject("Wait until this basket is complete.")
+		# -1 is one explicit counter standby job, not an automatic cashier.
+		if int(target) != -1:
+			var customer := customer_by_id(int(target))
+			if customer.is_empty() or customer["phase"] != "ready":
+				return _reject("Wait until this basket is complete.")
 		target = int(target)
 	for slot: String in ["active_task", "queued_task"]:
 		var existing: Dictionary = state[slot]
@@ -100,7 +106,8 @@ func queue_task(kind: String, target: Variant) -> bool:
 			return _reject("That job is already in the clerk's queue.")
 	if not state["queued_task"].is_empty():
 		return _reject("Queue full. Tap the queued job to cancel it.")
-	var interaction := 1.0 if kind == "restock" else 1.1
+	var key := "restock_"+str(target) if kind == "restock" else "checkout"
+	var interaction := (1.0 if kind == "restock" else 1.1)/(1.0+.25*int(state.service_ranks.get(key,0)))
 	var task := {"kind": kind, "target": target, "remaining": interaction, "duration": interaction, "interaction_remaining": interaction, "interaction_duration": interaction}
 	if state["active_task"].is_empty():
 		_start_task(task)
@@ -169,7 +176,8 @@ func _spawn_due_customers() -> void:
 			"max_patience": float(order["patience"]), "pick_timer": PICKUP_SECONDS,
 			"sku_target": "", "paid": false, "arrived_at": float(state["elapsed"]),
 			"position": [ENTRY.x, ENTRY.y], "target_position": [ENTRY.x, ENTRY.y],
-			"route": [], "motion_phase": "idle", "queue_slot": -1, "celebrate_remaining": 0.0
+			"route": [], "motion_phase": "idle", "queue_slot": -1, "celebrate_remaining": 0.0,
+			"stock_waiting":false, "waited_for_stock":false, "happy":false
 		}
 		state["customers"].append(customer)
 		_target_customer_shelf(customer)
@@ -200,8 +208,10 @@ func _tick_customers(dt: float) -> void:
 				continue
 			customer["motion_phase"] = "interact"
 			customer["pick_timer"] = PICKUP_SECONDS
+			_update_stock_emote(customer)
 			_emit("pickup_started", {"customer_id": customer["id"], "sku": customer["sku_target"]})
 			continue
+		_update_stock_emote(customer)
 		customer["pick_timer"] = float(customer["pick_timer"]) - dt
 		if float(customer["pick_timer"]) > 0.0:
 			continue
@@ -224,6 +234,12 @@ func _tick_customers(dt: float) -> void:
 			customer["motion_phase"] = "wait"
 			customer["pick_timer"] = 0.2
 
+func _update_stock_emote(customer: Dictionary) -> void:
+	var needed := _next_needed(customer)
+	var waiting: bool = customer["phase"] == "shopping" and customer["motion_phase"] != "walk" and not needed.is_empty() and int(state["shelves"].get(needed,0)) <= 0
+	customer["stock_waiting"] = waiting
+	if waiting: customer["waited_for_stock"] = true
+
 func _target_customer_shelf(customer: Dictionary) -> void:
 	var sku := _next_needed(customer)
 	if sku.is_empty():
@@ -243,6 +259,7 @@ func _target_customer_counter(customer: Dictionary) -> void:
 		slot += 1
 	customer["queue_slot"] = slot
 	customer["phase"] = "to_checkout"
+	customer["stock_waiting"] = false
 	customer["sku_target"] = ""
 	var target := Vector2(-0.1 + float(slot % 2) * 0.55, 2.8 + floorf(float(slot) / 2.0) * 0.45)
 	_set_route(customer, target)
@@ -293,6 +310,20 @@ func _tick_task(dt: float) -> void:
 		state["clerk_motion"] = "interact"
 		_emit("clerk_interact", {"task": task.duplicate(true)})
 		return
+	if task["kind"] == "checkout" and int(task["target"]) == -1:
+		var ready: Dictionary = {}
+		for customer: Dictionary in state["customers"]:
+			if customer["phase"] == "ready" and (ready.is_empty() or int(customer["queue_slot"]) < int(ready["queue_slot"])): ready = customer
+		if ready.is_empty():
+			task["motion_phase"] = "wait"
+			state["clerk_motion"] = "idle"
+			state["last_action"] = "At checkout - waiting for a complete basket"
+			# A new shelf job can release standby rather than deadlocking stock.
+			if not state["queued_task"].is_empty(): _complete_task()
+			return
+		task["target"] = int(ready["id"])
+		task["motion_phase"] = "interact"
+		state["last_action"] = "Checking out "+str(ready["name"])
 	state["clerk_motion"] = "interact"
 	task["interaction_remaining"] = maxf(0.0, float(task["interaction_remaining"]) - dt)
 	task["remaining"] = task["interaction_remaining"]
@@ -315,6 +346,8 @@ func _tick_task(dt: float) -> void:
 				price += int(PRICES[sku]) * int(customer["order"][sku])
 			customer["paid"] = true
 			customer["phase"] = "served"
+			customer["stock_waiting"] = false
+			customer["happy"] = not bool(customer.get("waited_for_stock",false)) and float(customer["patience"]) >= float(customer["max_patience"])*.5
 			customer["motion_phase"] = "celebrate"
 			customer["celebrate_remaining"] = 0.6
 			customer["route"] = []
@@ -326,6 +359,9 @@ func _tick_task(dt: float) -> void:
 			state["xp"] = int(state["xp"]) + 5 + customer["order"].size()
 			state["last_action"] = "%s served · +%s coins" % [customer["name"], price]
 			_emit("checkout", {"customer_id": customer["id"], "coins": price})
+	_complete_task()
+
+func _complete_task() -> void:
 	state["active_task"] = {}
 	state["clerk_motion"] = "idle"
 	if not state["queued_task"].is_empty():
@@ -345,13 +381,15 @@ func _start_task(task: Dictionary) -> void:
 	task["remaining"] = task["duration"]
 	state["active_task"] = task
 	state["clerk_motion"] = "walk"
-	state["last_action"] = "Restocking %s" % SKU_NAMES[str(task["target"])] if task["kind"] == "restock" else "Checking out %s" % customer_by_id(int(task["target"])).get("name", "basket")
+	state["last_action"] = "Restocking %s" % SKU_NAMES[str(task["target"])] if task["kind"] == "restock" else "Checking out %s" % customer_by_id(int(task["target"])).get("name", "counter - next complete basket")
 	_emit("task_started", {"task": task.duplicate(true)})
 
 func _lose_customer(customer: Dictionary) -> void:
 	if customer["phase"] == "lost" or customer["phase"] == "served":
 		return
 	customer["phase"] = "lost"
+	customer["stock_waiting"] = false
+	customer["happy"] = false
 	customer["motion_phase"] = "celebrate"
 	customer["celebrate_remaining"] = 0.6
 	customer["route"] = []
@@ -446,6 +484,11 @@ func restore(saved: Dictionary) -> bool:
 	var shift_id := int(candidate["shift_id"])
 	if candidate["run_id"].is_empty():
 		return _reject("This shift save has no valid run.")
+	if not candidate.has("service_ranks"): candidate["service_ranks"] = {}
+	if not candidate["service_ranks"] is Dictionary: return _reject("This service upgrade save is invalid.")
+	for key in SERVICE_KEYS:
+		if not candidate["service_ranks"].has(key): candidate["service_ranks"][key] = 0
+		if not _whole(candidate["service_ranks"][key],0,3): return _reject("This service upgrade save is invalid.")
 	var required := ["shelves", "reserve", "capacities", "active_task", "queued_task"]
 	for key: String in required:
 		if not candidate.get(key) is Dictionary:
@@ -486,6 +529,9 @@ func restore(saved: Dictionary) -> bool:
 			return _reject("This basket save is incomplete.")
 		if not _whole(customer.get("id"), 0, int(candidate["arrival_cursor"]) - 1) or not customer.get("phase") is String or not customer["phase"] in ["shopping", "to_checkout", "ready", "served", "lost"]:
 			return _reject("This basket save is invalid.")
+		for key in ["stock_waiting","waited_for_stock","happy"]:
+			if not customer.has(key): customer[key] = false
+			if not customer[key] is bool: return _reject("This customer emote save is invalid.")
 		var customer_id := int(customer["id"])
 		var expected: Dictionary = shift["orders"][customer_id]["basket"]
 		if seen_customers.has(customer_id) or customer["order"].size() != expected.size():
@@ -521,10 +567,10 @@ func restore(saved: Dictionary) -> bool:
 					return _reject("This clerk task save has invalid timing.")
 			if task["kind"] == "restock" and (not task.get("target") is String or not shift["skus"].has(task["target"])):
 				return _reject("This clerk task points to an unavailable shelf.")
-			if task["kind"] == "checkout" and (not _whole(task.get("target"), 0, shift["orders"].size() - 1) or not seen_customers.has(int(task["target"]))):
+			if task["kind"] == "checkout" and (not _whole(task.get("target"), -1, shift["orders"].size() - 1) or (int(task["target"]) != -1 and not seen_customers.has(int(task["target"])))):
 				return _reject("This clerk task points to an unavailable basket.")
 			if slot == "active_task":
-				if not _valid_point(task.get("position")) or not _valid_point(task.get("target_position")) or not _valid_route(task.get("route")) or not task.get("motion_phase") is String or not task["motion_phase"] in ["travel", "interact"]:
+				if not _valid_point(task.get("position")) or not _valid_point(task.get("target_position")) or not _valid_route(task.get("route")) or not task.get("motion_phase") is String or not task["motion_phase"] in ["travel", "interact", "wait"]:
 					return _reject("This clerk task path save is invalid.")
 	definition = shift.duplicate(true)
 	state = candidate

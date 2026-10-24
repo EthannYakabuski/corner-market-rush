@@ -1,3 +1,10 @@
+ROUND FOUR GAMEPLAY SOURCE UPDATE - 2026-10-24
+Seven service upgrades, one-job counter standby and licensed NPC emotes implemented.
+2213 isolated source assertions and import pass; details: docs/ROUND_FOUR.md.
+New Android/Web/native acceptance and exact-commit CI are separate coordinator gates.
+Preserved first-pass artifacts and genuine evidence below retain their dated scope.
+No genuine saves, owner backend configuration or reserved Taxi state changed.
+
 CORNER MARKET RUSH - QUALIFIED LOCAL TEST BUILD
 9934 source/export and affected phone toast presentation passed. Full native process-log strict status remains FALSE with listed diagnostics; this is not final native-ready or production-ready acceptance.
 

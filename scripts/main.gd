@@ -33,6 +33,7 @@ var stock_buttons: Dictionary = {}
 var customer_buttons: Dictionary = {}
 var customer_cards: Dictionary = {}
 var customer_row: HBoxContainer
+var checkout_button: Button
 var basket_label: Label
 var task_label: Label
 var shift_label: Label
@@ -326,7 +327,11 @@ func show_growth() -> void:
 	var box := _menu("Shop improvements","Small improvements, meaningful choices. Every shift is possible without upgrades.")
 	_text(box,"Manager level %d" % profile.level(),34,TEAL)
 	_text(box,"%d XP · Next level at %d XP" % [int(profile.data.xp),Profile.xp_for_level(profile.level()+1)],25)
-	for upgrade in [{"key":"capacity","name":"Room on the shelf","description":"+1 shelf capacity per product, each tier."},{"key":"reserve","name":"A well-packed reserve","description":"+2 reserve items per product, each tier."},{"key":"decor","name":"A brighter little corner","description":"Add welcome decorations and celebrate your shop."}]:
+	var improvements := [{"key":"capacity","name":"Room on the shelf","description":"+1 shelf capacity per product, each tier."},{"key":"reserve","name":"A well-packed reserve","description":"+2 reserve items per product, each tier."},{"key":"decor","name":"A brighter little corner","description":"Add welcome decorations and celebrate your shop."}]
+	for sku in Model.SKU_NAMES:
+		improvements.append({"key":"restock_"+str(sku),"name":str(Model.SKU_NAMES[sku])+" restock practice","description":"25% more restock speed per tier for this product; applies to the next shift."})
+	improvements.append({"key":"checkout","name":"A smoother checkout","description":"25% more checkout speed per tier; applies to the next shift."})
+	for upgrade in improvements:
 		var card := _vbox(_panel(box,Color("f0e2c7")))
 		var tier := int(profile.data.upgrades[upgrade.key])
 		_text(card,"%s  ·  %d/3" % [upgrade.name,tier],30)
@@ -451,7 +456,7 @@ func show_settings() -> void:
 		_button(box,"Sign in to Play Games",func(): services.sign_in())
 		_button(box,"Privacy options",func(): services.privacy_options(),Color("6e8787"))
 	_text(box,"How to play",32,TEAL)
-	_text(box,"Customers collect their requested items from your shelves. Tap a shelf or its large card to restock it. When a basket is complete, tap the customer's Checkout card. One job can run while one waits; tap Cancel queued job to change your plan. Incomplete baskets never pay.",26)
+	_text(box,"Customers collect their requested items from your shelves. Tap a shelf or its large card to restock it. When a basket is complete, tap the customer's Checkout card. Go to checkout sends the clerk to wait for one complete basket, even before it arrives. One job can run while one waits; tap Cancel queued job to change your plan. Incomplete baskets never pay.",26)
 	_text(box,"Ordinary retries and untimed practice are free. Optional delivery assistance needs a real earned ad; unavailable or closed ads never grant anything. Assisted combos stay out of the unassisted record.",24)
 	_text(box,"Made with Godot and selected Kenney CC0 art. Original game work Apache 2.0. License notices accompany the package.",21)
 
@@ -538,6 +543,9 @@ func _build_game() -> void:
 	task_progress.custom_minimum_size.y = 12
 	controls.add_child(task_progress)
 	var row := _row(controls,8)
+	checkout_button = _button(row,"Go to checkout",func(): _queue_task("checkout",-1),TEAL)
+	checkout_button.name = "GoCheckout"
+	checkout_button.custom_minimum_size.y = 128
 	_button(row,"Pause",func(): _pause_shift("A little breather","Everything in the shop waits for you."),Color("6e8787"))
 	_button(row,"Cancel queued job",func():
 		if model != null: model.cancel_queued(),Color("6e8787"))
@@ -555,6 +563,7 @@ func _order_text(customer: Dictionary) -> String:
 func _refresh_game() -> void:
 	if model == null or not is_instance_valid(shift_label): return
 	var state: Dictionary = model.state
+	checkout_button.disabled = paused
 	shift_label.text = "%s  ·  %d/%d neighbors  ·  %d coins" % ["Practice" if state.practice else "%ds" % int(ceil(float(state.remaining))),int(state.served),int(model.definition.target),int(state.revenue)]
 	shift_progress.max_value = float(model.definition.duration)
 	shift_progress.value = float(state.remaining)
@@ -641,7 +650,7 @@ func _refresh_game() -> void:
 
 func _task_name(task: Dictionary) -> String:
 	if task.is_empty(): return "None"
-	return "Restock "+str(catalog.products[str(task.target)].name) if task.kind == "restock" else "Checkout basket"
+	return "Restock "+str(catalog.products[str(task.target)].name) if task.kind == "restock" else "Go to checkout" if int(task.target) == -1 else "Checkout basket"
 
 func _queue_task(kind: String, target: Variant) -> void:
 	if screen != "game" or paused or background or reward_pending or ad_waiting or model == null: return

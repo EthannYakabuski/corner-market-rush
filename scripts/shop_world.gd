@@ -11,6 +11,7 @@ var labels: Dictionary = {}
 var markers: Dictionary = {}
 var actors: Dictionary = {}
 var actor_labels: Dictionary = {}
+var actor_emotes: Dictionary = {}
 var positions := [Vector3(-2.35,0.04,-1.35),Vector3(-0.15,0.04,-1.35),Vector3(2.05,0.04,-1.35),Vector3(-2.35,0.04,0.7),Vector3(-0.15,0.04,0.7),Vector3(2.05,0.04,0.7)]
 var current_skus: Array = []
 var state: Dictionary = {}
@@ -301,6 +302,8 @@ func show_shift(skus: Array, chapter: int) -> void:
 			marker.visible = sku in skus
 	for actor in actors.values(): actor.queue_free()
 	for text in actor_labels.values(): text.queue_free()
+	for emote in actor_emotes.values(): emote.queue_free()
+	actor_emotes.clear()
 	actors.clear()
 	actor_labels.clear()
 	clerk.position = clerk_home
@@ -324,6 +327,7 @@ func sync(next_state: Dictionary, delta: float) -> void:
 		if active.kind == "restock":
 			task_marker.position = positions[catalog.sku_order.find(str(active.target))]+Vector3(0,0.055,0)
 		else:
+			task_marker.position = clerk_home+Vector3(0,.015,0)
 			var target_customer: Dictionary = {}
 			for customer in state.customers:
 				if int(customer.id) == int(active.target): target_customer = customer
@@ -350,6 +354,12 @@ func sync(next_state: Dictionary, delta: float) -> void:
 			ready_ring.position = Vector3(0,0.025,0)
 			actors[id].set_meta("ready_ring",ready_ring)
 			actor_labels[id] = label(str(customer.name),Vector3.ZERO,30)
+			var emote := Sprite3D.new()
+			emote.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+			emote.no_depth_test = true
+			emote.shaded = false
+			add_child(emote)
+			actor_emotes[id] = emote
 		var actor: Node3D = actors[id]
 		var text: Label3D = actor_labels[id]
 		var phase := str(customer.phase)
@@ -367,6 +377,15 @@ func sync(next_state: Dictionary, delta: float) -> void:
 		var ready_ring: MeshInstance3D = actor.get_meta("ready_ring")
 		ready_ring.visible = phase == "ready"
 		text.visible = actor.visible and phase not in ["served","lost"]
+		var emote: Sprite3D = actor_emotes[id]
+		var emote_name := "exclamation" if bool(customer.get("stock_waiting",false)) else "faceHappy" if phase == "served" and bool(customer.get("happy",false)) else "faceSad" if phase == "lost" else ""
+		emote.visible = actor.visible and not emote_name.is_empty()
+		if emote.visible:
+			var path := "res://assets/ui/emotes/emote_"+emote_name+".png"
+			if not cache.has(path): cache[path] = load(path)
+			emote.texture = cache[path]
+			emote.pixel_size = .55/float(emote.texture.get_width())
+			emote.position = actor.position+Vector3(0,1.65,0)
 
 func set_actor_position(actor: Node3D, position_value: Vector3, delta: float) -> void:
 	# Model time/position is authoritative. Rotation alone is smoothed cosmetically.

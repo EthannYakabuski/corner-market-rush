@@ -1,5 +1,9 @@
 # Corner Market Rush
 
+## Round Four source update
+
+Seven product/checkout service improvements, an early **Go to checkout** standby job, and model-backed Kenney stockout/satisfied-departure emotes are implemented. [Current rules and2213 isolated source checks](docs/ROUND_FOUR.md) are separate from pending new export/native/CI gates. Earlier qualified binaries and screenshots below retain their original scope.
+
 A little shop. A lively rush. Run a welcoming neighborhood grocery, keep the shelves stocked, and help every complete basket reach the checkout.
 
 Final toast-card source `9934b51e` is public with passing exact-source

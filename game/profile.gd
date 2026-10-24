@@ -2,6 +2,7 @@ extends RefCounted
 ## Persistent progression is separate from the deterministic shift simulation.
 const VERSION := 1
 const SAVE_FILE := "user://corner_market/profile.json"
+const SERVICE_UPGRADES := ["restock_apple","restock_bread","restock_milk","restock_cereal","restock_greens","restock_juice","checkout"]
 var data: Dictionary = {}
 var file_path := SAVE_FILE
 var recovery_notice := ""
@@ -14,7 +15,7 @@ static func fresh() -> Dictionary:
 	return {"version": VERSION, "coins": 0, "xp": 0, "served": 0, "restocks": 0,
 		"best_combo": 0, "perfect_shifts": 0, "completed": {}, "stars": {},
 		"regulars": {}, "banked_runs": {}, "accepted_runs": {}, "unlocks": [],
-		"upgrades": {"capacity": 0, "reserve": 0, "decor": 0}, "active": {},
+		"upgrades": {"capacity": 0, "reserve": 0, "decor": 0, "restock_apple":0, "restock_bread":0, "restock_milk":0, "restock_cereal":0, "restock_greens":0, "restock_juice":0, "checkout":0}, "active": {},
 		"daily": {"day": "", "served": 0, "restocks": 0, "revenue": 0, "claims": [], "won": false},
 		"daily_wins": 0, "login_claims": 0, "login_day": "", "music": true, "effects": true,
 		"tutorial_seen": false, "best_shift": 0, "completed_rounds": 0}
@@ -29,6 +30,8 @@ func load_profile() -> bool:
 			for key in parsed:
 				defaults[key] = parsed[key]
 			data = defaults
+			for key in SERVICE_UPGRADES:
+				if not data.upgrades.has(key): data.upgrades[key] = 0
 			if candidate.ends_with(".bak"):
 				recovery_notice = "Your backup was recovered safely."
 			return true
@@ -54,6 +57,8 @@ func _valid(value: Variant) -> bool:
 	for key in ["capacity", "reserve", "decor"]:
 		if not value.upgrades.has(key) or not _safe_number(value.upgrades[key], 3):
 			return false
+	for key in SERVICE_UPGRADES:
+		if value.upgrades.has(key) and not _safe_number(value.upgrades[key],3): return false
 	for key in ["served", "restocks", "revenue"]:
 		if not value.daily.has(key) or not _safe_number(value.daily[key]):
 			return false
@@ -126,7 +131,7 @@ func upgrade_cost(key: String) -> int:
 	return 60 + int(data.upgrades.get(key, 0)) * 90
 
 func buy_upgrade(key: String) -> bool:
-	if not key in ["capacity", "reserve", "decor"] or int(data.upgrades.get(key, 0)) >= 3:
+	if (not key in ["capacity", "reserve", "decor"] and not key in SERVICE_UPGRADES) or int(data.upgrades.get(key, 0)) >= 3:
 		return false
 	var cost := upgrade_cost(key)
 	if int(data.coins) < cost:

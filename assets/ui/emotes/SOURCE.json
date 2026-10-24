@@ -1,0 +1,24 @@
+{
+  "source_pack": "Kenney Emotes Pack",
+  "source_variant": "PNG/Vector/Style 1",
+  "license": "CC0-1.0",
+  "original_notice": "LICENSES/Assets/kenney_emotes-pack-LICENSE.txt",
+  "pixel_files_unchanged": true,
+  "files": [
+    {
+      "path": "assets/ui/emotes/emote_exclamation.png",
+      "bytes": 355,
+      "sha256": "EA478D2811EADD440CF5C69B9236410D5CE0D0E12F0E19DB9864EC28334BACB9"
+    },
+    {
+      "path": "assets/ui/emotes/emote_faceHappy.png",
+      "bytes": 377,
+      "sha256": "01BACB8E21E904842A8D593D2D30DA86DFD70AE86FEB4562C0A151F419975FE1"
+    },
+    {
+      "path": "assets/ui/emotes/emote_faceSad.png",
+      "bytes": 376,
+      "sha256": "A0B1B9308281D4747B8F22FE5F8D28E5A7ED783C94B40AECA6A2138B05BD8143"
+    }
+  ]
+}
