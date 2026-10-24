@@ -1,5 +1,11 @@
 # Corner Market Rush
 
+## Round 4 build continuation (2026-10-24)
+
+The Android preset now defaults to **AAB** with Gradle, minimum API **24** and target API **35**. ARM64, x86 and x86_64 are selected; the [Round 4 Android guide](docs/ROUND_FOUR_ANDROID.md) explains the native ABI-pair validator and release-owner steps. These are current preset choices, not permanent engine restrictions.
+
+Round 4 exact-source hosted CI and affected native acceptance are pending in this dated continuation snapshot; consult `HANDOFF.txt` for later source-bound results. An ABI-validated debug AAB is test-signed and does not establish Google Play acceptance. Dated APK hashes and screenshots below retain their original build provenance. This round does not start new games.
+
 ## Round Four source update
 
 Seven product/checkout service improvements, an early **Go to checkout** standby job, and model-backed Kenney stockout/satisfied-departure emotes are implemented. [Current rules and2213 isolated source checks](docs/ROUND_FOUR.md) are separate from pending new export/native/CI gates. Earlier qualified binaries and screenshots below retain their original scope.
@@ -59,7 +65,7 @@ Read [AGENTS.md](AGENTS.md), [the design](docs/DESIGN.md) and the current handof
 | Illustration provenance and asset treatment | [Art](docs/ART.md) |
 | Data disclosures | [Privacy](docs/PRIVACY.md), [data safety](docs/DATA_SAFETY.md) |
 
-The AdMob **manifest App ID in `project.godot` is separate from the JSON configuration**. `test_mode` does not turn production unit IDs into test requests. The owner must configure and verify production Google Play Games, advertising/consent, signing and Play Console details. The current Android min24/target35 settings are a tested engine/export constraint, **not a claim of current Play release eligibility**.
+The AdMob **manifest App ID in `project.godot` is separate from the JSON configuration**. `test_mode` does not turn production unit IDs into test requests. The owner must configure and verify production Google Play Games, advertising/consent, signing and Play Console details. The current Android min24/target35 settings are the current preset configuration, **not a claim of current Play release eligibility**.
 
 ## Validate
 

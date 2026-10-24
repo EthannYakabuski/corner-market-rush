@@ -1,5 +1,11 @@
 # Corner Market Rush: platform setup and continuation
 
+## Current Round 4 Android export
+
+The preset currently uses minimum API **24** / target API **35**, Gradle **AAB**, and ARM64, x86 and x86_64. These settings are configurable choices, not a fixed Godot target-SDK limit. Follow the [Round 4 Android guide](ROUND_FOUR_ANDROID.md); create a new unused output directory, export a debug `.aab`, then run `tools/verify_android_bundle.py` on the actual bundle.
+
+The debug AAB is test-signed; release signing stays with the owner outside Git. ABI validation alone does not establish native gameplay, production services or Google Play acceptance. Exact Round 4 source CI and affected native checks are pending in this dated 2026-10-24 snapshot unless later source-bound handoff records establish them. Preserve historical APK/native QA identities; no new-game work is authorized by this continuation.
+
 ## Start in this repository
 
 Read `AGENTS.md`, `docs/DESIGN.md`, `README.md`, and the latest `HANDOFF.txt` when present. A new Codex task does not inherit the development conversation. The repository source and these documents describe the work; local private QA files and ignored builds are additional evidence, not files to stage or publish. Keep any newer owner changes, particularly backend IDs and export settings.
@@ -26,9 +32,9 @@ Menu banners reserve their measured native height plus safe inset. Live gameplay
 
 ## Build, test and release limits
 
-`export_presets.cfg` has Android Gradle/test and single-threaded Web presets. Android minimum API **24** and target API **35** are the current Godot 4.5.1 export/test constraint; this is **not a claim of current Google Play release eligibility**. Do not silently call the test APK a production release. Android builds include arm64 and the task emulator's x86 ABI. There are no Windows distributions. Release signing keys/passwords belong outside Git; configure the owner's signing/build environment privately rather than committing them into presets.
+`export_presets.cfg` has Android Gradle/test and single-threaded Web presets. Android minimum API **24** and target API **35** are the current preset settings; this is **not a claim of current Google Play release eligibility**. Do not silently call the test APK a production release. The Android preset includes ARM64, x86 and x86_64; the validator checks the built bundle. There are no Windows distributions. Release signing keys/passwords belong outside Git; configure the owner's signing/build environment privately rather than committing them into presets.
 
-Root coordinates local imports, engine runs, heavy exports and the single native emulator. No engine/device acceptance is implied by this setup document. `.github/workflows/build.yml` installs checksum-pinned Godot/templates, imports, runs the service smoke test, runs every discovered top-level `tests/test_*.gd`, `tests/*_test.gd` or `tests/smoke.gd`, builds Android debug and single-threaded Web, and attaches license notices. Strict error/leak checks remain enabled. Each test gets a separate `XDG_DATA_HOME` on hosted Linux. Windows tests must likewise use unique process-scoped `APPDATA` and `LOCALAPPDATA` directories, restore the calling environment afterwards, and use `-- --qa-isolated` for game tests. Do not run smoke tests against real profiles. No Pages hosting is enabled.
+Root coordinates local imports, engine runs, heavy exports and the single native emulator. No engine/device acceptance is implied by this setup document. `.github/workflows/build.yml` installs checksum-pinned Godot/templates, imports, runs the service smoke test, runs every discovered top-level `tests/test_*.gd`, `tests/*_test.gd` or `tests/smoke.gd`, builds an Android debug AAB and single-threaded Web, and attaches license notices. Strict error/leak checks remain enabled. Each test gets a separate `XDG_DATA_HOME` on hosted Linux. Windows tests must likewise use unique process-scoped `APPDATA` and `LOCALAPPDATA` directories, restore the calling environment afterwards, and use `-- --qa-isolated` for game tests. Do not run smoke tests against real profiles. No Pages hosting is enabled.
 
 Passing source tests/hosted builds do not establish native gameplay, SDK reward callbacks, device sound, Web interactivity or production services. Record the exact source commit, APK/Web hashes, native core-loop/save/Back/offline/reward/lifecycle evidence and six genuine screenshots for phone, 7-inch and 10-inch profiles in the handoff. Preserve original tested APKs and distinguish any CI artifacts/rebuilds. Current native acceptance is tracked in the handoff, not inferred here.
 
