@@ -1,3 +1,29 @@
+ROUND FOUR - QUALIFIED SOURCE / EXPORT HANDOFF
+Current Round Four features: Seven service-speed improvements, early checkout standby and model-backed stockout/happy-departure emotes are implemented.
+The focused music pause-state follow-up leaves music enabled and avoids redundant pause-state updates.
+Current focused source: 22052c9907118c4658742d9499b91703b0ffc025
+Exact post-audio source CI: SUCCESS - https://github.com/EthannYakabuski/corner-market-rush/actions/runs/40146610886
+Latest validated Android AAB: build/round-four-music-aab-003/corner-market-rush-debug.aab
+AAB SHA256: 486A00CCED9C225B3FB07588CE7E07785B339A4B12026DFFC6505C2245A51DF1
+AAB as-built source: 22052c9907118c4658742d9499b91703b0ffc025
+Latest validated Web entry: build/round-four-web-003/index.html
+Web HTML SHA256: E8EF63254F7CCC36CF3A5C573CDE9778B7EBC54EBA3CEA9AEDFDF0938674B7E0
+Web as-built source: 22052c9907118c4658742d9499b91703b0ffc025
+Corrected Web runtime scope and remaining diagnostics: Bounded isolated Chrome Web003 observations: Home, the tutorial and an ordinary shift opened. Checkout served Mina once; an apple restock used reserve stock to add three units, and stockout emotes were visible. The natural below-target result recorded one of four neighbors served, one restock and an 86-second shift, awarding 4 coins and 6 manager XP. Home retained the 4 coins in the same browser session. No createBuffer recurrence was recorded during the 333-second check. Full original audio and project playback configuration were retained.
+Remaining browser and platform limits: This was a genuine below-target shift, not a win; observation/input latency limited shop management. The Pause click reached an already-finishing result, so in-shift Pause/Resume was not verified. Checkout while the counter was empty was also not tested. One startup index.pck request reported net::ERR_ABORTED before the first ready frame; the game subsequently loaded and reached the reported result. The abort remains in the evidence; no error-free browser claim is made. Headless tab changes kept both pages visible and focused; actual hidden/focus-loss and music pause/resume transitions remain unverified. These are bounded Chrome Web003 observations, not Android screenshots or native/device, audible-output, SDK/ad, production-service or release acceptance. No cold browser restart was tested.
+Qualified Android/Web test package: build/round-four-music-22052c99-aab003-web003/packages/corner-market-rush-round-four-audio-export-test.zip
+Package SHA256: 388B1B9F64E4EF996D91E78D046D1A439DCA60B3BA5D9B35BE5E1E1CC70B19F1
+The AAB and Web exports above passed their recorded export checks. Bounded Web observations and outstanding owner checks remain separate. Source CI above validates the as-built code; later documentation/UID-only commits require their own hosted run.
+RECORDED PRIOR ROUND FOUR EXPORT CANDIDATE - PRE-AUDIO SOURCE
+AAB: build/round-four-aab-001/corner-market-rush-debug.aab; SHA256 8F832D7CFAD649E6FEC92CF3B503B884F1D1E88174B651C4046AAC1935263EFA; as-built source a8f6069c1c762426470d1ef9f8a145e43220a1f8.
+Web: build/round-four-web-002/index.html; HTML SHA256 692D7EF99AE02F93E5D69EBA16D4206F7EA673A4E9166D31ED7A7515A99F77BF; as-built source 2229aa6b6373326d13fce53e0b856c99fbad2b09.
+Recorded export-only ZIP: build/round-four-export-only-8f832d7c-web002/packages/corner-market-rush-round-four-export-test.zip; SHA256 3ED9C07AEA8FA87125626DCE923ADD01910207332E9438701DC6F5BA6FA79A84. These frozen pre-audio component identities are preserved as dated evidence, not validation of the newer source or a promise that an archive remains selected for distribution.
+NATIVE / OWNER QUALIFICATION
+Affected Round Four Android/native behavior and current-build Android screenshots remain unverified. Browser frames are not Android/store screenshots. Physical-device, audible-output, real SDK/production-service and store-release acceptance remain separate; a debug AAB is test-signed, not a release submission.
+Only materially changed visuals require refreshed genuine captures. Unchanged older screenshots retain their named original APK/source provenance and are not relabelled as current-build evidence.
+Remaining owner checks: affected Android/native gameplay and real SDK/ad callback/save/offline flows on the new binary, materially changed genuine current-build Android captures, intended physical devices, audible output and production services. The specific unverified gameplay/control paths in the browser limits above remain open; no all-native-ready claim is made.
+
+PRESERVED EARLIER HANDOFF / DATED EVIDENCE — each passage retains its named source/build scope; current qualification above supersedes earlier readiness statements.
 ROUND FOUR GAMEPLAY SOURCE UPDATE - 2026-10-24
 Seven service upgrades, one-job counter standby and licensed NPC emotes implemented.
 2213 isolated source assertions and import pass; details: docs/ROUND_FOUR.md.

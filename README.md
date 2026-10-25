@@ -4,11 +4,11 @@
 
 The Android preset now defaults to **AAB** with Gradle, minimum API **24** and target API **35**. ARM64, x86 and x86_64 are selected; the [Round 4 Android guide](docs/ROUND_FOUR_ANDROID.md) explains the native ABI-pair validator and release-owner steps. These are current preset choices, not permanent engine restrictions.
 
-Round 4 exact-source hosted CI and affected native acceptance are pending in this dated continuation snapshot; consult `HANDOFF.txt` for later source-bound results. An ABI-validated debug AAB is test-signed and does not establish Google Play acceptance. Dated APK hashes and screenshots below retain their original build provenance. This round does not start new games.
+Focused music pause-state source `22052c9907118c4658742d9499b91703b0ffc025` is public and its [exact-commit hosted CI](https://github.com/EthannYakabuski/corner-market-rush/actions/runs/40146610886) passed. Accepted local Android/Web components, the qualified test package and bounded Web003 review are recorded in `HANDOFF.txt`; affected native acceptance remains unverified. An ABI-validated debug AAB is test-signed and does not establish Google Play acceptance. Dated APK hashes and screenshots below retain their original build provenance. This round does not start new games.
 
 ## Round Four source update
 
-Seven product/checkout service improvements, an early **Go to checkout** standby job, and model-backed Kenney stockout/satisfied-departure emotes are implemented. [Current rules and2213 isolated source checks](docs/ROUND_FOUR.md) are separate from pending new export/native/CI gates. Earlier qualified binaries and screenshots below retain their original scope.
+Seven product/checkout service improvements, an early **Go to checkout** standby job, and model-backed Kenney stockout/satisfied-departure emotes are implemented. [Current rules and2213 isolated source checks](docs/ROUND_FOUR.md) describe isolated source checks; the focused music pause-state follow-up and its exact-source CI/corrected export status are recorded in `HANDOFF.txt`. Affected native acceptance remains unverified. Earlier qualified binaries and screenshots below retain their original scope.
 
 A little shop. A lively rush. Run a welcoming neighborhood grocery, keep the shelves stocked, and help every complete basket reach the checkout.
 
