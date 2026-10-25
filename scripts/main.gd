@@ -672,7 +672,10 @@ func _process(delta: float) -> void:
 		if model != null and screen == "game":
 			_pause_shift("Welcome back","Your shop waited through the whole message. Resume when you are ready.")
 	var freeze := paused or background or reward_pending or fullscreen or ad_waiting
-	music.stream_paused = background or fullscreen or reward_pending
+	var pause_music: bool = background or fullscreen or reward_pending
+	# Web samples restart their buffer on redundant unpause calls.
+	if music.stream_paused != pause_music:
+		music.stream_paused = pause_music
 	if model == null:
 		world.set_frozen(background or fullscreen or reward_pending)
 		return
