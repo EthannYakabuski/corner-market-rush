@@ -26,7 +26,7 @@ func _expect(condition: bool, message: String) -> void:
 		failures += 1
 		push_error("Market model check failed: " + message)
 
-func _play_baseline(model: RefCounted, limit: int = 1600) -> void:
+func _play_baseline(model: RefCounted, limit: int = 4000) -> void:
 	var ticks := 0
 	while model.state.get("status", "") == "active" and ticks < limit:
 		var action: Dictionary = model.baseline_action()
@@ -59,7 +59,7 @@ func _test_catalog_and_all_shift_baselines() -> void:
 		_expect(model.conserved_stock(), "stock conserved at completion")
 	_expect(chapters.size() == 6 and chapters.values().all(func(value: Variant) -> bool: return int(value) == 6), "six chapters of six")
 	model.new_shift(1)
-	_expect(model.skus() == ["apple", "bread"] and model.definition["orders"].size() == 4, "tutorial has two products and four customers")
+	_expect(model.skus() == ["apple", "milk"] and model.definition["orders"].size() == 4, "tutorial has two products and four customers")
 	_expect(bool(model.definition["tutorial"]), "first shift explicitly tutorial")
 	model = null
 
@@ -71,8 +71,8 @@ func _test_legal_tasks_and_stock() -> void:
 	_expect(not model.queue_task("restock", "unlisted"), "unavailable products cannot be stocked")
 	_expect(model.queue_task("restock", "apple"), "legal restock starts")
 	_expect(not model.queue_task("restock", "apple"), "duplicate active task rejected")
-	_expect(model.queue_task("restock", "bread"), "one second task can be queued")
-	_expect(not model.queue_task("restock", "bread"), "duplicate queued task rejected")
+	_expect(model.queue_task("restock", "milk"), "one second task can be queued")
+	_expect(not model.queue_task("restock", "milk"), "duplicate queued task rejected")
 	_expect(model.cancel_queued(), "queued job cancels freely")
 	_expect(model.state["queued_task"].is_empty(), "cancel removes queued job")
 	for tick: int in range(150):

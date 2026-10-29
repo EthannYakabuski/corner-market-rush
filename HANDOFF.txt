@@ -1,3 +1,10 @@
+ROUND FIVE — SOURCE TESTED; FRESH VISUAL/NATIVE ACCEPTANCE SEPARATE
+36 shifts retain stable IDs, with earlier assortment/pressure and free called courier collection.
+All36 new shifts won every basket at base/max upgrades,0lost, using ordinary unassisted actions. Eight rush shifts need delivery even maxreserve+one adcrate. All36 old-v2 active runs and finished-v2 once-only settlement/reload fixtures pass. Courier full-body/parcel projection,20-45active-second wait, real clerk door task, pause/background/fullscreen and duplicate controls pass isolated source/scene fixtures.
+All8 focused/affected source suites pass with strict diagnostics. Owner service configuration and untracked ios artifacts unchanged. No real save read/changed.
+Hosted exact-commit CI is verified separately after publication. Existing Android/Web files and screenshots remain their historical builds; no new local export/native/device/audio/production SDK acceptance is claimed here. Fresh interactive visual/export review is coordinated separately. See docs/ROUND_FIVE.md and docs/ROUND_FIVE_VALIDATION.json.
+Original historical handoff follows unchanged:
+
 ROUND FOUR - QUALIFIED SOURCE / EXPORT HANDOFF
 Current Round Four features: Seven service-speed improvements, early checkout standby and model-backed stockout/happy-departure emotes are implemented.
 The focused music pause-state follow-up leaves music enabled and avoids redundant pause-state updates.

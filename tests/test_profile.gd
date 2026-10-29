@@ -88,7 +88,7 @@ func _run() -> void:
 	profile.data.active = {"model":model.snapshot(),"daily":false}
 	var transaction: Dictionary = profile.settle_model(model)
 	check(transaction.ok,"bank and progression saved together")
-	check(int(transaction.receipt.base_coins) == 28 and int(transaction.receipt.coins) == 28 and int(transaction.receipt.xp) == 35 and int(transaction.receipt.level_bonus) == 0 and transaction.receipt.level_rewards.is_empty(),"first shift at zero XP retains original28coin35XP receipt without level reward")
+	check(int(transaction.receipt.base_coins) == 30 and int(transaction.receipt.coins) == 30 and int(transaction.receipt.xp) == 35 and int(transaction.receipt.level_bonus) == 0 and transaction.receipt.level_rewards.is_empty(),"apples+milk tutorial pays30coins (2*4+2*6+10),35XP and no level reward at zero XP")
 	var coins := int(profile.data.coins)
 	var xp := int(profile.data.xp)
 	check(coins > 0 and xp > 0 and profile.data.completed.has("1"),"real receipt updates profile")
@@ -147,27 +147,27 @@ func _test_level_coin_transaction() -> void:
 	var receipt: Dictionary = settled.receipt
 	check(settled.ok and bool(receipt.claimed), "first crossing settles once")
 	check(leveled.level() == 2 and int(leveled.data.xp) == 115, "legal35XP shift crosses manager level2 at90XP")
-	check(int(receipt.base_coins) == 28 and int(receipt.level_bonus) == 20 and int(receipt.coins) == 48, "receipt separates base sale and real level bonus")
+	check(int(receipt.base_coins) == 30 and int(receipt.level_bonus) == 20 and int(receipt.coins) == 50, "receipt separates base sale and real level bonus")
 	check(receipt.level_rewards.size() == 1 and int(receipt.level_rewards[0].level) == 2 and int(receipt.level_rewards[0].coins) == 20, "receipt names the exact rewarded level")
-	check(int(leveled.data.coins) == 48 and int(leveled.data.daily.revenue) == 28, "wallet receives bonus while daily sales count only base proceeds")
+	check(int(leveled.data.coins) == 50 and int(leveled.data.daily.revenue) == 30, "wallet receives bonus while daily sales count only base proceeds")
 	var run := str(receipt.run_id)
 	check(leveled.data.banked_runs[run].receipt.has_all(["base_coins", "level_bonus", "level_rewards", "coins"]), "original breakdown cached in existing run ledger")
 	var repeated: Dictionary = leveled.settle_model(level_model)
-	check(repeated.ok and not bool(repeated.receipt.claimed) and int(repeated.receipt.level_bonus) == 20 and int(repeated.receipt.coins) == 48, "repeat reports original breakdown without another claim")
-	check(int(leveled.data.coins) == 48 and int(leveled.data.xp) == 115, "repeat cannot credit sale XP or level coins again")
+	check(repeated.ok and not bool(repeated.receipt.claimed) and int(repeated.receipt.level_bonus) == 20 and int(repeated.receipt.coins) == 50, "repeat reports original breakdown without another claim")
+	check(int(leveled.data.coins) == 50 and int(leveled.data.xp) == 115, "repeat cannot credit sale XP or level coins again")
 	var cold := Profile.new(level_path)
 	check(cold.load_profile(), "level transaction cold-loads from actual fixture bytes")
 	var cold_model := Model.new()
 	check(cold_model.restore(level_model.snapshot()), "settled level model cold-loads")
 	var cold_repeat: Dictionary = cold.settle_model(cold_model)
 	check(cold_repeat.ok and not bool(cold_repeat.receipt.claimed) and int(cold_repeat.receipt.level_bonus) == 20 and cold_repeat.receipt.level_rewards.size() == 1, "cold repeat retains exact original level receipt")
-	check(int(cold.data.coins) == 48 and int(cold.data.xp) == 115, "cold repeat cannot duplicate level coins")
+	check(int(cold.data.coins) == 50 and int(cold.data.xp) == 115, "cold repeat cannot duplicate level coins")
 	# Existing version1 run entries without a receipt remain valid and never
 	# receive a retroactive grant merely because the new code is loaded.
 	cold.data.banked_runs[run].erase("receipt")
 	check(cold._valid(cold.data), "legacy version1 run ledger needs no new mandatory field")
 	var legacy_repeat: Dictionary = cold.settle_model(cold_model)
-	check(legacy_repeat.ok and not bool(legacy_repeat.receipt.claimed) and int(legacy_repeat.receipt.level_bonus) == 0 and int(cold.data.coins) == 48, "legacy receipt has zero retroactive level credit")
+	check(legacy_repeat.ok and not bool(legacy_repeat.receipt.claimed) and int(legacy_repeat.receipt.level_bonus) == 0 and int(cold.data.coins) == 50, "legacy receipt has zero retroactive level credit")
 	check(Profile.level_coin_bonus(1) == 0 and Profile.level_coin_bonus(2) == 20 and Profile.level_coin_bonus(99) == 60, "level reward is modest and capped")
 	# This exact fixture parent is a file created earlier, so the requested
 	# directory cannot be written. Only in-memory fixture state is rolled back.

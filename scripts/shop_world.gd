@@ -17,6 +17,10 @@ var current_skus: Array = []
 var state: Dictionary = {}
 var camera: Camera3D
 var clerk: Node3D
+var courier: Node3D
+var courier_parcel: Node3D
+var courier_label: Label3D
+var front_door: Node3D
 var environment: Environment
 var sun: DirectionalLight3D
 var lights: Array = []
@@ -77,6 +81,11 @@ func setup(data: Dictionary) -> void:
 	asset(MARKET+"shopping-basket.glb",Vector3(2.9,0.03,2.25),0.9)
 	asset(MARKET+"shopping-cart.glb",Vector3(3.7,0.02,3.6),0.9,-0.45)
 	asset(MARKET+"wall-door-rotate.glb",Vector3(3,0,-3.5))
+	# Give the existing logical customer entry an actual licensed front doorway.
+	# The old back-wall door remains part of the shop's original scenery.
+	front_door = asset(MARKET+"wall-door-rotate.glb",Vector3(3.2,0,2.85),1,PI)
+	front_door.name = "FrontDoor"
+	label("FRONT DOOR",Vector3(3.2,1.7,2.85),24)
 	asset("res://assets/kenney/commercial/detail-awning-wide.glb",Vector3(0,2.25,-3.5),1.7)
 	shop_sign = label("CORNER MARKET",Vector3(0,2.65,-3.5),57)
 	shop_subtitle = label("Fresh things. Familiar faces.",Vector3(0,2.2,-3.45),27)
@@ -160,6 +169,13 @@ func setup(data: Dictionary) -> void:
 	task_marker = ring(0.6,Color("e9b967"))
 	task_marker.visible = false
 	animate(clerk,"idle")
+	# Existing Kenney CC0 character and furniture parcel; no new asset licence.
+	courier = asset(PEOPLE+"character-male-e.glb",Vector3(3.2,0.04,3.6),1.25)
+	courier_parcel = asset("res://assets/kenney/furniture/cardboardBoxClosed.glb",Vector3(3.2,.65,3.9),.5)
+	courier_label = label("DELIVERY - MEET AT DOOR",Vector3(3.2,1.8,3.6),24)
+	courier.visible = false
+	courier_parcel.visible = false
+	courier_label.visible = false
 	set_theme(0)
 
 func box(size_value: Vector3, position_value: Vector3, color: Color) -> MeshInstance3D:
@@ -312,6 +328,18 @@ func show_shift(skus: Array, chapter: int) -> void:
 func sync(next_state: Dictionary, delta: float) -> void:
 	state = next_state
 	if state.is_empty(): return
+	var courier_waiting := str(state.get("courier",{}).get("phase","idle")) == "waiting"
+	# A waiting courier has a small same-world door inset in the UI; ordinary
+	# shopping keeps its original camera. Focus only for the clerk's active
+	# door interaction, then restore the shop immediately after collection.
+	if not home_mode:
+		var collecting: bool = str(state.get("active_task",{}).get("kind","")) == "collect_delivery"
+		var desired_offset := -6.3 if collecting else -1.1
+		if not is_equal_approx(camera.v_offset,desired_offset): camera.v_offset = desired_offset
+	courier.visible = courier_waiting
+	courier_parcel.visible = courier_waiting
+	courier_label.visible = courier_waiting
+	if courier_waiting: animate(courier,"holding-both")
 	for sku in state.shelves:
 		var stock := int(state.shelves[sku])
 		var capacity := int(state.capacities[sku])
@@ -326,6 +354,8 @@ func sync(next_state: Dictionary, delta: float) -> void:
 	if not active.is_empty():
 		if active.kind == "restock":
 			task_marker.position = positions[catalog.sku_order.find(str(active.target))]+Vector3(0,0.055,0)
+		elif active.kind == "collect_delivery":
+			task_marker.position = Vector3(3.2,.055,3.6)
 		else:
 			task_marker.position = clerk_home+Vector3(0,.015,0)
 			var target_customer: Dictionary = {}
@@ -414,6 +444,9 @@ func select_at(point: Vector2) -> bool:
 				nearest = distance
 				kind = "checkout"
 				target = int(customer.id)
+	if courier.visible and point.distance_to(camera.unproject_position(courier.position+Vector3(0,.6,0))) < nearest:
+		kind = "collect_delivery"
+		target = "front_door"
 	if not kind.is_empty():
 		target_selected.emit(kind,target)
 		return true
@@ -423,6 +456,9 @@ func set_home() -> void:
 	show_shift(catalog.sku_order,0)
 	camera.v_offset = -1.8
 	home_mode = true
+	courier.visible = false
+	courier_parcel.visible = false
+	courier_label.visible = false
 	animate(clerk,"idle")
 	for sku in products:
 		for product in products[sku]: product.visible = true

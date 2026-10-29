@@ -3,7 +3,10 @@ extends RefCounted
 ## This model uses no nodes, timers, service SDKs or player-save files.
 
 const DATA_PATH := "res://game/shifts.json"
-const SNAPSHOT_VERSION := 2
+const SNAPSHOT_VERSION := 3
+const LEGACY_DATA_PATH := "res://game/shifts_legacy_v2.json"
+const CURRENT_RULESET := "round_five"
+const LEGACY_RULESET := "legacy_v2"
 const SKU_NAMES := {"apple": "Apples", "bread": "Bread", "milk": "Milk", "cereal": "Cereal", "greens": "Greens", "juice": "Juice"}
 const PRICES := {"apple": 4, "bread": 5, "milk": 6, "cereal": 5, "greens": 4, "juice": 6}
 const REGULARS := ["Mina", "Theo", "Jun", "Otis", "Ivy", "Sol"]
@@ -17,6 +20,8 @@ const CLERK_HOME := Vector2(0.0, 1.35)
 const SKU_POSITIONS := {"apple": Vector2(-2.35, -1.35), "bread": Vector2(-0.15, -1.35), "milk": Vector2(2.05, -1.35), "cereal": Vector2(-2.35, 0.7), "greens": Vector2(-0.15, 0.7), "juice": Vector2(2.05, 0.7)}
 
 var shifts: Array = []
+var legacy_shifts: Array = []
+var ruleset := CURRENT_RULESET
 var definition: Dictionary = {}
 var state: Dictionary = {}
 var last_error := ""
@@ -33,6 +38,12 @@ func _init() -> void:
 	else:
 		push_error("Market shift catalog is invalid")
 
+	var legacy_file := FileAccess.open(LEGACY_DATA_PATH, FileAccess.READ)
+	if legacy_file != null:
+		var legacy: Variant = JSON.parse_string(legacy_file.get_as_text())
+		if legacy is Dictionary and legacy.get("shifts") is Array: legacy_shifts = legacy["shifts"]
+	if legacy_shifts.size() != shifts.size(): push_error("Legacy market shift catalogue is missing or invalid")
+
 func skus() -> Array:
 	return definition.get("skus", []).duplicate()
 
@@ -43,6 +54,7 @@ func new_shift(shift_id: int, practice: bool = false, upgrades: Dictionary = {})
 		last_error = "Choose an available shift."
 		state = {}
 		return
+	ruleset = CURRENT_RULESET
 	definition = shifts[shift_id - 1].duplicate(true)
 	var capacities: Dictionary = {}
 	var shelves: Dictionary = {}
@@ -62,6 +74,7 @@ func new_shift(shift_id: int, practice: bool = false, upgrades: Dictionary = {})
 		"elapsed": 0.0, "remaining": float(definition["duration"]),
 		"capacities": capacities, "shelves": shelves, "reserve": reserve,
 		"customers": [], "arrival_cursor": 0, "delivery_cursor": 0,
+		"courier": {"phase":"idle", "remaining":0.0, "calls":0, "collected":0},
 		"active_task": {}, "queued_task": {}, "served": 0, "lost": 0,
 		"clerk_position": [CLERK_HOME.x, CLERK_HOME.y], "clerk_motion": "idle",
 		"revenue": 0, "xp": 0, "combo": 0, "best_combo": 0,
@@ -82,17 +95,21 @@ func queue_task(kind: String, target: Variant) -> bool:
 		return _reject("This shift has finished.")
 	if bool(state["paused"]):
 		return _reject("Resume the shop first.")
-	if kind != "restock" and kind != "checkout":
+	if kind == "call_delivery": return call_delivery()
+	if kind != "restock" and kind != "checkout" and kind != "collect_delivery":
 		return _reject("Choose a shelf or a ready basket.")
 	if kind == "restock":
 		var sku := str(target)
 		if not state["shelves"].has(sku):
 			return _reject("That product is not on this shift.")
 		if int(state["reserve"][sku]) <= 0:
-			return _reject("No reserve left. Watch for the next delivery.")
+			return _reject("No reserve left. Call for delivery, then meet the courier at the front door.")
 		if int(state["shelves"][sku]) >= int(state["capacities"][sku]):
 			return _reject("That shelf is already full.")
 		target = sku
+	elif kind == "collect_delivery":
+		if str(state.courier.phase) != "waiting": return _reject("The courier has not reached the front door yet.")
+		target = "front_door"
 	else:
 		# -1 is one explicit counter standby job, not an automatic cashier.
 		if int(target) != -1:
@@ -140,6 +157,7 @@ func _tick(dt: float) -> void:
 		state["remaining"] = maxf(0.0, float(definition["duration"]) - float(state["elapsed"]))
 	_spawn_due_customers()
 	_deliver_due_stock()
+	_tick_courier(dt)
 	_tick_customers(dt)
 	_tick_task(dt)
 	var all_arrived: bool = int(state["arrival_cursor"]) == definition["orders"].size()
@@ -280,6 +298,31 @@ func _next_needed(customer: Dictionary) -> String:
 			return sku
 	return ""
 
+func can_call_delivery() -> bool:
+	if state.is_empty() or state.status != "active" or bool(state.paused) or ruleset != CURRENT_RULESET: return false
+	if str(state.courier.phase) != "idle": return false
+	for sku in definition.skus:
+		if int(state.reserve[sku]) == 0: return true
+	return false
+
+func call_delivery() -> bool:
+	if not can_call_delivery(): return _reject("Call when a product reserve is empty and no courier is on the way.")
+	state.courier.phase = "transit"
+	state.courier.remaining = float(definition.delivery_seconds)
+	state.courier.calls = int(state.courier.calls)+1
+	state.last_action = "Courier called - meet them at the front door when they arrive"
+	_emit("courier_called")
+	return true
+
+func _tick_courier(dt: float) -> void:
+	if str(state.courier.phase) != "transit": return
+	state.courier.remaining = maxf(0.0,float(state.courier.remaining)-dt)
+	if float(state.courier.remaining) <= 0.00001:
+		state.courier.phase = "waiting"
+		state.courier.remaining = 0.0
+		state.last_action = "Courier at the front door - tap Meet courier"
+		_emit("courier_arrived")
+
 func _deliver_due_stock() -> void:
 	var deliveries: Array = definition.get("deliveries", [])
 	while int(state["delivery_cursor"]) < deliveries.size():
@@ -338,6 +381,16 @@ func _tick_task(dt: float) -> void:
 			state["restocks"] = int(state["restocks"]) + 1
 			state["last_action"] = "%s restocked +%s" % [SKU_NAMES[sku], amount]
 			_emit("restocked", {"sku": sku, "amount": amount})
+	elif task["kind"] == "collect_delivery":
+		if str(state.courier.phase) == "waiting":
+			for sku in definition.delivery_stock:
+				var amount := int(definition.delivery_stock[sku])
+				state.reserve[sku] = int(state.reserve[sku])+amount
+				state.produced = int(state.produced)+amount
+			state.courier.phase = "idle"
+			state.courier.collected = int(state.courier.collected)+1
+			state.last_action = "Parcel collected at front door - restock your shelves"
+			_emit("courier_collected")
 	else:
 		var customer := customer_by_id(int(task["target"]))
 		if not customer.is_empty() and customer["phase"] == "ready" and not bool(customer["paid"]) and _next_needed(customer).is_empty():
@@ -373,6 +426,8 @@ func _start_task(task: Dictionary) -> void:
 	var target_position := CLERK_HOME
 	if task["kind"] == "restock":
 		target_position = SKU_POSITIONS[str(task["target"])] + Vector2(0.0, 1.05)
+	elif task["kind"] == "collect_delivery":
+		target_position = ENTRY
 	task["position"] = state["clerk_position"].duplicate()
 	_set_route(task, target_position)
 	task["motion_phase"] = "travel"
@@ -381,7 +436,8 @@ func _start_task(task: Dictionary) -> void:
 	task["remaining"] = task["duration"]
 	state["active_task"] = task
 	state["clerk_motion"] = "walk"
-	state["last_action"] = "Restocking %s" % SKU_NAMES[str(task["target"])] if task["kind"] == "restock" else "Checking out %s" % customer_by_id(int(task["target"])).get("name", "counter - next complete basket")
+	state["last_action"] = "Restocking %s" % SKU_NAMES[str(task["target"])] if task["kind"] == "restock" else "Meeting the courier" if task["kind"] == "collect_delivery" else "Checking out %s" % customer_by_id(int(task["target"])).get("name", "counter - next complete basket")
+	if task["kind"] == "collect_delivery": state["last_action"] = "Walking to meet the courier at the front door"
 	_emit("task_started", {"task": task.duplicate(true)})
 
 func _lose_customer(customer: Dictionary) -> void:
@@ -472,11 +528,11 @@ func apply_earned_assistance(kind: String) -> bool:
 	return true
 
 func snapshot() -> Dictionary:
-	return {"version": SNAPSHOT_VERSION, "state": state.duplicate(true)}
+	return {"version": SNAPSHOT_VERSION, "ruleset": ruleset, "state": state.duplicate(true)}
 
 func restore(saved: Dictionary) -> bool:
 	last_error = ""
-	if not _whole(saved.get("version"), SNAPSHOT_VERSION, SNAPSHOT_VERSION) or not saved.get("state") is Dictionary:
+	if not _whole(saved.get("version"), 2, SNAPSHOT_VERSION) or not saved.get("state") is Dictionary:
 		return _reject("This shift save cannot be read.")
 	var candidate: Dictionary = saved["state"].duplicate(true)
 	if not _whole(candidate.get("shift_id"), 1, shifts.size()) or not candidate.get("run_id") is String:
@@ -495,7 +551,16 @@ func restore(saved: Dictionary) -> bool:
 			return _reject("This shift save is incomplete.")
 	if not candidate.get("customers") is Array or not candidate.get("status") is String or not candidate["status"] in ["active", "won", "lost"]:
 		return _reject("This shift save is incomplete.")
-	var shift: Dictionary = shifts[shift_id - 1]
+	var saved_ruleset := LEGACY_RULESET if int(saved.version) == 2 else str(saved.get("ruleset",""))
+	if saved_ruleset not in [LEGACY_RULESET,CURRENT_RULESET]: return _reject("This shift ruleset is unknown.")
+	var shift: Dictionary = legacy_shifts[shift_id-1] if saved_ruleset == LEGACY_RULESET else shifts[shift_id-1]
+	if saved_ruleset == LEGACY_RULESET:
+		candidate["courier"] = {"phase":"idle","remaining":0.0,"calls":0,"collected":0}
+	if not candidate.get("courier") is Dictionary: return _reject("This courier save is incomplete.")
+	var courier: Dictionary = candidate.courier
+	if courier.get("phase") not in ["idle","transit","waiting"] or not _number(courier.get("remaining"),0,45) or not _whole(courier.get("calls"),0,1000) or not _whole(courier.get("collected"),0,1000): return _reject("This courier save is invalid.")
+	if int(courier.calls) != int(courier.collected)+(0 if courier.phase == "idle" else 1): return _reject("This courier save has inconsistent calls.")
+	if (courier.phase == "transit" and float(courier.remaining) <= 0) or (courier.phase != "transit" and float(courier.remaining) != 0): return _reject("This courier save has inconsistent timing.")
 	if not _valid_point(candidate.get("clerk_position")) or not candidate.get("clerk_motion") is String or not candidate["clerk_motion"] in ["idle", "walk", "interact"]:
 		return _reject("This clerk position save is invalid.")
 	for sku: String in shift["skus"]:
@@ -557,7 +622,7 @@ func restore(saved: Dictionary) -> bool:
 	for slot: String in ["active_task", "queued_task"]:
 		var task: Dictionary = candidate[slot]
 		if not task.is_empty():
-			if not task.get("kind") is String or not task["kind"] in ["restock", "checkout"]:
+			if not task.get("kind") is String or not task["kind"] in ["restock", "checkout", "collect_delivery"]:
 				return _reject("This clerk task save is invalid.")
 			for key: String in ["remaining", "interaction_remaining"]:
 				if not _number(task.get(key), 0.0, 86400.0):
@@ -569,9 +634,11 @@ func restore(saved: Dictionary) -> bool:
 				return _reject("This clerk task points to an unavailable shelf.")
 			if task["kind"] == "checkout" and (not _whole(task.get("target"), -1, shift["orders"].size() - 1) or (int(task["target"]) != -1 and not seen_customers.has(int(task["target"])))):
 				return _reject("This clerk task points to an unavailable basket.")
+			if task["kind"] == "collect_delivery" and (task.get("target") != "front_door" or courier.phase != "waiting"): return _reject("This courier task is invalid.")
 			if slot == "active_task":
 				if not _valid_point(task.get("position")) or not _valid_point(task.get("target_position")) or not _valid_route(task.get("route")) or not task.get("motion_phase") is String or not task["motion_phase"] in ["travel", "interact", "wait"]:
 					return _reject("This clerk task path save is invalid.")
+	ruleset = saved_ruleset
 	definition = shift.duplicate(true)
 	state = candidate
 	if not conserved_stock():
@@ -613,11 +680,13 @@ func drain_events() -> Array:
 	_events.clear()
 	return result_events
 
-func baseline_action() -> Dictionary:
+func baseline_action(allow_delivery: bool = true) -> Dictionary:
 	# Explicit player strategy used by feasibility tests and optional coaching.
 	# It issues ordinary legal actions and never changes shelves or rewards.
 	if state.is_empty() or state["status"] != "active" or not state["active_task"].is_empty() or bool(state["paused"]):
 		return {}
+	if allow_delivery and can_call_delivery(): return {"kind":"call_delivery","target":""}
+	if allow_delivery and str(state.courier.phase) == "waiting": return {"kind":"collect_delivery","target":"front_door"}
 	var most_urgent: Dictionary = {}
 	for customer: Dictionary in state["customers"]:
 		if customer["phase"] == "ready" and (most_urgent.is_empty() or float(customer["patience"]) < float(most_urgent["patience"])):

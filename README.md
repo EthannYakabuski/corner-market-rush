@@ -34,7 +34,7 @@ Open `project.godot` with **Godot 4.5.1**, using the **Compatibility** renderer,
 - **Pause**, Android Back and background return stop shop time. **Save & Home** preserves the active customers, stock, clock and both task slots. Restored play waits for an explicit **Resume**.
 - A completed or settled shift banks its real sales and XP once. Campaign completion requires the stated customer target; retries are free.
 
-The first shift introduces apples and bread with four customers and generous patience. Later shifts introduce mixed baskets, different demand patterns and reserve deliveries. Untimed practice is available for each neighborhood's first shift, with no currency, XP or campaign unlocks.
+The first shift introduces apples and milk with four customers and generous patience. Later shifts introduce mixed baskets, different demand patterns and reserve deliveries. Untimed practice is available for each neighborhood's first shift, with no currency, XP or campaign unlocks.
 
 ## Included systems
 
@@ -91,3 +91,6 @@ Still open: verification of the local package receipt and final reviewed docs/co
 ## Licenses
 
 Original project work is [Apache 2.0](LICENSE). Keep [NOTICE](NOTICE) and the complete [LICENSES](LICENSES) directory with source and distributions. Selected third-party models, textures, fonts, plugins and engine notices retain their own terms. The stock-visible fruit model is a documented split of original CC0 geometry; [the deterministic derivation](game/derive_fruit_asset.py) preserves the original model, geometry attributes and texture.
+
+## Round Five stock and courier service
+New campaigns retain 36 shifts: level 1 has apples and milk, level 2 adds bread, and all six goods appear by level 8. Arrivals tighten and later shelves start lighter. Ordinary **Call for delivery** becomes available when a product reserve empties. After 20â€“45 seconds of active play a visible courier waits at the front door. Tap **Meet courier at door** to send the clerk there; stock arrives only after handoff, then needs normal restocking. This free service is separate from the optional one-time ad reserve. Eight staple-rush shifts need a courier even with maximum reserve upgrades and one ad crate. Existing active saves keep their original shift rules. See [Round Five](docs/ROUND_FIVE.md) for acceptance and validation qualifications.

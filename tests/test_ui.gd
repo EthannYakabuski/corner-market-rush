@@ -97,6 +97,8 @@ func geometry(profile_name: String, dimensions: Vector2i, density: float) -> voi
 	check(inside_app(app.checkout_button),"counter standby control stays inside viewport: "+profile_name)
 	var counter_dp := touch_dp(app.checkout_button,density)
 	check(counter_dp.x >= 48 and counter_dp.y >= 48-.01,"counter standby target meets48dp: "+profile_name)
+	var courier_dp := touch_dp(app.courier_button,density)
+	check(inside_app(app.courier_button) and courier_dp.x >= 48 and courier_dp.y >= 48-.01,"ordinary courier target remains reachable48dp: "+profile_name)
 	for sku in app.stock_buttons:
 		check(ResourceLoader.exists(app._product_icon_path(str(sku))),"actual runtime product pictogram imported: "+str(sku))
 		check(inside_app(app.stock_buttons[sku]),"product action inside viewport: "+profile_name+"/"+str(sku))
@@ -214,7 +216,7 @@ func _run() -> void:
 	check(not is_instance_valid(retired_modal),"old pressed modal frees after dispatch")
 	app._process(0.05)
 	app._queue_task("restock","apple")
-	app._queue_task("restock","bread")
+	app._queue_task("restock","milk")
 	check(app.model.state.active_task.kind == "restock" and not app.model.state.queued_task.is_empty(),"scene has one active plus one genuine queued task")
 	var run := str(app.model.state.run_id)
 	var active: Dictionary = app.model.state.active_task.duplicate(true)
@@ -223,7 +225,7 @@ func _run() -> void:
 	press("Save & Home")
 	app._resume_saved()
 	check(str(app.model.state.run_id) == run,"same fixture run resumes")
-	check(app.model.state.active_task.target == active.target and app.model.state.queued_task.target == "bread","both clerk jobs survive cold-style restoration")
+	check(app.model.state.active_task.target == active.target and app.model.state.queued_task.target == "milk","both clerk jobs survive cold-style restoration")
 	check(app.paused and app.modal != null,"restored shift awaits explicit Resume")
 	press("Resume the shop")
 	var ticks := 0

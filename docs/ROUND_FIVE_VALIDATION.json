@@ -1,0 +1,81 @@
+{
+  "round": 5,
+  "status": "SOURCE_TESTS_PASSED_NATIVE_VISUAL_SEPARATE",
+  "godot": "4.5.1-stable Compatibility",
+  "source_tests": [
+    {
+      "script": "tests/test_round_five.gd",
+      "exit_code": 0,
+      "strict_diagnostics": [],
+      "check_count": 5087,
+      "status": "PASS",
+      "evidence_kind": "isolated source/synthetic fixture; not native SDK or real player progress"
+    },
+    {
+      "script": "tests/test_market_model.gd",
+      "exit_code": 0,
+      "strict_diagnostics": [],
+      "check_count": 2201,
+      "status": "PASS",
+      "evidence_kind": "isolated source/synthetic fixture; not native SDK or real player progress"
+    },
+    {
+      "script": "tests/test_profile.gd",
+      "exit_code": 0,
+      "strict_diagnostics": [],
+      "check_count": 62,
+      "status": "PASS",
+      "evidence_kind": "isolated source/synthetic fixture; not native SDK or real player progress"
+    },
+    {
+      "script": "tests/test_round_four.gd",
+      "exit_code": 0,
+      "strict_diagnostics": [],
+      "check_count": 269,
+      "status": "PASS",
+      "evidence_kind": "isolated source/synthetic fixture; not native SDK or real player progress"
+    },
+    {
+      "script": "tests/test_ui.gd",
+      "exit_code": 0,
+      "strict_diagnostics": [],
+      "check_count": 226,
+      "status": "PASS",
+      "evidence_kind": "isolated source/synthetic fixture; not native SDK or real player progress"
+    },
+    {
+      "script": "tests/test_ad_load_lifetime.gd",
+      "exit_code": 0,
+      "strict_diagnostics": [],
+      "check_count": 92,
+      "status": "PASS",
+      "evidence_kind": "isolated source/synthetic fixture; not native SDK or real player progress"
+    },
+    {
+      "script": "tests/test_audio_assets.gd",
+      "exit_code": 0,
+      "strict_diagnostics": [],
+      "check_count": 17,
+      "status": "PASS",
+      "evidence_kind": "isolated source/synthetic fixture; not native SDK or real player progress"
+    },
+    {
+      "script": "platform/tests/services_smoke.gd",
+      "exit_code": 0,
+      "strict_diagnostics": [],
+      "check_count": null,
+      "status": "PASS",
+      "evidence_kind": "isolated source/synthetic fixture; not native SDK or real player progress"
+    }
+  ],
+  "campaign_simulation": "36 shifts at base and max upgrades; every basket served,0lost; no ad assistance",
+  "legacy_simulation": "all36 original active-v2 definitions retained/restored/completed; finished-v2 durable settlement/reload once-only",
+  "courier": "ordinary legal call and doorcollection;20-45active seconds; stockconserved; queued/active background/fullscreen and explicitResume fixtures",
+  "projection": "waiting courier/parcel in actual shared-world inset without moving service camera; active collection full silhouette between HUD and controls at three logical profiles; courier48dp checks pass",
+  "hosted_ci": "pending_exact_commit_verification",
+  "local_exports": "not_run_coordinator_owns_slot",
+  "interactive_visual": "pending_coordinator",
+  "native_rendering": "unverified_prior_emulator_renderer_failure",
+  "physical_device_audio_and_production_services": "unverified",
+  "real_saves_modified": false
+}

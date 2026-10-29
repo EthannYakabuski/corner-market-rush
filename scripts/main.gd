@@ -34,6 +34,11 @@ var customer_buttons: Dictionary = {}
 var customer_cards: Dictionary = {}
 var customer_row: HBoxContainer
 var checkout_button: Button
+var courier_button: Button
+var courier_status: Label
+var courier_preview: SubViewportContainer
+var courier_viewport: SubViewport
+var courier_camera: Camera3D
 var basket_label: Label
 var task_label: Label
 var shift_label: Label
@@ -457,7 +462,7 @@ func show_settings() -> void:
 		_button(box,"Privacy options",func(): services.privacy_options(),Color("6e8787"))
 	_text(box,"How to play",32,TEAL)
 	_text(box,"Customers collect their requested items from your shelves. Tap a shelf or its large card to restock it. When a basket is complete, tap the customer's Checkout card. Go to checkout sends the clerk to wait for one complete basket, even before it arrives. One job can run while one waits; tap Cancel queued job to change your plan. Incomplete baskets never pay.",26)
-	_text(box,"Ordinary retries and untimed practice are free. Optional delivery assistance needs a real earned ad; unavailable or closed ads never grant anything. Assisted combos stay out of the unassisted record.",24)
+	_text(box,"Ordinary retries and untimed practice are free. Ordinary courier delivery is free: call when a product reserve is empty, wait 20-45 seconds of active play, then tap Meet courier so your clerk collects the parcel at the front door. Optional extra ad reserve needs a real earned ad; unavailable or closed ads never grant anything. Assisted combos stay out of the unassisted record.",24)
 	_text(box,"Made with Godot and selected Kenney CC0 art. Original game work Apache 2.0. License notices accompany the package.",21)
 
 func _confirm_start(id: int, practice: bool=false, daily: bool=false) -> void:
@@ -542,6 +547,31 @@ func _build_game() -> void:
 	task_progress.show_percentage = false
 	task_progress.custom_minimum_size.y = 12
 	controls.add_child(task_progress)
+	var delivery_row := _row(controls,8)
+	# This camera sees the actual courier/parcel in the existing world, not a
+	# second actor or simulated delivery. Only render the tiny inset while waiting.
+	courier_preview = SubViewportContainer.new()
+	courier_preview.custom_minimum_size = Vector2(160,128)
+	courier_preview.stretch = true
+	courier_preview.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	delivery_row.add_child(courier_preview)
+	courier_viewport = SubViewport.new()
+	courier_viewport.size = Vector2i(160,128)
+	courier_viewport.world_3d = viewport.find_world_3d()
+	courier_viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
+	courier_preview.add_child(courier_viewport)
+	courier_camera = Camera3D.new()
+	courier_camera.projection = Camera3D.PROJECTION_ORTHOGONAL
+	courier_camera.size = 3.1
+	courier_viewport.add_child(courier_camera)
+	courier_camera.position = Vector3(6.6,3.2,8)
+	courier_camera.look_at(Vector3(3.2,.95,3.6))
+	courier_camera.current = true
+	courier_status = _text(delivery_row,"",22,TEAL)
+	courier_status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	courier_button = _button(delivery_row,"Call for delivery",_courier_action,CORAL)
+	courier_button.name = "CourierAction"
+	courier_button.custom_minimum_size = Vector2(300,128)
 	var row := _row(controls,8)
 	checkout_button = _button(row,"Go to checkout",func(): _queue_task("checkout",-1),TEAL)
 	checkout_button.name = "GoCheckout"
@@ -549,7 +579,7 @@ func _build_game() -> void:
 	_button(row,"Pause",func(): _pause_shift("A little breather","Everything in the shop waits for you."),Color("6e8787"))
 	_button(row,"Cancel queued job",func():
 		if model != null: model.cancel_queued(),Color("6e8787"))
-	var aid := _button(row,"Reserve delivery",_request_reserve,CORAL)
+	var aid := _button(row,"Ad reserve +3",_request_reserve,CORAL)
 	aid.visible = not bool(model.state.practice) and int(model.state.shift_id) > 1
 	_refresh_game()
 	_music(str(catalog.themes[int(model.definition.chapter)-1].music))
@@ -564,6 +594,15 @@ func _refresh_game() -> void:
 	if model == null or not is_instance_valid(shift_label): return
 	var state: Dictionary = model.state
 	checkout_button.disabled = paused
+	var courier: Dictionary = state.courier
+	courier_button.visible = model.ruleset == Model.CURRENT_RULESET
+	courier_status.visible = courier_button.visible
+	courier_preview.visible = courier_button.visible and courier.phase == "waiting"
+	courier_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS if courier_preview.visible else SubViewport.UPDATE_DISABLED
+	courier_button.text = "Meet courier at door" if courier.phase == "waiting" else "Courier on the way" if courier.phase == "transit" else "Call for delivery"
+	courier_button.disabled = paused or (not model.can_call_delivery() and courier.phase != "waiting")
+	courier_status.text = "Arrives in %ds of play" % int(ceil(float(courier.remaining))) if courier.phase == "transit" else "At front door - collect parcel" if courier.phase == "waiting" else "Call when a product reserve is empty"
+	courier_button.tooltip_text = "Free ordinary supply. Courier takes 20-45 seconds of active play; the clerk must collect at the front door."
 	shift_label.text = "%s  ·  %d/%d neighbors  ·  %d coins" % ["Practice" if state.practice else "%ds" % int(ceil(float(state.remaining))),int(state.served),int(model.definition.target),int(state.revenue)]
 	shift_progress.max_value = float(model.definition.duration)
 	shift_progress.value = float(state.remaining)
@@ -650,7 +689,12 @@ func _refresh_game() -> void:
 
 func _task_name(task: Dictionary) -> String:
 	if task.is_empty(): return "None"
+	if task.kind == "collect_delivery": return "Meet courier at front door"
 	return "Restock "+str(catalog.products[str(task.target)].name) if task.kind == "restock" else "Go to checkout" if int(task.target) == -1 else "Checkout basket"
+
+func _courier_action() -> void:
+	if model == null: return
+	_queue_task("collect_delivery" if model.state.courier.phase == "waiting" else "call_delivery","front_door")
 
 func _queue_task(kind: String, target: Variant) -> void:
 	if screen != "game" or paused or background or reward_pending or ad_waiting or model == null: return
@@ -694,6 +738,10 @@ func _process(delta: float) -> void:
 			elif event.kind == "arrival": _sfx("door")
 			elif event.kind == "customer_lost": _sfx("error")
 			elif event.kind == "delivery": _notice("A fresh reserve delivery has arrived.")
+			elif event.kind == "courier_arrived":
+				_sfx("door")
+				_notice("Courier at the front door. Tap Meet courier to collect your parcel.")
+			elif event.kind == "courier_collected": _sfx("restock")
 		if model.state.status != "active" and not result_banked and not settle_error:
 			_settle_shift()
 		refresh_clock += delta
